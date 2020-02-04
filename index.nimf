@@ -1,6 +1,6 @@
 #? stdtmpl | standard
 #
-#proc genMain(): string =
+#func genPlayground*(): string =
 <html lang="en" class="has-navbar-fixed-top">
 <head>
   <title>Nim</title>
@@ -13,61 +13,153 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Fira+Code|Oxygen+Mono|Roboto+Mono|Inconsolata|Ubuntu+Mono|Titillium+Web&display=swap" rel="stylesheet" crossorigin="anonymous">
 </head>
-  <body id="page" style="font-family:'Titillium Web';background-color:#232733" lang="en">
+  <body lang="en" id="page" style="font-family:'Titillium Web';background-color:#232733" lang="en">
     <div class="container is-fluid has-text-white" id="content">
-
-<nav class="navbar is-fixed-top is-black">
-  <div class="container">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="https://nim-lang.org" target="_blank" title="Nim Playground (Unofficial)">
-        <img src="https://play.nim-lang.org/assets/logo.svg"/>
-      </a>
-    </div>
-    <div class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item" href="https://nim-lang.org/learn.html" title="Documentation" target="_blank">Docs</a>
-        <a class="navbar-item" href="https://t.me/NimArgentina" title="Chat Spanish" target="_blank">Chat (ES)</a>
-        <a class="navbar-item" href="https://gitter.im/nim-lang/Nim" title="Chat English" target="_blank">Chat (EN)</a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"><h1><b> + </b></h1></a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/install.html" target="_blank">Download</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers#table-of-contents" target="_blank">Python Devs</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers#table-of-contents" target="_blank">JavaScript Devs</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://planet.nim-lang.org" target="_blank">RSS</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki" target="_blank">Wiki</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://book.picheta.me" target="_blank">Book</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://nimble.directory" target="_blank">Nimble</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://play.nim-lang.org" target="_blank">Playground</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://youtube.com/watch?v=zSXbifhuZSo&list=PLXIivpcMlfwAevvA4IvLIiYOujqSuyyKY" target="_blank">Youtube</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://twitter.com/nim_lang" target="_blank">Twitter</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://twitch.tv/araq4k" target="_blank">Twitch</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://github.com/moigagoo/nimage" target="_blank">Docker</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/tut1.html" target="_blank">Tutorial</a>
-            <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/theindex.html" target="_blank">TheIndex</a>
+    <nav class="navbar is-fixed-top is-black">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://nim-lang.org" target="_blank" title="Nim Playground (Unofficial)">
+            <img src="https://play.nim-lang.org/assets/logo.svg"/>
+          </a>
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-start">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">Recent</a>
+              <div class="navbar-dropdown">
+            # for i in 1..15:
+                <a class="navbar-item navbar-item-dropdown" href="$i" target="_blank"> $i </a>
+            # end for
+              </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">Chat</a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item navbar-item-dropdown" href="https://gitter.im/nim-lang/Nim" target="_blank">English (International)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://forum.nim-lang.org" target="_blank">Forum (International)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimArgentina" target="_blank">Spanish (Americas)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimParaguay" target="_blank">Spanish (Americas)</a>
+                <a class="navbar-item navbar-item-dropdown" href="irc://freenode.net/nim" target="_blank">IRC</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://matrix.to/#/#freenode_#nim:matrix.org" target="_blank">Matrix</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://discord.gg/ezDFDw2" target="_blank">Discord</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://irclogs.nim-lang.org" target="_blank">Logs</a>
+              </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">Docs</a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers#table-of-contents" target="_blank">Python Devs</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers#table-of-contents" target="_blank">JavaScript Devs</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers" target="_blank">C / C++ Devs</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/tut1.html" target="_blank">Tutorial</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/theindex.html" target="_blank">TheIndex</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/lib.html" target="_blank">Standard Library</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/manual.html" target="_blank">Manual</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/gc.html" target="_blank">Memory Management</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/nep1.html" target="_blank">Style Guide</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.github.io/Nim" target="_blank">Bleeding Edge</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/hcr.html" target="_blank">Hot Code Reloading</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/docgen.html" target="_blank">Self-Documentator</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/nims.html" target="_blank">NimScript</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/tools.html" target="_blank">Built-in Tools</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/asyncdispatch.html" target="_blank">Async</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/manual.html#threads" target="_blank">Threads</a>
+              </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">Social</a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item navbar-item-dropdown" href="https://youtube.com/watch?v=zSXbifhuZSo&list=PLXIivpcMlfwAevvA4IvLIiYOujqSuyyKY" target="_blank">Youtube</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://twitter.com/nim_lang" target="_blank">Twitter</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://stackoverflow.com/questions/tagged/nim-lang" target="_blank">StackOverflow</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://twitch.tv/araq4k" target="_blank">Twitch</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://reddit.com/r/nim" target="_blank">Reddit</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://dev.to/t/nim" target="_blank">DevTo</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://gettogether.community/nim-argentina/" target="_blank">Get Together</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://www.meetup.com/Nim-Argentina" target="_blank">Meetup</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://exercism.io/my/tracks/nim" target="_blank">Exercism</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://code-golf.io/scores/all-holes/nim" target="_blank">Code Golf</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://www.codewars.com/?language=nim" target="_blank">Code Wars</a>
+                <a class="navbar-item navbar-item-dropdown" href="http://rosettacode.org/wiki/Category:Nim" target="_blank">Rosetta Code</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://rosettagit.org/languages/nim/" target="_blank">Rosetta Git</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim.godbolt.org" target="_blank">Compiler Explorer</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://learnxinyminutes.com/docs/nim" target="_blank">Nim in 5 minutes</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://devdocs.io/nim" target="_blank">DevDocs</a>
+              </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"><h1><b> + </b></h1></a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/install.html" target="_blank">Download</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/blog.html" target="_blank">Blog</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://planet.nim-lang.org" target="_blank">RSS</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki" target="_blank">Wiki</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://book.picheta.me" target="_blank">Book</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nimble.directory" target="_blank">Nimble</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/dom96/choosenim#choosenim" target="_blank">ChooseNim</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://play.nim-lang.org" target="_blank">Playground</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://wandbox.org" target="_blank">Playground Alt 2</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://ide.judge0.com/?Xb_Q" target="_blank">Playground Alt 3</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/moigagoo/nimage" target="_blank">Docker</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/blob/devel/changelog.md" target="_blank">Devel Changelog</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/nightlies/releases" target="_blank">Nightlies</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/csources#nim-c-sources" target="_blank">Pure C Sources</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/juancarlospaco/nim-presentation-slides/tree/master/ejemplos" target="_blank">Examples</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/blog/2017/10/02/documenting-profiling-and-debugging-nim-code.html" target="_blank">Debugging</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</nav>
+    </nav>
+
 
 <form action="/compile" method="post" class="is-fullwidth is-paddingless">
-  <textarea name="code" id="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" rows="10" placeholder=" Type or Paste your Nim code here..." dir="auto" autofocus required spellcheck style="font-family:'Fira Code';width:99%" oninput="document.querySelector('#detailseditor').setAttribute('open','open')"></textarea>
+<div class="tabs is-centered is-boxed">
+  <ul>
+    <li class="is-active">
+      <a>
+        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+        <span>Pictures</span>
+      </a>
+
+    </li>
+    <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" rows="10" placeholder=" Type or Paste your Nim code here..." dir="auto" autofocus required spellcheck style="font-family:'Fira Code';width:99%" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()"></textarea>
   <small id="stats" class="is-hidden-touch" style="opacity:.5"></small>
-  <small class="is-hidden-touch" style="opacity:.5"> datehere </small>
-  <button class="button is-fullwidth" title="Save, Compile, Run" onclick="this.style.display='none'" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" style="background-color:#ffe953"><b> COMPILE & RUN </b></button>
+  <small class="is-hidden-touch" style="opacity:.5"></small>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+        <span>Music</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
+        <span>Videos</span>
+      </a>
+    </li>
+    <li>
+      <a>
+        <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
+        <span>Documents</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+  <button class="button is-fullwidth" title="AutoFormat, Save, Compile, Run" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" style="background-color:#ffe953"><b> R U N </b></button>
   <br>
 
-<footer class="footer is-paddingless is-fullwidth">
+<section class="section is-paddingless is-fullwidth">
 
 <details class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
   <summary class="has-background-black has-text-white"> Comment </summary>
   <div class="container">
-    <p id="comment">
+    <p id="commentoutput">
     ?
     </p>
-    <input type="text" id="fontsize" class="input is-small" placeholder="MarkDown / ReSTructuredText" title="MarkDown / ReSTructuredText"/>
+    <input type="text" id="commentinput" name="commentinput" class="input is-small" placeholder="MarkDown / ReSTructuredText" title="MarkDown / ReSTructuredText" onblur="document.querySelector('#commentinput').value=document.querySelector('#commentinput').value.trim()"/>
   </div>
 </details>
 
@@ -78,7 +170,7 @@
         <div class="column">
           <a href="https://nim-lang.org/docs/backends.html#introduction" target="_blank" title="Compiler Target"> Target </a><br>
             <div class="select is-small">
-              <select id="compilationtarget" title="Compiler Target" class="select is-small">
+              <select id="target" name="target" title="Compiler Target" class="select is-small">
                 <optgroup label="Backend">
                   <option value="c">            C         </option>
                   <option value="cpp">          C++       </option>
@@ -101,7 +193,7 @@
         <div class="column">
           <a href="https://nim-lang.org/docs/nimc.html#additional-compilation-switches" target="_blank" title="Optimization level"> Mode </a><br>
           <div class="select is-small">
-            <select id="compilationmode" title="Optimization level" class="select is-small">
+            <select id="mode" name="mode" title="Optimization level" class="select is-small">
               <option value=""> Debug  </option>
               <option value="-d:release"> Release </option>
               <optgroup label="Advanced">
@@ -114,9 +206,9 @@
         <div class="column">
           <a href="https://nim-lang.org/docs/gc.html" target="_blank" title="Memory management"> Memory </a><br>
           <div class="select is-small">
-            <select id="garbagecollector" title="Memory management" class="select is-small">
+            <select id="gc" name="gc" title="Memory management" class="select is-small">
               <option value="">                  Default    </option>
-              <option value="--gc:boehm">        RefC      </option>
+              <option value="--gc:refc">         RefC      </option>
               <option value="--gc:boehm">        Boehm      </option>
               <option value="--gc:markAndSweep"> Mark&Sweep </option>
               <option value="--gc:go">           Go lang    </option>
@@ -133,9 +225,9 @@
         <div class="column is-hidden-touch">
           <a href="https://nim-lang.org/docs/nep1.html#introduction" target="_blank" title="Code style"> Style </a><br>
           <div class="select is-small">
-            <select id="stylecheck" title="Code style" class="select is-small">
+            <select id="stylecheck" name="stylecheck" title="Code style" class="select is-small">
               <option value=""> Default </option>
-              <option value="--styleCheck:hint"> Off   </option>
+              <option value="--styleCheck:off">  Off   </option>
               <option value="--styleCheck:hint"> Hints </option>
               <optgroup label="Advanced">
                 <option value="--styleCheck:error" class="has-text-danger"> Errors </option>
@@ -147,7 +239,7 @@
         <div class="column is-hidden-touch">
           <a href="https://nim-lang.org/araq/gotobased_exceptions.html" target="_blank" title="Exception Handling"> Exceptions </a><br>
           <div class="select is-small">
-            <select id="exceptions" title="Exception Handling" class="select is-small">
+            <select id="exceptions" name="exceptions" title="Exception Handling" class="select is-small">
               <option value="">                      Default </option>
               <option value="--exceptions:setjmp">   SetJmp  </option>
               <option value="--exceptions:goto">     GOTO    </option>
@@ -162,7 +254,7 @@
         <div class="column is-hidden-touch">
           OS <br>
           <div class="select is-small">
-            <select id="stylecheck" title="Code style" class="select is-small">
+            <select id="os" name="os" title="Code style" class="select is-small">
               <option value=""> Default </option>
               <option value=""> Linux </option>
               <option value="--os:windows"> Windows </option>
@@ -179,7 +271,7 @@
         <div class="column is-hidden-touch">
           CPU <br>
           <div class="select is-small">
-            <select id="stylecheck" title="Code style" class="select is-small">
+            <select id="cpu" name="cpu" title="Code style" class="select is-small">
               <option value=""> Default </option>
               <option value=""> x86 64Bit </option>
               <option value="--cpu:i386"> x86 32Bit </option>
@@ -190,46 +282,43 @@
 
         <div class="column is-hidden-touch has-text-left">
           <label id="label0" class="checkbox is-small is-unselectable" title="Enable OpenSSL & HTTPS -d:ssl">
-            <input type="checkbox" class="checkbox is-small" id="ssl" onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
+            <input type="checkbox" class="checkbox is-small" id="ssl" name="ssl" onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
           </label> <a href="https://nim-lang.org/docs/openssl.html">?</a>
           <br>
           <label id="label1" class="checkbox is-small is-unselectable" title="Enable Multi-Threading --threads:on">
-            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
+            <input type="checkbox" class="checkbox is-small" id="threads" name="threads" onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
           </label> <a href="https://nim-lang.org/docs/manual.html#threads">?</a>
           <br>
           <label id="label2" class="checkbox is-small is-unselectable" title="Strip binary --passL:-s">
-            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(this.checked){document.querySelector('#label2').classList.add('has-text-success');document.querySelector('#label2').classList.remove('has-text-danger')}else{document.querySelector('#label2').classList.add('has-text-danger');document.querySelector('#label2').classList.remove('has-text-success')}" /> Strip
+            <input type="checkbox" class="checkbox is-small" id="strip" name="strip" onchange="if(this.checked){document.querySelector('#label2').classList.add('has-text-success');document.querySelector('#label2').classList.remove('has-text-danger')}else{document.querySelector('#label2').classList.add('has-text-danger');document.querySelector('#label2').classList.remove('has-text-success')}" checked /> Strip
           </label> <a href="https://en.wikipedia.org/wiki/Stripped_binary">?</a>
           <br>
           <label id="label2" class="checkbox is-small is-unselectable" title="Python syntax & Python export --import:pylib --import:nimpy">
-            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(this.checked){document.querySelector('#label2').classList.add('has-text-success');document.querySelector('#label2').classList.remove('has-text-danger')}else{document.querySelector('#label2').classList.add('has-text-danger');document.querySelector('#label2').classList.remove('has-text-success')}" />Python syntax
+            <input type="checkbox" class="checkbox is-small" id="python" name="python"/>Python syntax
           </label>
         </div>
 
         <div class="column is-hidden-touch has-text-left">
           <label id="labela" class="checkbox is-small is-unselectable" title="GCC -flto" style="opacity:.75;cursor:not-allowed">
-            <input type="checkbox" class="checkbox is-small" id="ssl" onchange="if(!this.checked){document.querySelector('#labela').classList.add('has-text-success');document.querySelector('#labela').classList.remove('has-text-danger')}else{document.querySelector('#labela').classList.add('has-text-danger');document.querySelector('#labela').classList.remove('has-text-success')}" />flto
+            <input type="checkbox" class="checkbox is-small" id="flto" name="flto" onchange="if(!this.checked){document.querySelector('#labela').classList.add('has-text-success');document.querySelector('#labela').classList.remove('has-text-danger')}else{document.querySelector('#labela').classList.add('has-text-danger');document.querySelector('#labela').classList.remove('has-text-success')}" />flto
           </label> <a href="https://gcc.gnu.org/wiki/LinkTimeOptimization#Background">?</a>
           <br>
           <label id="labelb" class="checkbox is-small is-unselectable" title="GCC -ffast-math" style="opacity:.75;cursor:not-allowed">
-            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(!this.checked){document.querySelector('#labelb').classList.add('has-text-success');document.querySelector('#labelb').classList.remove('has-text-danger')}else{document.querySelector('#labelb').classList.add('has-text-danger');document.querySelector('#labelb').classList.remove('has-text-success')}" />fast-math
+            <input type="checkbox" class="checkbox is-small" id="fastmath" name="fastmath" onchange="if(!this.checked){document.querySelector('#labelb').classList.add('has-text-success');document.querySelector('#labelb').classList.remove('has-text-danger')}else{document.querySelector('#labelb').classList.add('has-text-danger');document.querySelector('#labelb').classList.remove('has-text-success')}" />fast-math
           </label> <a href="https://gcc.gnu.org/wiki/FloatingPointMath">?</a>
           <br>
           <label id="labelc" class="checkbox is-small is-unselectable" title="GCC -march=native" style="opacity:.75;cursor:not-allowed">
-            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />arch=native
+            <input type="checkbox" class="checkbox is-small" id="marchnative" name="marchnative" onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />arch=native
           </label> <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html">?</a>
           <br>
           <label id="labelc" class="checkbox is-small is-unselectable" title="GCC Hardened binary" style="opacity:.75;cursor:not-allowed">
-            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />Hardened
+            <input type="checkbox" class="checkbox is-small" id="hardened" name="hardened"/>Hardened
           </label> <a href="https://en.wikipedia.org/wiki/Hardening_%28computing%29#Binary_hardening">?</a>
 
         </div>
       </div>
 
     </details>
-<script>
-  // (function(){setTimeout(function(){document.querySelector("#detailsnim").setAttribute("open","open")},5000)})();
-</script>
 
 <details id="detailseditor" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
     <summary class="has-background-black has-text-white"> Editor </summary>
@@ -237,7 +326,7 @@
         <div class="column">
           Size <br>
           <div class="is-small">
-            <input type="number" id="fontsize" class="input is-small" list="defaultNumbers" value=15 min=10 max=50 step=5 required maxlenght=2 onchange="document.querySelector('#code').style.fontSize=this.value" style="max-width:6em" />
+            <input type="number" id="fontsize" name="fontsize" class="input is-small" list="defaultNumbers" value=15 min=10 max=50 step=5 required maxlenght=2 onchange="document.querySelector('#code').style.fontSize=this.value" style="max-width:6em" />
             <datalist id="defaultNumbers">
               <option value=10 ></option>
               <option value=20 ></option>
@@ -251,7 +340,8 @@
         <div class="column is-hidden-touch">
           Family <br>
           <div class="select is-small">
-            <select id="exceptions" title="Exception Handling" class="select is-small" onchange="document.querySelector('#code').style.fontFamily=this.options[this.selectedIndex].value">
+            <select id="fontfamily" name="fontfamily" title="Exception Handling" class="select is-small" onchange="document.querySelector('#code').style.fontFamily=this.options[this.selectedIndex].value">
+              <option value="Fira Code">Default</option>
               <option value="Fira Code">Fira Code</option>
               <option value="Oxygen Mono">Oxygen Mono</option>
               <option value="Roboto Mono">Roboto Mono</option>
@@ -261,6 +351,7 @@
               <option value="Titillium Web" class="has-text-danger">Titillium</option>
               <option value="Serif" class="has-text-danger">Serif</option>
               <option value="Sans-Serif" class="has-text-danger">Sans-Serif</option>
+              <option disabled >Comic Sans</option>
             </select>
           </div>
         </div>
@@ -268,7 +359,7 @@
         <div class="column is-hidden-touch">
           Rows <br>
           <div class="is-small">
-            <input type="number" id="fontsize" class="input is-small" list="defaultNumbers" value=10 min=2 max=32 step=10 required maxlenght=2 onchange="document.querySelector('#code').rows=this.value" style="max-width:6em" />
+            <input type="number" id="rows" name="rows" class="input is-small" list="defaultNumbers" value=12 min=2 max=32 step=10 required maxlenght=2 onchange="document.querySelector('#code').rows=this.value" style="max-width:6em" />
             <datalist id="defaultNumbers">
               <option value=2  ></option>
               <option value=12 ></option>
@@ -280,12 +371,12 @@
 
         <div class="column">
           Title <br>
-          <input class="input is-small" title="Playground Title" placeholder="Title" type="text" >
+          <input id="title" name="title" class="input is-small" pattern="[:ascii:]" title="Title (ASCII, SEO URL)" placeholder="Title (ASCII, SEO URL)" type="text" onblur="document.querySelector('#title').value=document.querySelector('#title').value.trim()">
         </div>
 
         <div class="column">
           Expiration <br>
-          <input type="number" id="expiration" class="input is-small" list="defaultExpirations" value=7 min=1 max=99 step=10 required maxlenght=2 title="Expiration Days" style="max-width:3em" />
+          <input type="number" id="expiration" name="expiration" class="input is-small" list="defaultExpirations" value=7 min=1 max=99 step=1 required maxlenght=2 title="Expiration Days" style="max-width:4em" />
             <datalist id="defaultExpirations">
               <option value=1  ></option>
               <option value=7 ></option>
@@ -298,8 +389,10 @@
         <div class="column">
           Examples <br>
           <div class="select is-small">
-            <select id="exceptions" title="Load 1 Example">
-              <option selected disabled >99 Snippets</option>
+            <select id="examples" title="Load 1 Example" onchange="document.querySelector('#code').value=this.options[this.selectedIndex].value">
+              <option selected disabled >Code Snippets</option>
+            # const exmpl = staticRead"examples.html".strip
+              $exmpl
             </select>
           </div>
         </div>
@@ -315,11 +408,18 @@
 <details class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
   <summary class="has-background-black has-text-white"> Standard Input </summary>
   <div class="container">
-    <input type="text" id="fontsize" class="input is-small" placeholder="Command line terminal arguments input  --key=value --params" title="Command line terminal arguments input"/>
+    <input type="text" id="stdin" name="stdin" class="input is-small" placeholder="Command line terminal arguments input  --key=value --params" title="Command line terminal arguments input" onblur="document.querySelector('#stdin').value=document.querySelector('#stdin').value.trim()"/>
   </div>
 </details>
 
-</footer>
+<details class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
+  <summary class="has-background-black has-text-white"> Standard Output </summary>
+  <div class="container">
+    <textarea id="stdout" class="textarea is-paddingless is-fullwidth" maxlength="999" rows="9" placeholder=" Standard Output (Read-Only)" title="Standard Output" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" readonly ></textarea>
+  </div>
+</details>
+
+</section>
 </form>
 
         </div>
@@ -328,13 +428,12 @@
 
 
 <script>
-# const behave = staticRead("behave.js").strip.unindent
-$behave
-
-# const countable = staticRead("Countable.min.js").strip.unindent
-$countable
-
-(function(){
+//Behave
+(function(undefined){'use strict';var BehaveHooks=BehaveHooks||(function(){var hooks={};return{add:function(hookName,fn){if(typeof hookName=="object"){var i;for(i=0;i<hookName.length;i+=1){var theHook=hookName[i];if(!hooks[theHook]){hooks[theHook]=[]}hooks[theHook].push(fn)}}else{if(!hooks[hookName]){hooks[hookName]=[]}hooks[hookName].push(fn)}},get:function(hookName){if(hooks[hookName]){return hooks[hookName]}}}})(),Behave=Behave||function(userOpts){if(typeof String.prototype.repeat!=='function'){String.prototype.repeat=function(times){if(times<1){return ''}if(times%2){return this.repeat(times-1)+this}var half=this.repeat(times/2);return half+half}}if(typeof Array.prototype.filter!=='function'){Array.prototype.filter=function(func ){if(this===null){throw new TypeError()}var t=Object(this),len=t.length>>>0;if(typeof func!="function"){throw new TypeError()}var res=[],thisp=arguments[1];for(var i=0;i<len;i+=1){if(i in t){var val=t[i];if(func.call(thisp,val,i,t)){res.push(val)}}}return res}}var defaults={textarea:null,replaceTab:true,softTabs:true,tabSize:4,autoOpen:true,overwrite:true,autoStrip:true,autoIndent:true,fence:false},tab,newLine,charSettings={keyMap:[{open:"\"",close:"\"",canBreak:false},{open:"'",close:"'",canBreak:false},{open:"(",close:")",canBreak:false},{open:"[",close:"]",canBreak:true},{open:"{",close:"}",canBreak:true}]},utils={_callHook:function(hookName,passData){var hooks=BehaveHooks.get(hookName);passData=typeof passData=="boolean"&&passData===false?false:true;if(hooks){if(passData){var theEditor=defaults.textarea,textVal=theEditor.value,caretPos=utils.cursor.get(),i;for(i=0;i<hooks.length;i+=1){hooks[i].call(undefined,{editor:{element:theEditor,text:textVal,levelsDeep:utils.levelsDeep()},caret:{pos:caretPos},lines:{current:utils.cursor.getLine(textVal,caretPos),total:utils.editor.getLines(textVal)}})}}else{for(i=0;i<hooks.length;i+=1){hooks[i].call(undefined)}}}},defineNewLine:function(){var ta=document.createElement('textarea');ta.value="\n";if(ta.value.length==2){newLine="\r\n"}else{newLine="\n"}},defineTabSize:function(tabSize){if(typeof defaults.textarea.style.OTabSize!="undefined"){defaults.textarea.style.OTabSize=tabSize;return}if(typeof defaults.textarea.style.MozTabSize!="undefined"){defaults.textarea.style.MozTabSize=tabSize;return}if(typeof defaults.textarea.style.tabSize!="undefined"){defaults.textarea.style.tabSize=tabSize;return}},cursor:{getLine:function(textVal,pos){return((textVal.substring(0,pos)).split("\n")).length},get:function(){if(typeof document.createElement('textarea').selectionStart==="number"){return defaults.textarea.selectionStart}else if(document.selection){var caretPos=0,range=defaults.textarea.createTextRange(),rangeDupe=document.selection.createRange().duplicate(),rangeDupeBookmark=rangeDupe.getBookmark();range.moveToBookmark(rangeDupeBookmark);while(range.moveStart('character',-1)!==0){caretPos+=1}return caretPos}},set:function(start,end){if(!end){end=start}if(defaults.textarea.setSelectionRange){defaults.textarea.focus();defaults.textarea.setSelectionRange(start,end)}else if(defaults.textarea.createTextRange){var range=defaults.textarea.createTextRange();range.collapse(true);range.moveEnd('character',end);range.moveStart('character',start);range.select()}},selection:function(){var textAreaElement=defaults.textarea,start=0,end=0,normalizedValue,range,textInputRange,len,endRange;if(typeof textAreaElement.selectionStart=="number"&&typeof textAreaElement.selectionEnd=="number"){start=textAreaElement.selectionStart;end=textAreaElement.selectionEnd}else{range=document.selection.createRange();if(range&&range.parentElement()==textAreaElement){normalizedValue=utils.editor.get();len=normalizedValue.length;textInputRange=textAreaElement.createTextRange();textInputRange.moveToBookmark(range.getBookmark());endRange=textAreaElement.createTextRange();endRange.collapse(false);if(textInputRange.compareEndPoints("StartToEnd",endRange)>-1){start=end=len}else{start= -textInputRange.moveStart("character",-len);start+=normalizedValue.slice(0,start).split(newLine).length-1;if(textInputRange.compareEndPoints("EndToEnd",endRange)>-1){end=len}else{end= -textInputRange.moveEnd("character",-len);end+=normalizedValue.slice(0,end).split(newLine).length-1}}}}return start==end?false:{start:start,end:end}}},editor:{getLines:function(textVal){return(textVal).split("\n").length},get:function(){return defaults.textarea.value.replace(/\r/g,'')},set:function(data){defaults.textarea.value=data}},fenceRange:function(){if(typeof defaults.fence=="string"){var data=utils.editor.get(),pos=utils.cursor.get(),hacked=0,matchedFence=data.indexOf(defaults.fence),matchCase=0;while(matchedFence>=0){matchCase+=1;if(pos<(matchedFence+hacked)){break}hacked+=matchedFence+defaults.fence.length;data=data.substring(matchedFence+defaults.fence.length);matchedFence=data.indexOf(defaults.fence)}if((hacked)<pos&&((matchedFence+hacked)>pos)&&matchCase%2===0){return true}return false}else{return true}},isEven:function(_this,i){return i%2},levelsDeep:function(){var pos=utils.cursor.get(),val=utils.editor.get();var left=val.substring(0,pos),levels=0,i,j;for(i=0;i<left.length;i+=1){for(j=0;j<charSettings.keyMap.length;j+=1){if(charSettings.keyMap[j].canBreak){if(charSettings.keyMap[j].open==left.charAt(i)){levels+=1}if(charSettings.keyMap[j].close==left.charAt(i)){levels-=1}}}}var toDecrement=0,quoteMap=["'","\""];for(i=0;i<charSettings.keyMap.length;i+=1){if(charSettings.keyMap[i].canBreak){for(j in quoteMap){toDecrement+=left.split(quoteMap[j]).filter(utils.isEven).join('').split(charSettings.keyMap[i].open).length-1}}}var finalLevels=levels-toDecrement;return finalLevels>=0?finalLevels:0},deepExtend:function(destination,source){for(var property in source){if(source[property]&&source[property].constructor&&source[property].constructor===Object){destination[property]=destination[property]||{};utils.deepExtend(destination[property],source[property])}else{destination[property]=source[property]}}return destination},addEvent:function addEvent(element,eventName,func){if(element.addEventListener){element.addEventListener(eventName,func,false)}else if(element.attachEvent){element.attachEvent("on"+eventName,func)}},removeEvent:function addEvent(element,eventName,func){if(element.addEventListener){element.removeEventListener(eventName,func,false)}else if(element.attachEvent){element.detachEvent("on"+eventName,func)}},preventDefaultEvent:function(e){if(e.preventDefault){e.preventDefault()}else{e.returnValue=false}}},intercept={tabKey:function(e){if(!utils.fenceRange()){return}if(e.keyCode==9){utils.preventDefaultEvent(e);var toReturn=true;utils._callHook('tab:before');var selection=utils.cursor.selection(),pos=utils.cursor.get(),val=utils.editor.get();if(selection){var tempStart=selection.start;while(tempStart--){if(val.charAt(tempStart)=="\n"){selection.start=tempStart+1;break}}var toIndent=val.substring(selection.start,selection.end),lines=toIndent.split("\n"),i;if(e.shiftKey){for(i=0;i<lines.length;i+=1){if(lines[i].substring(0,tab.length)==tab){lines[i]=lines[i].substring(tab.length)}}toIndent=lines.join("\n");utils.editor.set(val.substring(0,selection.start)+toIndent+val.substring(selection.end));utils.cursor.set(selection.start,selection.start+toIndent.length)}else{for(i in lines){lines[i]=tab+lines[i]}toIndent=lines.join("\n");utils.editor.set(val.substring(0,selection.start)+toIndent+val.substring(selection.end));utils.cursor.set(selection.start,selection.start+toIndent.length)}}else{var left=val.substring(0,pos),right=val.substring(pos),edited=left+tab+right;if(e.shiftKey){if(val.substring(pos-tab.length,pos)==tab){edited=val.substring(0,pos-tab.length)+right;utils.editor.set(edited);utils.cursor.set(pos-tab.length)}}else{utils.editor.set(edited);utils.cursor.set(pos+tab.length);toReturn=false}}utils._callHook('tab:after')}return toReturn},enterKey:function(e){if(!utils.fenceRange()){return}if(e.keyCode==13){utils.preventDefaultEvent(e);utils._callHook('enter:before');var pos=utils.cursor.get(),val=utils.editor.get(),left=val.substring(0,pos),right=val.substring(pos),leftChar=left.charAt(left.length-1),rightChar=right.charAt(0),numTabs=utils.levelsDeep(),ourIndent="",closingBreak="",finalCursorPos,i;if(!numTabs){finalCursorPos=1}else{while(numTabs--){ourIndent+=tab}ourIndent=ourIndent;finalCursorPos=ourIndent.length+1;for(i=0;i<charSettings.keyMap.length;i+=1){if(charSettings.keyMap[i].open==leftChar&&charSettings.keyMap[i].close==rightChar){closingBreak=newLine}}}var edited=left+newLine+ourIndent+closingBreak+(ourIndent.substring(0,ourIndent.length-tab.length))+right;utils.editor.set(edited);utils.cursor.set(pos+finalCursorPos);utils._callHook('enter:after')}},deleteKey:function(e){if(!utils.fenceRange()){return}if(e.keyCode==8){utils.preventDefaultEvent(e);utils._callHook('delete:before');var pos=utils.cursor.get(),val=utils.editor.get(),left=val.substring(0,pos),right=val.substring(pos),leftChar=left.charAt(left.length-1),rightChar=right.charAt(0),i;if(utils.cursor.selection()===false){for(i=0;i<charSettings.keyMap.length;i+=1){if(charSettings.keyMap[i].open==leftChar&&charSettings.keyMap[i].close==rightChar){var edited=val.substring(0,pos-1)+val.substring(pos+1);utils.editor.set(edited);utils.cursor.set(pos-1);return}}var edited=val.substring(0,pos-1)+val.substring(pos);utils.editor.set(edited);utils.cursor.set(pos-1)}else{var sel=utils.cursor.selection(),edited=val.substring(0,sel.start)+val.substring(sel.end);utils.editor.set(edited);utils.cursor.set(pos)}utils._callHook('delete:after')}}},charFuncs={openedChar:function(_char,e){utils.preventDefaultEvent(e);utils._callHook('openChar:before');var pos=utils.cursor.get(),val=utils.editor.get(),left=val.substring(0,pos),right=val.substring(pos),edited=left+_char.open+_char.close+right;defaults.textarea.value=edited;utils.cursor.set(pos+1);utils._callHook('openChar:after')},closedChar:function(_char,e){var pos=utils.cursor.get(),val=utils.editor.get(),toOverwrite=val.substring(pos,pos+1);if(toOverwrite==_char.close){utils.preventDefaultEvent(e);utils._callHook('closeChar:before');utils.cursor.set(utils.cursor.get()+1);utils._callHook('closeChar:after');return true}return false}},action={filter:function(e){if(!utils.fenceRange()){return}var theCode=e.which||e.keyCode;if(theCode==39||theCode==40&&e.which===0){return}var _char=String.fromCharCode(theCode),i;for(i=0;i<charSettings.keyMap.length;i+=1){if(charSettings.keyMap[i].close==_char){var didClose=defaults.overwrite&&charFuncs.closedChar(charSettings.keyMap[i],e);if(!didClose&&charSettings.keyMap[i].open==_char&&defaults.autoOpen){charFuncs.openedChar(charSettings.keyMap[i],e)}}else if(charSettings.keyMap[i].open==_char&&defaults.autoOpen){charFuncs.openedChar(charSettings.keyMap[i],e)}}},listen:function(){if(defaults.replaceTab){utils.addEvent(defaults.textarea,'keydown',intercept.tabKey)}if(defaults.autoIndent){utils.addEvent(defaults.textarea,'keydown',intercept.enterKey)}if(defaults.autoStrip){utils.addEvent(defaults.textarea,'keydown',intercept.deleteKey)}utils.addEvent(defaults.textarea,'keypress',action.filter);utils.addEvent(defaults.textarea,'keydown',function(){utils._callHook('keydown')});utils.addEvent(defaults.textarea,'keyup',function(){utils._callHook('keyup')})}},init=function(opts){if(opts.textarea){utils._callHook('init:before',false);utils.deepExtend(defaults,opts);utils.defineNewLine();if(defaults.softTabs){tab=" ".repeat(defaults.tabSize)}else{tab="\t";utils.defineTabSize(defaults.tabSize)}action.listen();utils._callHook('init:after',false)}};this.destroy=function(){utils.removeEvent(defaults.textarea,'keydown',intercept.tabKey);utils.removeEvent(defaults.textarea,'keydown',intercept.enterKey);utils.removeEvent(defaults.textarea,'keydown',intercept.deleteKey);utils.removeEvent(defaults.textarea,'keypress',action.filter)};init(userOpts)};if(typeof module!=='undefined'&&module.exports){module.exports=Behave}if(typeof ender==='undefined'){this.Behave=Behave;this.BehaveHooks=BehaveHooks}if(typeof define==="function"&&define.amd){define("behave",[],function(){return Behave})}}).call(this);
+//Countable
+!function(t){"use strict";let n=[];const e=Array.prototype.forEach;function r(t){const n=[];let e=0;const r=t.length;for(;e<r;){const o=t.charCodeAt(e++);if(o>=55296&&o<=56319&&e<r){const r=t.charCodeAt(e++);56320==(64512&r)?n.push(((1023&o)<<10)+(1023&r)+65536):(n.push(o),e--)}else{n.push(o)}}return n}function o(t,n){const e=Object.prototype.toString.call(t),r="string"==typeof t||"[object NodeList]"===e||"[object HTMLCollection]"===e||1===t.nodeType,o="function"==typeof n;return r||console.error("Countable: Not a valid target"),o||console.error("Countable: Not a valid callback function"),r&&o}function c(t,n){let o=""+("string"==typeof t?t:"value"in t?t.value:t.textContent);(n=n||{}).stripTags&&(o=o.replace(/<\/?[a-z][^>]*>/gi,"")),n.ignore&&e.call(n.ignore,function(t){o=o.replace(t,"")});const c=o.trim();return{paragraphs:c?(c.match(n.hardReturns?/\n{2,}/g:/\n+/g)||[]).length+1:0,sentences:c?(c.match(/[.?!…]+./g)||[]).length+1:0,words:c?(c.replace(/['";:,.?¿\-!¡]+/g,"").match(/\S+/g)||[]).length:0,characters:c?r(c.replace(/\s/g,"")).length:0,all:r(o).length}}const i={on:function(t,r,i){if(o(t,r)){return Array.isArray(t)||(t=[t]),e.call(t,function(t){const e=function(){r.call(t,c(t,i))};n.push({element:t,handler:e}),e(),t.addEventListener("input",e)}),this}},off:function(t){if(o(t,function(){})){return Array.isArray(t)||(t=[t]),n.filter(function(n){return-1!==t.indexOf(n.element)}).forEach(function(t){t.element.removeEventListener("input",t.handler)}),n=n.filter(function(n){return-1===t.indexOf(n.element)}),this}},count:function(t,n,r){if(o(t,n)){return Array.isArray(t)||(t=[t]),e.call(t,function(t){n.call(t,c(t,r))}),this}},enabled:function(t){return void 0===t.length&&(t=[t]),n.filter(function(n){return-1!==t.indexOf(n.element)}).length===t.length}};"object"==typeof exports?module.exports=i:"function"==typeof define&&define.amd?define(function(){return i}):t.Countable=i}(this);
+//Init
+(function(){"use strict";
   var editor = new Behave({textarea: document.querySelector('#code'), tabSize: 2});
   Countable.on(document.querySelector('#code'), function (counter) {
     document.querySelector('#stats').innerHTML = counter.paragraphs + " Paragraphs, " + counter.sentences + " Sentences, " + counter.words + " Words, " + counter.characters + " Characters, " + counter.all + " Total, 999 Limit, ";
@@ -343,9 +442,25 @@ $countable
 </script>
 
 
+
+
+
+
+<!--
 file.json ?
 export / download ?
 id?
 mail for gravatar?
 Share ?
 Mail ?
+
+Channel live feed ?
+Textarea auto-grow ???
+
+Cookies --> https://source.unsplash.com/1600x900/?cookies
+
+RSS ??? JSON RSS ???
+
+
+Make run button a fixed footer ???
+-->
