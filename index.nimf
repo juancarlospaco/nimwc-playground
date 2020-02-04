@@ -1,0 +1,351 @@
+#? stdtmpl | standard
+#
+#proc genMain(): string =
+<html lang="en" class="has-navbar-fixed-top">
+<head>
+  <title>Nim</title>
+  <meta charset="utf-8"/>
+  <meta name="keywords" content="Nim">
+  <meta name="generator" content="Nim">
+  <meta name="description" content="Nim Playground">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel=icon type="image/x-icon" href="https://nim-lang.org/assets/img/logo_bw.png" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Code|Oxygen+Mono|Roboto+Mono|Inconsolata|Ubuntu+Mono|Titillium+Web&display=swap" rel="stylesheet" crossorigin="anonymous">
+</head>
+  <body id="page" style="font-family:'Titillium Web';background-color:#232733" lang="en">
+    <div class="container is-fluid has-text-white" id="content">
+
+<nav class="navbar is-fixed-top is-black">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://nim-lang.org" target="_blank" title="Nim Playground (Unofficial)">
+        <img src="https://play.nim-lang.org/assets/logo.svg"/>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="https://nim-lang.org/learn.html" title="Documentation" target="_blank">Docs</a>
+        <a class="navbar-item" href="https://t.me/NimArgentina" title="Chat Spanish" target="_blank">Chat (ES)</a>
+        <a class="navbar-item" href="https://gitter.im/nim-lang/Nim" title="Chat English" target="_blank">Chat (EN)</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"><h1><b> + </b></h1></a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/install.html" target="_blank">Download</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers#table-of-contents" target="_blank">Python Devs</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers#table-of-contents" target="_blank">JavaScript Devs</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://planet.nim-lang.org" target="_blank">RSS</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki" target="_blank">Wiki</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://book.picheta.me" target="_blank">Book</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://nimble.directory" target="_blank">Nimble</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://play.nim-lang.org" target="_blank">Playground</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://youtube.com/watch?v=zSXbifhuZSo&list=PLXIivpcMlfwAevvA4IvLIiYOujqSuyyKY" target="_blank">Youtube</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://twitter.com/nim_lang" target="_blank">Twitter</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://twitch.tv/araq4k" target="_blank">Twitch</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://github.com/moigagoo/nimage" target="_blank">Docker</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/tut1.html" target="_blank">Tutorial</a>
+            <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/theindex.html" target="_blank">TheIndex</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<form action="/compile" method="post" class="is-fullwidth is-paddingless">
+  <textarea name="code" id="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" rows="10" placeholder=" Type or Paste your Nim code here..." dir="auto" autofocus required spellcheck style="font-family:'Fira Code';width:99%" oninput="document.querySelector('#detailseditor').setAttribute('open','open')"></textarea>
+  <small id="stats" class="is-hidden-touch" style="opacity:.5"></small>
+  <small class="is-hidden-touch" style="opacity:.5"> datehere </small>
+  <button class="button is-fullwidth" title="Save, Compile, Run" onclick="this.style.display='none'" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" style="background-color:#ffe953"><b> COMPILE & RUN </b></button>
+  <br>
+
+<footer class="footer is-paddingless is-fullwidth">
+
+<details class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
+  <summary class="has-background-black has-text-white"> Comment </summary>
+  <div class="container">
+    <p id="comment">
+    ?
+    </p>
+    <input type="text" id="fontsize" class="input is-small" placeholder="MarkDown / ReSTructuredText" title="MarkDown / ReSTructuredText"/>
+  </div>
+</details>
+
+  <details id="detailsnim" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
+    <summary class="has-background-black has-text-white"> Nim </summary>
+      <div class="columns">
+
+        <div class="column">
+          <a href="https://nim-lang.org/docs/backends.html#introduction" target="_blank" title="Compiler Target"> Target </a><br>
+            <div class="select is-small">
+              <select id="compilationtarget" title="Compiler Target" class="select is-small">
+                <optgroup label="Backend">
+                  <option value="c">            C         </option>
+                  <option value="cpp">          C++       </option>
+                  <option value="js -d:nodejs"> NodeJS    </option>
+                  <option value="objc">         ObjectiveC</option>
+                  <option disabled>             NimScript </option>
+                  <option disabled>             LLVM IR   </option>
+                </optgroup>
+                <optgroup label="Frontend">
+                  <option value="js"> JavaScript  </option>
+                  <option disabled >  WASM </option>
+                </optgroup>
+                <optgroup label="Diagnostics">
+                  <option value="check"> Check </option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+        <div class="column">
+          <a href="https://nim-lang.org/docs/nimc.html#additional-compilation-switches" target="_blank" title="Optimization level"> Mode </a><br>
+          <div class="select is-small">
+            <select id="compilationmode" title="Optimization level" class="select is-small">
+              <option value=""> Debug  </option>
+              <option value="-d:release"> Release </option>
+              <optgroup label="Advanced">
+                <option value="-d:release -d:danger" class="has-text-danger"> Danger </option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <div class="column">
+          <a href="https://nim-lang.org/docs/gc.html" target="_blank" title="Memory management"> Memory </a><br>
+          <div class="select is-small">
+            <select id="garbagecollector" title="Memory management" class="select is-small">
+              <option value="">                  Default    </option>
+              <option value="--gc:boehm">        RefC      </option>
+              <option value="--gc:boehm">        Boehm      </option>
+              <option value="--gc:markAndSweep"> Mark&Sweep </option>
+              <option value="--gc:go">           Go lang    </option>
+              <optgroup label="Advanced">
+                <option value="--gc:none" class="has-text-danger">    None    </option>
+                <option value="--gc:regions" class="has-text-danger"> Regions </option>
+                <option value="--gc:arc">        ARC        </option>
+                <option value="--gc:orc">        ORC        </option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <div class="column is-hidden-touch">
+          <a href="https://nim-lang.org/docs/nep1.html#introduction" target="_blank" title="Code style"> Style </a><br>
+          <div class="select is-small">
+            <select id="stylecheck" title="Code style" class="select is-small">
+              <option value=""> Default </option>
+              <option value="--styleCheck:hint"> Off   </option>
+              <option value="--styleCheck:hint"> Hints </option>
+              <optgroup label="Advanced">
+                <option value="--styleCheck:error" class="has-text-danger"> Errors </option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <div class="column is-hidden-touch">
+          <a href="https://nim-lang.org/araq/gotobased_exceptions.html" target="_blank" title="Exception Handling"> Exceptions </a><br>
+          <div class="select is-small">
+            <select id="exceptions" title="Exception Handling" class="select is-small">
+              <option value="">                      Default </option>
+              <option value="--exceptions:setjmp">   SetJmp  </option>
+              <option value="--exceptions:goto">     GOTO    </option>
+              <optgroup label="Advanced">
+                <option value="--exceptions:cpp" class="has-text-danger">    C++     </option>
+                <option value="--exceptions:quirky" class="has-text-danger"> Quirky  </option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <div class="column is-hidden-touch">
+          OS <br>
+          <div class="select is-small">
+            <select id="stylecheck" title="Code style" class="select is-small">
+              <option value=""> Default </option>
+              <option value=""> Linux </option>
+              <option value="--os:windows"> Windows </option>
+              <option value="--os:android"> Android </option>
+              <option disabled > Mac </option>
+              <option disabled > BSD </option>
+              <optgroup label="Advanced">
+                <option value="--os:standalone" class="has-text-danger"> Standalone </option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <div class="column is-hidden-touch">
+          CPU <br>
+          <div class="select is-small">
+            <select id="stylecheck" title="Code style" class="select is-small">
+              <option value=""> Default </option>
+              <option value=""> x86 64Bit </option>
+              <option value="--cpu:i386"> x86 32Bit </option>
+              <option disabled > ARM </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="column is-hidden-touch has-text-left">
+          <label id="label0" class="checkbox is-small is-unselectable" title="Enable OpenSSL & HTTPS -d:ssl">
+            <input type="checkbox" class="checkbox is-small" id="ssl" onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
+          </label> <a href="https://nim-lang.org/docs/openssl.html">?</a>
+          <br>
+          <label id="label1" class="checkbox is-small is-unselectable" title="Enable Multi-Threading --threads:on">
+            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
+          </label> <a href="https://nim-lang.org/docs/manual.html#threads">?</a>
+          <br>
+          <label id="label2" class="checkbox is-small is-unselectable" title="Strip binary --passL:-s">
+            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(this.checked){document.querySelector('#label2').classList.add('has-text-success');document.querySelector('#label2').classList.remove('has-text-danger')}else{document.querySelector('#label2').classList.add('has-text-danger');document.querySelector('#label2').classList.remove('has-text-success')}" /> Strip
+          </label> <a href="https://en.wikipedia.org/wiki/Stripped_binary">?</a>
+          <br>
+          <label id="label2" class="checkbox is-small is-unselectable" title="Python syntax & Python export --import:pylib --import:nimpy">
+            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(this.checked){document.querySelector('#label2').classList.add('has-text-success');document.querySelector('#label2').classList.remove('has-text-danger')}else{document.querySelector('#label2').classList.add('has-text-danger');document.querySelector('#label2').classList.remove('has-text-success')}" />Python syntax
+          </label>
+        </div>
+
+        <div class="column is-hidden-touch has-text-left">
+          <label id="labela" class="checkbox is-small is-unselectable" title="GCC -flto" style="opacity:.75;cursor:not-allowed">
+            <input type="checkbox" class="checkbox is-small" id="ssl" onchange="if(!this.checked){document.querySelector('#labela').classList.add('has-text-success');document.querySelector('#labela').classList.remove('has-text-danger')}else{document.querySelector('#labela').classList.add('has-text-danger');document.querySelector('#labela').classList.remove('has-text-success')}" />flto
+          </label> <a href="https://gcc.gnu.org/wiki/LinkTimeOptimization#Background">?</a>
+          <br>
+          <label id="labelb" class="checkbox is-small is-unselectable" title="GCC -ffast-math" style="opacity:.75;cursor:not-allowed">
+            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(!this.checked){document.querySelector('#labelb').classList.add('has-text-success');document.querySelector('#labelb').classList.remove('has-text-danger')}else{document.querySelector('#labelb').classList.add('has-text-danger');document.querySelector('#labelb').classList.remove('has-text-success')}" />fast-math
+          </label> <a href="https://gcc.gnu.org/wiki/FloatingPointMath">?</a>
+          <br>
+          <label id="labelc" class="checkbox is-small is-unselectable" title="GCC -march=native" style="opacity:.75;cursor:not-allowed">
+            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />arch=native
+          </label> <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html">?</a>
+          <br>
+          <label id="labelc" class="checkbox is-small is-unselectable" title="GCC Hardened binary" style="opacity:.75;cursor:not-allowed">
+            <input type="checkbox" class="checkbox is-small" id="threads" onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />Hardened
+          </label> <a href="https://en.wikipedia.org/wiki/Hardening_%28computing%29#Binary_hardening">?</a>
+
+        </div>
+      </div>
+
+    </details>
+<script>
+  // (function(){setTimeout(function(){document.querySelector("#detailsnim").setAttribute("open","open")},5000)})();
+</script>
+
+<details id="detailseditor" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
+    <summary class="has-background-black has-text-white"> Editor </summary>
+      <div class="columns">
+        <div class="column">
+          Size <br>
+          <div class="is-small">
+            <input type="number" id="fontsize" class="input is-small" list="defaultNumbers" value=15 min=10 max=50 step=5 required maxlenght=2 onchange="document.querySelector('#code').style.fontSize=this.value" style="max-width:6em" />
+            <datalist id="defaultNumbers">
+              <option value=10 ></option>
+              <option value=20 ></option>
+              <option value=30 ></option>
+              <option value=40 ></option>
+              <option value=50 ></option>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="column is-hidden-touch">
+          Family <br>
+          <div class="select is-small">
+            <select id="exceptions" title="Exception Handling" class="select is-small" onchange="document.querySelector('#code').style.fontFamily=this.options[this.selectedIndex].value">
+              <option value="Fira Code">Fira Code</option>
+              <option value="Oxygen Mono">Oxygen Mono</option>
+              <option value="Roboto Mono">Roboto Mono</option>
+              <option value="Ubuntu Mono">Ubuntu Mono</option>
+              <option value="Inconsolata">Inconsolata</option>
+              <option value="Monospace">Monospace</option>
+              <option value="Titillium Web" class="has-text-danger">Titillium</option>
+              <option value="Serif" class="has-text-danger">Serif</option>
+              <option value="Sans-Serif" class="has-text-danger">Sans-Serif</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="column is-hidden-touch">
+          Rows <br>
+          <div class="is-small">
+            <input type="number" id="fontsize" class="input is-small" list="defaultNumbers" value=10 min=2 max=32 step=10 required maxlenght=2 onchange="document.querySelector('#code').rows=this.value" style="max-width:6em" />
+            <datalist id="defaultNumbers">
+              <option value=2  ></option>
+              <option value=12 ></option>
+              <option value=22 ></option>
+              <option value=32 ></option>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="column">
+          Title <br>
+          <input class="input is-small" title="Playground Title" placeholder="Title" type="text" >
+        </div>
+
+        <div class="column">
+          Expiration <br>
+          <input type="number" id="expiration" class="input is-small" list="defaultExpirations" value=7 min=1 max=99 step=10 required maxlenght=2 title="Expiration Days" style="max-width:3em" />
+            <datalist id="defaultExpirations">
+              <option value=1  ></option>
+              <option value=7 ></option>
+              <option value=14 ></option>
+              <option value=30 ></option>
+              <option value=60 ></option>
+            </datalist>
+        </div>
+
+        <div class="column">
+          Examples <br>
+          <div class="select is-small">
+            <select id="exceptions" title="Load 1 Example">
+              <option selected disabled >99 Snippets</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="column">
+          &nbsp; <br>
+          <input class="button is-small" title="Reset" onclick="document.querySelector('#code').value=''" type="reset">
+        </div>
+      </div>
+      <i class="is-clearfix"></i>
+</details>
+
+<details class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
+  <summary class="has-background-black has-text-white"> Standard Input </summary>
+  <div class="container">
+    <input type="text" id="fontsize" class="input is-small" placeholder="Command line terminal arguments input  --key=value --params" title="Command line terminal arguments input"/>
+  </div>
+</details>
+
+</footer>
+</form>
+
+        </div>
+    </body>
+</html>
+
+
+<script>
+# const behave = staticRead("behave.js").strip.unindent
+$behave
+
+# const countable = staticRead("Countable.min.js").strip.unindent
+$countable
+
+(function(){
+  var editor = new Behave({textarea: document.querySelector('#code'), tabSize: 2});
+  Countable.on(document.querySelector('#code'), function (counter) {
+    document.querySelector('#stats').innerHTML = counter.paragraphs + " Paragraphs, " + counter.sentences + " Sentences, " + counter.words + " Words, " + counter.characters + " Characters, " + counter.all + " Total, 999 Limit, ";
+  })
+})();
+</script>
+
+
+file.json ?
+export / download ?
+id?
+mail for gravatar?
+Share ?
+Mail ?

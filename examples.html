@@ -1,0 +1,432 @@
+<select id="examples" title="Click to load Nim source code examples">
+  <option disabled selected >Click to load Nim source code examples</option>
+  <option value='echo "Hello World"'>Hello World</option>
+<option value='echo "a"
+echo("b")
+echo"c"
+"d".echo
+"e".echo()
+'>UFCS Universal Function Call Syntax</option>
+<option value="proc sum2integers(a, b: int): int =
+  a + b
+
+echo sum2integers(1, 2)
+">Function</option>
+<option value='const variable_const = "foo"
+echo variable_const
+
+let variable_let = "let"
+echo variable_let
+
+var variable_var = "bar"
+echo variable_var
+variable_var = "baz"
+echo variable_var
+'>Variables</option>
+<option value='import terminal, random
+randomize()
+setBackgroundColor(bgBlack)
+for i in 0..9:
+  setForegroundColor([fgRed, fgGreen, fgYellow, fgBlue, fgMagenta, fgCyan, fgWhite].rand)
+  echo i
+'>Random Print Color</option>
+<option value='import terminal
+styledEcho(bgRed, "Red")
+'>Basic Print Color</option>
+<option value='proc main(): auto =
+  echo "Do something here."
+
+if is_main_module:
+  main()
+'>Basic App Skeleton</option>
+<option value='import jester
+
+routes:
+  get "/":
+    resp "Hello Web"
+'>Web App Jester</option>
+<option value='proc generico[T](x, y: T): auto =
+  if x < y: x else: y
+
+echo generico(2, 3)         # int
+echo generico("foo", "bar") # string
+'>Generics</option>
+<option value='var conditional = true
+
+if conditional:
+  echo "true"
+else:
+  echo "false"
+'>If...Else</option>
+<option value='var conditional = true
+echo if conditional: "true" else: "false"
+'>Ternary Operator</option>
+<option value='import strutils
+echo "abc".toUpperAscii
+echo "ABC".toLowerAscii
+echo "    a    ".strip
+echo "con" & "cat" & "!"
+echo "abc".capitalizeAscii
+echo "A__B__C".normalize
+echo "1 line".countLines
+echo "1 line".splitLines
+echo "a,b,c".split(",")
+echo "abc".toHex
+echo "42".parseInt
+echo "3.14".parseFloat
+echo "0x666".parseHexInt
+echo "TrUe".parseBool
+echo "0o666".parseOctInt
+echo "a".repeat(9)
+echo "a".align(9)
+echo "a".alignLeft(9)
+echo "a".indent(9)
+echo "   a".unindent(1)
+echo "abc".startsWith("ab")
+echo "abc".endsWith("bc")
+echo ["a", "b", "c"].join
+echo "abcd".find("c")
+echo "a".center(9)
+echo "a x a y a z".count("a")
+'>String Utils</option>
+<option value='import strformat
+let
+  a ="can"
+  b ="it"
+  c ="this"
+
+echo fmt"You {a} use {b} like {c}"
+'>Literal String Formatting</option>
+<option value='import random
+randomize()
+for i in 0..9:
+  echo 1.rand.bool
+'>Random Bool</option>
+<option value='import random
+randomize()
+for i in 0..9:
+  echo rand(-9..9)
+'>Random Range</option>
+<option value='var a = 10
+echo a
+inc a
+echo a
+inc a
+echo a
+dec a
+echo a
+dec a
+echo a
+'>Increment Decrement</option>
+<option value='var
+  fooBool: bool
+  fooInt: int
+  fooFloat: float
+  fooString: string
+  fooSeqString: seq[string]
+  fooChar: char
+
+echo fooBool
+echo fooInt
+echo fooFloat
+echo fooString
+echo fooSeqString
+echo fooChar
+'>Variable Autoinitialization</option>
+<option value='echo "a" is string
+echo true is bool
+echo 42 is int
+echo 3.14 is float
+'>Check Type</option>
+<option value='echo 1 + 2
+echo 2 - 1
+echo 2 * 2
+echo 4 / 2
+'>Basic Math Operations</option>
+<option value='# Backend Targets.
+when defined(js):
+  echo "Target is JavaScript"
+when defined(cpp):
+  echo "Target is C++"
+when defined(objc):
+  echo "Target is Objetive C"
+
+# Backend Architectures.
+when defined(amd64):
+  echo "Architecture is x86_64 AMD64 64Bits"
+when defined(i386):
+  echo "Architecture is x86 i386 32Bits"
+when defined(arm):
+  echo "Architecture is ARM"
+
+# Backend Compilers.
+when defined(gcc):
+  echo "Compiler is GNU GCC"
+when defined(clang):
+  echo "Compiler is Clang"
+when defined(tcc):
+  echo "Compiler is Tiny C Compiler"
+when defined(vcc):
+  echo "Compiler is Microsoft Visual C Compiler"
+
+# Backend Operating Systems.
+when defined(linux):
+  echo "OS is GNU Linux"
+when defined(windows):
+  echo "OS is MicroSoft Windows"
+when defined(macosx):
+  echo "OS is Mac OS X"
+when defined(android):
+  echo "OS is Android"
+'>Compile Options</option>
+<option value='import htmlgen
+echo html(body(h1(a(href="http://nim-lang.org", b("Nim")))))
+'>HTML Generation</option>
+<option value='import json
+let jotason =  %*[{"json": "inline", "abcd": ":)"}]
+echo jotason
+echo jotason.pretty
+'>JSON</option>
+<option value='import xmltree
+echo <>xml(href="http://nim-lang.org", title="Nim is Awesome", alt="Nim", newText("Nim"))
+'>XML</option>
+<option value='import httpclient
+echo get("http://httpbin.org/get").body
+echo post("http://httpbin.org/post").body
+'>HTTP GET/POST</option>
+<option value='import httpclient
+echo post("http://httpbin.org/post", body="foo bar baz").body
+'>HTTP POST Data</option>
+<option value='import httpclient
+downloadFile(url="http://httpbin.org/image/jpeg", outputFilename="temp.jpg", timeout=5000)
+'>HTTP GET Download File</option>
+<option value='import asyncdispatch, httpclient
+proc async_http_get {.async.} = echo await newAsyncHttpClient().getContent "http://httpbin.org/get"
+wait_for async_http_get()
+'>Async HTTP GET</option>
+<option value='import httpclient
+var multipart = newMultipartData()
+multipart["foo"] = "bar"
+echo newHttpClient().postContent("http://httpbin.org/post", multipart=multipart)
+'>HTTP POST MultiPart Data</option>
+<option value='import httpclient
+var client = newHttpClient()
+client.headers["foo"] = "bar"
+echo client.get("http://httpbin.org/get").body
+'>HTTP GET Header Data</option>
+<option value='import asyncdispatch, httpclient
+
+proc printProgress(total, progress, speed: BiggestInt) {.async.} =
+  echo total
+  echo progress
+  echo speed
+
+var client = newAsyncHttpClient()
+client.onProgressChanged = printProgress
+discard wait_for client.getContent("http://speedtest-ams2.digitalocean.com/10mb.test")
+'>Async HTTP GET Progress</option>
+<option value='import httpclient
+
+proc printProgress(total, progress, speed: BiggestInt) =
+  echo total
+  echo progress
+  echo speed
+
+var client = newHttpClient()
+client.onProgressChanged = printProgress
+discard client.getContent("http://speedtest-ams2.digitalocean.com/10mb.test")
+'>HTTP GET Progress</option>
+<option value='import asynchttpserver, asyncdispatch
+
+proc callback(request: Request) {.async.} =
+  await request.respond(Http200, "Hello")
+
+wait_for newAsyncHttpServer().serve(Port(8080), callback)
+'>Async HTTP Server</option>
+<option value='type
+  Gato* = object
+    nombre*, especie*: string
+    comida: range[0..100]
+    pulgas: bool
+
+proc purr*(this: var Gato) =
+  dec this.comida
+  echo "Purr"
+
+proc alimentarlo*(this: var Gato) =
+  inc this.comida
+  echo "Nom nom"
+
+proc lavarlo*(this: var Gato) =
+  this.pulgas = false
+  echo this.pulgas
+
+proc say*(this: Gato, what="Meow") =
+  echo what
+
+proc meow*(this: Gato) = echo "Meow"
+
+
+var gatito = Gato(nombre: "Zoe", especie: "Agora", comida: 50, pulgas: false)
+assert gatito is Gato
+assert(not gatito.pulgas)
+if gatito.comida < 75:
+   for i in 0..9:
+     gatito.alimentarlo()
+for i in 0..9:
+  gatito.purr()
+gatito.pulgas = true
+gatito.lavarlo()
+gatito.meow()
+gatito.say("Meow Meow Meow!")
+'>Basic Objects</option>
+<option value='import os
+echo get_env("HOME")
+'>Environment Variables</option>
+<option value='writeFile("/tmp/test.txt", "Hello")
+echo readFile("/tmp/test.txt")
+'>I/O Files</option>
+<option value='import tables
+echo {"ab": 1, "cd": 2, "fg": 42}.to_table
+'>Tables</option>
+<option value='import httpclient, json
+echo get("http://httpbin.org/get").body.parse_json
+'>HTTP GET to JSON</option>
+<option value="proc is_vowel(c: char): bool =
+  case c
+  of 'a', 'e', 'i', 'o', 'u',
+     'A', 'E', 'I', 'O', 'U':
+    result = true
+  of 'b' .. 'd', 'f' .. 'h', 'j' .. 'n', 'p' .. 't', 'v' .. 'z',
+     'B' .. 'D', 'F' .. 'H', 'J' .. 'N', 'P' .. 'T', 'V' .. 'Z':
+    result = false
+  else:
+    echo '?'
+
+echo is_vowel('A')
+echo is_vowel('c')
+">Chars</option>
+<option value='let variable = true
+
+case variable
+of true:
+  echo "OK"
+else:
+  echo "NO"
+'>Case</option>
+<option value='func sum(x, y: int): int =
+  x + y
+
+echo sum(1, 2)
+'>Functional noSideEffect</option>
+<option value='import strutils
+
+proc `💩`(a: string): string =
+  a.replace(" ", "💩")
+
+echo 💩(" Political Promises ")
+'>Operators Overload</option>
+<option value='# Max capacity.
+echo int8.high
+echo int16.high
+echo int32.high
+echo int64.high
+echo int.high
+# Size on RAM.
+echo sizeOf(int8)
+echo sizeOf(int16)
+echo sizeOf(int32)
+echo sizeOf(int64)
+echo sizeOf(int)
+'>Integers Sizes</option>
+<option value='# Size on RAM.
+echo sizeOf(char)
+echo sizeOf(string)
+echo sizeOf("a")
+'>Chars Sizes</option>
+<option value='proc x(s: string): string =
+  s & " build your own String Literals on the fly!."
+
+echo x"foo bar baz"
+'>Function String Literals</option>
+<option value='assert 2 > 1
+assert 1 > 2, "Error Message here."
+'>Assert</option>
+<option value='import unittest
+
+suite "Just Testing":
+  test "Nim Unittest":
+    check 2 > 1
+    assert 2 > 1
+'>Basic Unittest</option>
+<option value='import unittest
+
+suite "Just Testing":
+  test "test expected to fail":
+    expect AssertionError:
+      assert true == false
+'>Unittest Expect Errors</option>
+<option value='when compiles(int):
+  echo "int type exists"
+when not compiles(Foo):
+  echo "Foo type does not exist"
+when compiles(3 + 4):
+  echo "int +  int Compiles Ok"
+when not compiles(3 @@@ 4):
+  echo "@@@ Does Not Compiles"
+'>When Compiles</option>
+<option value='block:
+  echo "This is a Block"
+  let a = "foo"
+  var b = "bar"
+  echo a
+  echo b
+
+# echo a  # Error: undeclared identifier: a.
+# echo b  # Error: undeclared identifier: b.
+'>Blocks</option>
+<option value='echo (func: auto = "Gatitos")()'>Basic Anonymous Function</option>
+<option value='echo sizeof(float32)
+echo sizeof(float64)
+echo sizeof(float)
+'>Float Sizes</option>
+<option value='import os
+proc handler() {.noconv.} =
+  raise newException(Exception, "Error Message Here.")
+
+setControlCHook(handler)
+sleep 9999  # Press CTRL+C.
+'>CTRL+C Hooks</option>
+<option value='iterator iterator_generic[T](thing: T): auto =
+  for i in countdown(thing.high, thing.low):
+    yield thing[i]
+
+for cosa in "foo bar baz".iterator_generic:
+  echo cosa
+
+for cosa in [1, 2, 3, 4, 5].iterator_generic:
+  echo cosa
+'>Generic Iterators</option>
+<option value='iterator iterame(thing: string): char =
+  for i in countdown(thing.high, thing.low):
+    yield thing[i]
+
+for letra in "foo bar baz".iterame:
+  echo letra
+'>Iterators</option>
+<option value='import sequtils
+echo [14, 35, -7, 46, 98].min
+echo [14, 35, -7, 46, 98].max
+'>Seq Min Max</option>
+<option value='proc fibonacci(n: int): int =
+  if n <= 2: 1 else: fibonacci(n - 1) + fibonacci(n - 2)
+
+echo fibonacci(9)
+'>Fibonacci</option>
+<option value='import sequtils
+echo filter_it([49, 58, 76, 82, 88, 90], it > 60)
+'>Filter List</option>
+<option value='import sequtils
+echo [49, 58, 76, 82, 88, 90].map_it(it * 2)
+'>Map List</option>
+    </select>
