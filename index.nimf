@@ -22,7 +22,7 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://nim-lang.org" target="_blank" title="Nim Playground (Unofficial)">
-            <img src="https://play.nim-lang.org/assets/logo.svg" crossorigin="anonymous"/>
+            <img src="https://play.nim-lang.org/assets/logo.svg"/>
           </a>
         </div>
         <div class="navbar-menu">
