@@ -32,7 +32,7 @@
               <div class="navbar-dropdown">
             # if recents.len > 0:
             #   for item in recents:
-                  <a class="navbar-item navbar-item-dropdown is-small is-marginless is-paddingless" href="/playground/${ item[0] }" target="_blank"> ${ item[0] } </a>
+                  <a class="navbar-item navbar-item-dropdown is-small is-marginless is-paddingless" href="/${ item[0] }" target="_blank"> ${ item[0] } </a>
             #   end for
             # end if
               </div>
@@ -119,7 +119,7 @@
       </div>
     </nav>
 
-<form ${ if cancompile: " action='/playground/compile' method='post' " else: "" } id="formnim" class="is-fullwidth is-paddingless">
+<form ${ if cancompile: " action='/compile' method='post' " else: "" } id="formnim" class="is-fullwidth is-paddingless">
 <input type="radio" id="tab0" name="nav-tab" checked >
 <input type="radio" id="tab1" name="nav-tab">
 <input type="radio" id="tab2" name="nav-tab">
@@ -186,7 +186,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
 # if cancompile:
   <button class="button is-fullwidth" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, Run" style="background-color:#ffe953"><b> R U N </b></button>
 # else:
-  <input type="url" class="input is-fullwidth is-warning is-large has-text-centered has-text-weight-bold" value="http://$hosting/playground/$urls" title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus >
+  <input type="url" class="input is-fullwidth is-warning is-large has-text-centered has-text-weight-bold" value="http://$hosting/$urls" title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus >
 # end if
 <section class="section is-paddingless is-fullwidth">
   <details id="detailsnim" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
