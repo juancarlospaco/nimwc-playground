@@ -158,24 +158,24 @@
     <article class="has-background-light" style="min-height:9em"> $htmlcomment </article>
   # else:
     <textarea id="comment" name="comment" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" MarkDown and ReSTructuredText Comments (Optional)" title="MarkDown and ReSTructuredText Comments" dir="auto" style="font-family:'Fira Code'" onblur="this.value=this.value.trim()"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-    <a class="is-hidden-touch" href="https://forum.nim-lang.org/about/rst">MarkDown and ReSTructuredText CheatSheet ?</a>
+    <a class="is-hidden-touch" href="https://forum.nim-lang.org/about/rst" target="_blank">MarkDown and ReSTructuredText CheatSheet ?</a>
   # end if
   </div>
   <div class="tab-pane content-tab4">
     <textarea id="c" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$ccode</textarea>
-    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Intermediate_representation">Temporary Intermediate Representation ?</a>
+    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Intermediate_representation" target="_blank">Temporary Intermediate Representation ?</a>
   </div>
   <div class="tab-pane content-tab5">
     <textarea id="asm" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$asmcode</textarea>
-    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Assembly_language">Machine Code Assembly ?</a>
+    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank">Machine Code Assembly ?</a>
   </div>
   <div class="tab-pane content-tab6">
     <textarea id="ast" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astz</textarea>
-    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree ?</a>
+    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank">Abstract Syntax Tree ?</a>
   </div>
   <div class="tab-pane content-tab7">
     <center class="is-paddingless is-fullwidth is-hidden-touch" style="min-height:15em;max-width:99%"> $dot </center>
-    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)">DOT Graphs ?</a> (EXPERIMENTAL!)
+    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)" target="_blank">DOT Graphs ?</a> (EXPERIMENTAL!)
   </div>
 </div>
 <style>
@@ -293,15 +293,15 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         <div class="column is-hidden-touch has-text-left">
           <label id="label0" class="checkbox is-small is-unselectable" title="Enable OpenSSL & HTTPS -d:ssl">
             <input type="checkbox" class="checkbox is-small" id="ssl" name="ssl" ${if ssls == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
-          </label> <a href="https://nim-lang.org/docs/openssl.html">?</a>
+          </label> <a href="https://nim-lang.org/docs/openssl.html" target="_blank">?</a>
           <br>
           <label id="label1" class="checkbox is-small is-unselectable" title="Enable Multi-Threading --threads:on">
             <input type="checkbox" class="checkbox is-small" id="threads" name="threads" ${if threads == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
-          </label> <a href="https://nim-lang.org/docs/manual.html#threads">?</a>
+          </label> <a href="https://nim-lang.org/docs/manual.html#threads" target="_blank">?</a>
           <br>
           <label id="label2" class="checkbox is-small is-unselectable" title="Strip binary --passL:-s">
             <input type="checkbox" class="checkbox is-small" id="strip" name="strip" ${if strips == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label2').classList.add('has-text-success');document.querySelector('#label2').classList.remove('has-text-danger')}else{document.querySelector('#label2').classList.add('has-text-danger');document.querySelector('#label2').classList.remove('has-text-success')}" checked /> Strip
-          </label> <a href="https://en.wikipedia.org/wiki/Stripped_binary">?</a>
+          </label> <a href="https://en.wikipedia.org/wiki/Stripped_binary" target="_blank">?</a>
           <br>
           <label id="label2" class="checkbox is-small is-unselectable" title="Python syntax & Python export (Nimpy + Pylib)">
             <input type="checkbox" class="checkbox is-small" id="python" name="python" ${if python == "on": "checked" else: ""} />Python syntax
@@ -311,15 +311,15 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         <div class="column is-hidden-touch has-text-left">
           <label id="labela" class="checkbox is-small is-unselectable" title="GCC -flto" style="opacity:.75;cursor:not-allowed">
             <input type="checkbox" class="checkbox is-small" id="flto" name="flto" ${if flto == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labela').classList.add('has-text-success');document.querySelector('#labela').classList.remove('has-text-danger')}else{document.querySelector('#labela').classList.add('has-text-danger');document.querySelector('#labela').classList.remove('has-text-success')}" />flto
-          </label> <a href="https://gcc.gnu.org/wiki/LinkTimeOptimization#Background">?</a>
+          </label> <a href="https://gcc.gnu.org/wiki/LinkTimeOptimization#Background" target="_blank">?</a>
           <br>
           <label id="labelb" class="checkbox is-small is-unselectable" title="GCC -ffast-math" style="opacity:.75;cursor:not-allowed">
             <input type="checkbox" class="checkbox is-small" id="fastmath" name="fastmath" ${if fastmath == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelb').classList.add('has-text-success');document.querySelector('#labelb').classList.remove('has-text-danger')}else{document.querySelector('#labelb').classList.add('has-text-danger');document.querySelector('#labelb').classList.remove('has-text-success')}" />fast-math
-          </label> <a href="https://gcc.gnu.org/wiki/FloatingPointMath">?</a>
+          </label> <a href="https://gcc.gnu.org/wiki/FloatingPointMath" target="_blank">?</a>
           <br>
           <label id="labelc" class="checkbox is-small is-unselectable" title="GCC -march=native" style="opacity:.75;cursor:not-allowed">
             <input type="checkbox" class="checkbox is-small" id="marchnative" name="marchnative" ${if marchnative == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />arch=native
-          </label> <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html">?</a>
+          </label> <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html" target="_blank">?</a>
         </div>
       </div>
     </details>
@@ -391,7 +391,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
       </div>
       <i class="is-clearfix"></i>
   </details>
-  <a class="h5" href="https://t.me/NimArgentina"> Creado por la comunidad Nim Argentina </a>
+  <a class="h5" href="https://t.me/NimArgentina" style="color:#ffdd57" target="_blank"> Creado por la comunidad Nim Argentina </a>
   </section>
 </form>
 </div>
