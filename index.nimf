@@ -6,11 +6,11 @@
 #  fontsize = 15, expiration = 7, fsize = 0, astz = "", dot = "", ccode = "", asmcode = "", outputs = "", cancompile = true, recents: seq[seq[string]]): string =
 <html lang="EN" class="has-navbar-fixed-top" style="font-family:'Titillium Web';background-color:#232733">
 <head>
-  <title>Nim</title>
+  <title>Nim Argentina</title>
   <meta charset="utf-8"/>
-  <meta name="keywords" content="Nim">
+  <meta name="keywords" content="Nim Argentina">
   <meta name="generator" content="Nim">
-  <meta name="description" content="Nim Playground">
+  <meta name="description" content="Nim Argentina">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel=icon type="image/x-icon" href="https://nim-lang.org/assets/img/logo_bw.png" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css" crossorigin="anonymous">
@@ -22,7 +22,7 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://nim-lang.org" target="_blank" title="Nim Playground (Unofficial)">
-            <img src="https://play.nim-lang.org/assets/logo.svg"/>
+            <img src="https://play.nim-lang.org/assets/logo.svg" crossorigin="anonymous"/>
           </a>
         </div>
         <div class="navbar-menu">
@@ -30,7 +30,7 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Recent</a>
               <div class="navbar-dropdown">
-            # if recents.len > 0:
+            # if likely(recents.len > 0):
             #   for item in recents:
                   <a class="navbar-item navbar-item-dropdown is-small is-marginless is-paddingless" href="/${ item[0] }" target="_blank"> ${ item[0] } </a>
             #   end for
@@ -44,6 +44,7 @@
                 <a class="navbar-item navbar-item-dropdown" href="https://forum.nim-lang.org" target="_blank">Forum (International)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimArgentina" target="_blank">Spanish (Americas)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimParaguay" target="_blank">Spanish (Americas)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimitalia" target="_blank">Italian (Europe)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://nim-cn.com" target="_blank">Chinese (Asia)</a>
                 <a class="navbar-item navbar-item-dropdown" href="irc://freenode.net/nim" target="_blank">IRC</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://matrix.to/#/#freenode_#nim:matrix.org" target="_blank">Matrix</a>
@@ -200,13 +201,13 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
                 <optgroup label="Backend">
                   <option value="c"            ${if target == "c": "selected" else: ""} >           C         </option>
                   <option value="cpp"          ${if target == "cpp": "selected" else: ""}>          C++       </option>
-                  <option value="js -d:nodejs" ${if target == "js -d:nodejs": "selected" else: ""}> NodeJS    </option>
                   <option value="objc"         ${if target == "objcc": "selected" else: ""}>        ObjectiveC</option>
+                  <option value="js -d:nodejs" ${if target == "js -d:nodejs": "selected" else: ""} disabled > NodeJS    </option>
                   <option disabled>             NimScript </option>
                   <option disabled>             LLVM IR   </option>
                 </optgroup>
                 <optgroup label="Frontend">
-                  <option value="js"           ${if target == "js": "selected" else: ""}>           JavaScript  </option>
+                  <option value="js" disabled  ${if target == "js": "selected" else: ""}>           JavaScript  </option>
                   <option disabled >  WASM </option>
                 </optgroup>
                 <optgroup label="Diagnostics">
@@ -390,6 +391,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
       </div>
       <i class="is-clearfix"></i>
   </details>
+  <a class="h5" href="https://t.me/NimArgentina"> Creado por la comunidad Nim Argentina </a>
   </section>
 </form>
 </div>

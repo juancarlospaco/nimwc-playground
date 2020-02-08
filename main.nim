@@ -1,6 +1,7 @@
 import strutils, db_sqlite, json, strtabs, os, osproc, random, jester, net, packages/docutils/rstgen
 randomize()
-include "index.nimf"       # Include the NimF template.
+include "index.nimf"
+
 let db = db_sqlite.open("database.db", "", "", "")
 exec(db, sql"""
   create table if not exists playground(
@@ -29,13 +30,14 @@ exec(db, sql"""
   );
 """)                 # Create Playground DB Table.
 
+
 routes:
   get "/":
     resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 20"))
 
   get "/@urls":
-    if @"urls".len > 3 and @"urls".len < 10:
-      echo "URLS\t", @"urls"
+    if likely(@"urls".len > 3 and @"urls".len < 10):
+      when not defined(release): echo "URLS\t", @"urls"
       let row = getRow(db, sql"""
           select creation, code, filejson, comment, target, mode, gc, stylecheck, exceptions, cpu, ssl, threads, strip, python, flto, fastmath, marchnative, fontsize, fontfamily, expiration
           from playground
@@ -53,8 +55,8 @@ routes:
   post "/compile":
     const x = "firejail --noprofile --timeout='00:05:00' --noroot --read-only='/home/' --seccomp --disable-mnt --rlimit-sigpending=9 --rlimit-nofile=99 --rlimit-fsize=9216000000 --shell=none --x11=none --ipc-namespace --name=nim --hostname=nim --no3d --nodvd --nogroups --nonewprivs --nosound --novideo --notv --net=none --memory-deny-write-execute --noexec='"
     let
-      fontsizes: range[10..50] = @"fontsize".parseInt
-      expirations: range[1..99] = @"expiration".parseInt
+      fontsizes: range[10..50] = parseInt(@"fontsize")
+      expirations: range[1..99] = parseInt(@"expiration")
       targets = @"target".normalize
       modes = @"mode".normalize
       gcs = @"gc".strip
@@ -102,12 +104,9 @@ routes:
           when not defined(release): echo exitCode, "\tdot"
           if exitCode == 0:
             let dot = readFile(folder / "code.svg").strip.multiReplace(@[
-              ("fill=\"white\"", "fill=\"#ccc\""),                     # 200 IQ Graphic Design
-              ("<ellipse fill=\"none\"", "<ellipse fill=\"#ffe953\""), # Nothing from Stackoverflow worked
-              ("font-family=\"Times,serif\"", "font-family=\"Fira Code\""),
-              ("transform=\"scale(1 1) rotate(0) ", "transform=\"scale(0.5 0.5) rotate(0) "),
-              ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>", "")]
-            )
+              ("fill=\"white\"", "fill=\"#ccc\""), ("<ellipse fill=\"none\"", "<ellipse fill=\"#ffe953\""), ("font-family=\"Times,serif\"", "font-family=\"Fira Code\""),
+              ("transform=\"scale(1 1) rotate(0) ", "transform=\"scale(0.5 0.5) rotate(0) "), ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>", "")
+            ])
             let cmd = [
               x & folder & "/' ",
               "nim --embedsrc:on --excessiveStackTrace:off --asm --nimcache:" & folder & "/ --outdir:" & folder & "/",
