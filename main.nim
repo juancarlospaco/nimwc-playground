@@ -1,7 +1,6 @@
-
 import strutils, db_sqlite, json, strtabs, os, osproc, random, jester, net, packages/docutils/rstgen
+randomize()
 include "index.nimf"       # Include the NimF template.
-
 let db = db_sqlite.open("database.db", "", "", "")
 exec(db, sql"""
   create table if not exists playground(
@@ -35,34 +34,24 @@ routes:
     resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 20"))
 
   get "/@urls":
-    doAssert @"urls".len > 3 and @"urls".len < 10, "Wrong Invalid URL for a Playground"
-    let row = getRow(db, sql"""
-        select creation, code, filejson, comment, target, mode, gc, stylecheck, exceptions, cpu, ssl, threads, strip, python, flto, fastmath, marchnative, fontsize, fontfamily, expiration
-        from playground
-        where url = ?
-      """, @"urls")
-    resp genPlayground(
-      urls = @"urls", filejson = row[2], code = row[1], htmlcomment = row[3], target = row[4],
-      mode = row[5], gc = row[6], stylecheck = row[7], exceptions = row[8], cpu = row[9], hosting = $request.host,
-      ssls = row[10], threads = row[11], strips = row[12], python = row[13], flto = row[14], fastmath = row[15], marchnative = row[16],
-      fontsize = parseInt(row[17]), fontfamily = row[18], expiration = parseInt(row[19]), cancompile = false,
-      recents = getAllRows(db, sql"select url from playground order by creation limit 20")
-    )
+    if @"urls".len > 3 and @"urls".len < 10:
+      echo "URLS\t", @"urls"
+      let row = getRow(db, sql"""
+          select creation, code, filejson, comment, target, mode, gc, stylecheck, exceptions, cpu, ssl, threads, strip, python, flto, fastmath, marchnative, fontsize, fontfamily, expiration
+          from playground
+          where url = ?
+        """, @"urls")
+      resp genPlayground(
+        urls = @"urls", filejson = row[2], code = row[1], htmlcomment = row[3], target = row[4],
+        mode = row[5], gc = row[6], stylecheck = row[7], exceptions = row[8], cpu = row[9], hosting = $request.host,
+        ssls = row[10], threads = row[11], strips = row[12], python = row[13], flto = row[14], fastmath = row[15], marchnative = row[16],
+        fontsize = parseInt(row[17]), fontfamily = row[18], expiration = parseInt(row[19]), cancompile = false,
+        recents = getAllRows(db, sql"select url from playground order by creation limit 20")
+      )
+    else: resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 20"))
 
   post "/compile":
-    const x = [
-      "firejail --noprofile --timeout='00:05:00'",
-      "--overlay-tmpfs",
-      "--rlimit-sigpending=1 --rlimit-nofile=99 --rlimit-fsize=9216000000 --rlimit-as=128000000",
-      "--shell=none --x11=none",
-      "--disable-mnt --apparmor --ipc-namespace",
-      "--name=nim --hostname=nim",
-      "--no3d --nodvd --nogroups --nonewprivs",
-      "--nosound --novideo --notv",
-      "--seccomp --net=none",
-      "--memory-deny-write-execute",
-      "--noexec='"
-    ].join" "
+    const x = "firejail --noprofile --timeout='00:05:00' --noroot --read-only='/home/' --seccomp --disable-mnt --rlimit-sigpending=9 --rlimit-nofile=99 --rlimit-fsize=9216000000 --shell=none --x11=none --ipc-namespace --name=nim --hostname=nim --no3d --nodvd --nogroups --nonewprivs --nosound --novideo --notv --net=none --memory-deny-write-execute --noexec='"
     let
       fontsizes: range[10..50] = @"fontsize".parseInt
       expirations: range[1..99] = @"expiration".parseInt
