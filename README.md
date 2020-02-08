@@ -1,2 +1,1 @@
-# nimwc-playground
-Playground for NimWC
+# Nim Argentina
