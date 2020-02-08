@@ -1,5 +1,4 @@
-
-import strutils, db_sqlite, json, strtabs, os, osproc, random, jester, packages/docutils/rstgen
+import strutils, db_sqlite, json, strtabs, os, osproc, random, jester, net, packages/docutils/rstgen
 include "index.nimf"       # Include the NimF template.
 
 let db = db_sqlite.open("database.db", "", "", "")
@@ -29,6 +28,9 @@ exec(db, sql"""
     expiration     integer         not null    default 7
   );
 """)                 # Create Playground DB Table.
+
+settings:
+  port = Port(80)
 
 routes:
   get "/":
