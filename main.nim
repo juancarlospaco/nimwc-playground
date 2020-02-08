@@ -30,9 +30,6 @@ exec(db, sql"""
   );
 """)                 # Create Playground DB Table.
 
-settings:
-  port = Port(80)
-
 routes:
   get "/":
     resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 20"))
@@ -60,9 +57,10 @@ routes:
       "--shell=none --x11=none",
       "--disable-mnt --apparmor --ipc-namespace",
       "--name=nim --hostname=nim",
-      "--no3d --nodbus --nodvd --nogroups --nonewprivs",
-      "--noroot --nosound --noautopulse --novideo --nou2f --notv",
-      "--seccomp --net=none --memory-deny-write-execute",
+      "--no3d --nodvd --nogroups --nonewprivs",
+      "--nosound --novideo --notv",
+      "--seccomp --net=none",
+      "--memory-deny-write-execute",
       "--noexec='"
     ].join" "
     let
