@@ -21,7 +21,7 @@
     <nav class="navbar is-fixed-top is-black">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://nim-lang.org" target="_blank" title="Nim Playground (Unofficial)">
+          <a class="navbar-item" href="https://nim-lang.org" target="_blank" rel="noopener noreferrer" title="Nim Playground (Unofficial)">
             <img src="https://play.nim-lang.org/assets/logo.svg"/>
           </a>
         </div>
@@ -32,7 +32,7 @@
               <div class="navbar-dropdown">
             # if likely(recents.len > 0):
             #   for item in recents:
-                  <a class="navbar-item navbar-item-dropdown is-small is-marginless is-paddingless" href="/${ item[0] }" target="_blank"> ${ item[0] } </a>
+                  <a class="navbar-item navbar-item-dropdown is-small is-marginless is-paddingless" href="/${ item[0] }" target="_blank" rel="noopener noreferrer"> ${ item[0] } </a>
             #   end for
             # end if
               </div>
@@ -40,79 +40,79 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Chat</a>
               <div class="navbar-dropdown">
-                <a class="navbar-item navbar-item-dropdown" href="https://gitter.im/nim-lang/Nim" target="_blank">English (International)</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://forum.nim-lang.org" target="_blank">Forum (International)</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimArgentina" target="_blank">Spanish (Americas)</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimParaguay" target="_blank">Spanish (Americas)</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimitalia" target="_blank">Italian (Europe)</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-cn.com" target="_blank">Chinese (Asia)</a>
-                <a class="navbar-item navbar-item-dropdown" href="irc://freenode.net/nim" target="_blank">IRC</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://matrix.to/#/#freenode_#nim:matrix.org" target="_blank">Matrix</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://discord.gg/ezDFDw2" target="_blank">Discord</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://irclogs.nim-lang.org" target="_blank">Chat Logs</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://gitter.im/nim-lang/Nim" target="_blank" rel="noopener noreferrer">English (International)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://forum.nim-lang.org" target="_blank" rel="noopener noreferrer">Forum (International)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimArgentina" target="_blank" rel="noopener noreferrer">Spanish (Americas)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimParaguay" target="_blank" rel="noopener noreferrer">Spanish (Americas)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimitalia" target="_blank" rel="noopener noreferrer">Italian (Europe)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-cn.com" target="_blank" rel="noopener noreferrer">Chinese (Asia)</a>
+                <a class="navbar-item navbar-item-dropdown" href="irc://freenode.net/nim" target="_blank" rel="noopener noreferrer">IRC</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://matrix.to/#/#freenode_#nim:matrix.org" target="_blank" rel="noopener noreferrer">Matrix</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://discord.gg/ezDFDw2" target="_blank" rel="noopener noreferrer">Discord</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://irclogs.nim-lang.org" target="_blank" rel="noopener noreferrer">Chat Logs</a>
               </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Docs</a>
               <div class="navbar-dropdown">
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers#table-of-contents" target="_blank">Python Devs</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers#table-of-contents" target="_blank">JavaScript Devs</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers" target="_blank">C / C++ Devs</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/tut1.html" target="_blank">Tutorial</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/theindex.html" target="_blank">TheIndex</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/lib.html" target="_blank">Standard Library</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/manual.html" target="_blank">Manual</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/gc.html" target="_blank">Memory Management</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/nep1.html" target="_blank">Style Guide</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.github.io/Nim" target="_blank">Bleeding Edge</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/hcr.html" target="_blank">Hot Code Reloading</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/docgen.html" target="_blank">Self-Documentator</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/nims.html" target="_blank">NimScript</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/tools.html" target="_blank">Built-in Tools</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/asyncdispatch.html" target="_blank">Async</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/manual.html#threads" target="_blank">Threads</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers#table-of-contents" target="_blank" rel="noopener noreferrer">Python Devs</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-TypeScript-Programmers#table-of-contents" target="_blank" rel="noopener noreferrer">JavaScript Devs</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki/Nim-for-C-programmers" target="_blank" rel="noopener noreferrer">C / C++ Devs</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/tut1.html" target="_blank" rel="noopener noreferrer">Tutorial</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/theindex.html" target="_blank" rel="noopener noreferrer">TheIndex</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/lib.html" target="_blank" rel="noopener noreferrer">Standard Library</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/manual.html" target="_blank" rel="noopener noreferrer">Manual</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/gc.html" target="_blank" rel="noopener noreferrer">Memory Management</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/nep1.html" target="_blank" rel="noopener noreferrer">Style Guide</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.github.io/Nim" target="_blank" rel="noopener noreferrer">Bleeding Edge</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/hcr.html" target="_blank" rel="noopener noreferrer">Hot Code Reloading</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/docgen.html" target="_blank" rel="noopener noreferrer">Self-Documentator</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/nims.html" target="_blank" rel="noopener noreferrer">NimScript</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/tools.html" target="_blank" rel="noopener noreferrer">Built-in Tools</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/asyncdispatch.html" target="_blank" rel="noopener noreferrer">Async</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/docs/manual.html#threads" target="_blank" rel="noopener noreferrer">Threads</a>
               </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Social</a>
               <div class="navbar-dropdown">
-                <a class="navbar-item navbar-item-dropdown" href="https://youtube.com/watch?v=zSXbifhuZSo&list=PLXIivpcMlfwAevvA4IvLIiYOujqSuyyKY" target="_blank">Youtube</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://twitter.com/nim_lang" target="_blank">Twitter</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://stackoverflow.com/questions/tagged/nim-lang" target="_blank">StackOverflow</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://twitch.tv/araq4k" target="_blank">Twitch</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://reddit.com/r/nim" target="_blank">Reddit</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://dev.to/t/nim" target="_blank">DevTo</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://gettogether.community/nim-argentina/" target="_blank">Get Together</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://www.meetup.com/Nim-Argentina" target="_blank">Meetup</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://exercism.io/my/tracks/nim" target="_blank">Exercism</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://code-golf.io/scores/all-holes/nim" target="_blank">Code Golf</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://www.codewars.com/?language=nim" target="_blank">Code Wars</a>
-                <a class="navbar-item navbar-item-dropdown" href="http://rosettacode.org/wiki/Category:Nim" target="_blank">Rosetta Code</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://rosettagit.org/languages/nim/" target="_blank">Rosetta Git</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim.godbolt.org" target="_blank">Compiler Explorer</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://learnxinyminutes.com/docs/nim" target="_blank">Nim in 5 minutes</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://devdocs.io/nim" target="_blank">DevDocs</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://youtube.com/watch?v=zSXbifhuZSo&list=PLXIivpcMlfwAevvA4IvLIiYOujqSuyyKY" target="_blank" rel="noopener noreferrer">Youtube</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://twitter.com/nim_lang" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://stackoverflow.com/questions/tagged/nim-lang" target="_blank" rel="noopener noreferrer">StackOverflow</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://twitch.tv/araq4k" target="_blank" rel="noopener noreferrer">Twitch</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://reddit.com/r/nim" target="_blank" rel="noopener noreferrer">Reddit</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://dev.to/t/nim" target="_blank" rel="noopener noreferrer">DevTo</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://gettogether.community/nim-argentina/" target="_blank" rel="noopener noreferrer">Get Together</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://www.meetup.com/Nim-Argentina" target="_blank" rel="noopener noreferrer">Meetup</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://exercism.io/my/tracks/nim" target="_blank" rel="noopener noreferrer">Exercism</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://code-golf.io/scores/all-holes/nim" target="_blank" rel="noopener noreferrer">Code Golf</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://www.codewars.com/?language=nim" target="_blank" rel="noopener noreferrer">Code Wars</a>
+                <a class="navbar-item navbar-item-dropdown" href="http://rosettacode.org/wiki/Category:Nim" target="_blank" rel="noopener noreferrer">Rosetta Code</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://rosettagit.org/languages/nim/" target="_blank" rel="noopener noreferrer">Rosetta Git</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim.godbolt.org" target="_blank" rel="noopener noreferrer">Compiler Explorer</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://learnxinyminutes.com/docs/nim" target="_blank" rel="noopener noreferrer">Nim in 5 minutes</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://devdocs.io/nim" target="_blank" rel="noopener noreferrer">DevDocs</a>
               </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link"><h1><b> + </b></h1></a>
               <div class="navbar-dropdown">
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/install.html" target="_blank">Download</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/blog.html" target="_blank">Blog</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://planet.nim-lang.org" target="_blank">RSS</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki" target="_blank">Wiki</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://book.picheta.me" target="_blank">Book</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nimble.directory" target="_blank">Nimble</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/dom96/choosenim#choosenim" target="_blank">ChooseNim</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://play.nim-lang.org" target="_blank">Playground</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://wandbox.org" target="_blank">Playground Alt 2</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://ide.judge0.com/?Xb_Q" target="_blank">Playground Alt 3</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/moigagoo/nimage" target="_blank">Docker</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/blob/devel/changelog.md" target="_blank">Devel Changelog</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/nightlies/releases" target="_blank">Nightlies</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/csources#nim-c-sources" target="_blank">Pure C Sources</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://github.com/juancarlospaco/nim-presentation-slides/tree/master/ejemplos" target="_blank">Examples</a>
-                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/blog/2017/10/02/documenting-profiling-and-debugging-nim-code.html" target="_blank">Debugging</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/install.html" target="_blank" rel="noopener noreferrer">Download</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/blog.html" target="_blank" rel="noopener noreferrer">Blog</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://planet.nim-lang.org" target="_blank" rel="noopener noreferrer">RSS</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/wiki" target="_blank" rel="noopener noreferrer">Wiki</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://book.picheta.me" target="_blank" rel="noopener noreferrer">Book</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nimble.directory" target="_blank" rel="noopener noreferrer">Nimble</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/dom96/choosenim#choosenim" target="_blank" rel="noopener noreferrer">ChooseNim</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://play.nim-lang.org" target="_blank" rel="noopener noreferrer">Playground</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://wandbox.org" target="_blank" rel="noopener noreferrer">Playground Alt 2</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://ide.judge0.com/?Xb_Q" target="_blank" rel="noopener noreferrer">Playground Alt 3</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/moigagoo/nimage" target="_blank" rel="noopener noreferrer">Docker</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/Nim/blob/devel/changelog.md" target="_blank" rel="noopener noreferrer">Devel Changelog</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/nightlies/releases" target="_blank" rel="noopener noreferrer">Nightlies</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/nim-lang/csources#nim-c-sources" target="_blank" rel="noopener noreferrer">Pure C Sources</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://github.com/juancarlospaco/nim-presentation-slides/tree/master/ejemplos" target="_blank" rel="noopener noreferrer">Examples</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://nim-lang.org/blog/2017/10/02/documenting-profiling-and-debugging-nim-code.html" target="_blank" rel="noopener noreferrer">Debugging</a>
               </div>
             </div>
           </div>
@@ -158,24 +158,24 @@
     <article class="has-background-light" style="min-height:9em"> $htmlcomment </article>
   # else:
     <textarea id="comment" name="comment" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" MarkDown and ReSTructuredText Comments (Optional)" title="MarkDown and ReSTructuredText Comments" dir="auto" style="font-family:'Fira Code'" onblur="this.value=this.value.trim()"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-    <a class="is-hidden-touch" href="https://forum.nim-lang.org/about/rst" target="_blank">MarkDown and ReSTructuredText CheatSheet ?</a>
+    <a class="is-hidden-touch" href="https://forum.nim-lang.org/about/rst" target="_blank" rel="noopener noreferrer">MarkDown and ReSTructuredText CheatSheet ?</a>
   # end if
   </div>
   <div class="tab-pane content-tab4">
     <textarea id="c" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$ccode</textarea>
-    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Intermediate_representation" target="_blank">Temporary Intermediate Representation ?</a>
+    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Intermediate_representation" target="_blank" rel="noopener noreferrer">Temporary Intermediate Representation ?</a>
   </div>
   <div class="tab-pane content-tab5">
     <textarea id="asm" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$asmcode</textarea>
-    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank">Machine Code Assembly ?</a>
+    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank" rel="noopener noreferrer">Machine Code Assembly ?</a>
   </div>
   <div class="tab-pane content-tab6">
     <textarea id="ast" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astz</textarea>
-    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank">Abstract Syntax Tree ?</a>
+    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank" rel="noopener noreferrer">Abstract Syntax Tree ?</a>
   </div>
   <div class="tab-pane content-tab7">
     <center class="is-paddingless is-fullwidth is-hidden-touch" style="min-height:15em;max-width:99%"> $dot </center>
-    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)" target="_blank">DOT Graphs ?</a> (EXPERIMENTAL!)
+    <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)" target="_blank" rel="noopener noreferrer">DOT Graphs ?</a> (EXPERIMENTAL!)
   </div>
 </div>
 <style>
@@ -195,7 +195,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
       <div class="columns">
 
         <div class="column">
-          <a href="https://nim-lang.org/docs/backends.html#introduction" target="_blank" title="Compiler Target"> Target </a><br>
+          <a href="https://nim-lang.org/docs/backends.html#introduction" target="_blank" rel="noopener noreferrer" title="Compiler Target"> Target </a><br>
             <div class="select is-small">
               <select id="target" name="target" title="Compiler Target" class="select is-small">
                 <optgroup label="Backend">
@@ -218,7 +218,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           </div>
 
         <div class="column">
-          <a href="https://nim-lang.org/docs/nimc.html#additional-compilation-switches" target="_blank" title="Optimization level"> Mode </a><br>
+          <a href="https://nim-lang.org/docs/nimc.html#additional-compilation-switches" target="_blank" rel="noopener noreferrer" title="Optimization level"> Mode </a><br>
           <div class="select is-small">
             <select id="mode" name="mode" title="Optimization level" class="select is-small">
               <option value="" ${if mode == "": "selected" else: ""} > Debug  </option>
@@ -231,7 +231,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         </div>
 
         <div class="column">
-          <a href="https://nim-lang.org/docs/gc.html" target="_blank" title="Memory management"> Memory </a><br>
+          <a href="https://nim-lang.org/docs/gc.html" target="_blank" rel="noopener noreferrer" title="Memory management"> Memory </a><br>
           <div class="select is-small">
             <select id="gc" name="gc" title="Memory management" class="select is-small">
               <option value=""                  ${if gc == "": "selected" else: ""} >                  Default    </option>
@@ -250,7 +250,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         </div>
 
         <div class="column is-hidden-touch">
-          <a href="https://nim-lang.org/docs/nep1.html#introduction" target="_blank" title="Code style"> CodeStyle </a><br>
+          <a href="https://nim-lang.org/docs/nep1.html#introduction" target="_blank" rel="noopener noreferrer" title="Code style"> CodeStyle </a><br>
           <div class="select is-small">
             <select id="stylecheck" name="stylecheck" title="Code style" class="select is-small">
               <option value=""                     ${if stylecheck == "": "selected" else: ""} > Default </option>
@@ -264,7 +264,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         </div>
 
         <div class="column is-hidden-touch">
-          <a href="https://nim-lang.org/araq/gotobased_exceptions.html" target="_blank" title="Exception Handling"> Exceptions </a><br>
+          <a href="https://nim-lang.org/araq/gotobased_exceptions.html" target="_blank" rel="noopener noreferrer" title="Exception Handling"> Exceptions </a><br>
           <div class="select is-small">
             <select id="exceptions" name="exceptions" title="Exception Handling" class="select is-small">
               <option value=""                      ${if exceptions == "": "selected" else: ""}                    > Default </option>
@@ -293,15 +293,15 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         <div class="column is-hidden-touch has-text-left">
           <label id="label0" class="checkbox is-small is-unselectable" title="Enable OpenSSL & HTTPS -d:ssl">
             <input type="checkbox" class="checkbox is-small" id="ssl" name="ssl" ${if ssls == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
-          </label> <a href="https://nim-lang.org/docs/openssl.html" target="_blank">?</a>
+          </label> <a href="https://nim-lang.org/docs/openssl.html" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="label1" class="checkbox is-small is-unselectable" title="Enable Multi-Threading --threads:on">
             <input type="checkbox" class="checkbox is-small" id="threads" name="threads" ${if threads == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
-          </label> <a href="https://nim-lang.org/docs/manual.html#threads" target="_blank">?</a>
+          </label> <a href="https://nim-lang.org/docs/manual.html#threads" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="label2" class="checkbox is-small is-unselectable" title="Strip binary --passL:-s">
             <input type="checkbox" class="checkbox is-small" id="strip" name="strip" ${if strips == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label2').classList.add('has-text-success');document.querySelector('#label2').classList.remove('has-text-danger')}else{document.querySelector('#label2').classList.add('has-text-danger');document.querySelector('#label2').classList.remove('has-text-success')}" checked /> Strip
-          </label> <a href="https://en.wikipedia.org/wiki/Stripped_binary" target="_blank">?</a>
+          </label> <a href="https://en.wikipedia.org/wiki/Stripped_binary" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="label2" class="checkbox is-small is-unselectable" title="Python syntax & Python export (Nimpy + Pylib)">
             <input type="checkbox" class="checkbox is-small" id="python" name="python" ${if python == "on": "checked" else: ""} />Python syntax
@@ -311,15 +311,15 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         <div class="column is-hidden-touch has-text-left">
           <label id="labela" class="checkbox is-small is-unselectable" title="GCC -flto" style="opacity:.75;cursor:not-allowed">
             <input type="checkbox" class="checkbox is-small" id="flto" name="flto" ${if flto == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labela').classList.add('has-text-success');document.querySelector('#labela').classList.remove('has-text-danger')}else{document.querySelector('#labela').classList.add('has-text-danger');document.querySelector('#labela').classList.remove('has-text-success')}" />flto
-          </label> <a href="https://gcc.gnu.org/wiki/LinkTimeOptimization#Background" target="_blank">?</a>
+          </label> <a href="https://gcc.gnu.org/wiki/LinkTimeOptimization#Background" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="labelb" class="checkbox is-small is-unselectable" title="GCC -ffast-math" style="opacity:.75;cursor:not-allowed">
             <input type="checkbox" class="checkbox is-small" id="fastmath" name="fastmath" ${if fastmath == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelb').classList.add('has-text-success');document.querySelector('#labelb').classList.remove('has-text-danger')}else{document.querySelector('#labelb').classList.add('has-text-danger');document.querySelector('#labelb').classList.remove('has-text-success')}" />fast-math
-          </label> <a href="https://gcc.gnu.org/wiki/FloatingPointMath" target="_blank">?</a>
+          </label> <a href="https://gcc.gnu.org/wiki/FloatingPointMath" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="labelc" class="checkbox is-small is-unselectable" title="GCC -march=native" style="opacity:.75;cursor:not-allowed">
             <input type="checkbox" class="checkbox is-small" id="marchnative" name="marchnative" ${if marchnative == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />arch=native
-          </label> <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html" target="_blank">?</a>
+          </label> <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html" target="_blank" rel="noopener noreferrer">?</a>
         </div>
       </div>
     </details>
@@ -391,7 +391,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
       </div>
       <i class="is-clearfix"></i>
   </details>
-  <a class="h5" href="https://t.me/NimArgentina" style="color:#ffdd57" target="_blank"> Creado por la comunidad Nim Argentina </a>
+  <a class="h5" href="https://t.me/NimArgentina" style="color:#ffdd57" target="_blank" rel="noopener noreferrer"> Creado por la comunidad Nim Argentina </a>
   </section>
 </form>
 </div>
