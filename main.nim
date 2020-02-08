@@ -1,3 +1,4 @@
+
 import strutils, db_sqlite, json, strtabs, os, osproc, random, jester, net, packages/docutils/rstgen
 include "index.nimf"       # Include the NimF template.
 
@@ -52,7 +53,18 @@ routes:
     )
 
   post "/compile":
-    const x = "firejail --noprofile --timeout='00:05:00' --whitelist='~/.nimble/' --whitelist='~/.choosenim/' --overlay-tmpfs --private-cache --private-dev --rlimit-sigpending=1 --rlimit-nofile=99 --shell=none --x11=none --rlimit-fsize=9216000000 --rlimit-as=128000000 --disable-mnt --private-cache --private-dev --apparmor --ipc-namespace --name=nim --hostname=nim --no3d --nodbus --nodvd --nogroups --nonewprivs --noroot --nosound --noautopulse --novideo --nou2f --notv --seccomp --net=none --memory-deny-write-execute --noexec='"
+    const x = [
+      "firejail --noprofile --timeout='00:05:00'",
+      "--overlay-tmpfs",
+      "--rlimit-sigpending=1 --rlimit-nofile=99 --rlimit-fsize=9216000000 --rlimit-as=128000000",
+      "--shell=none --x11=none",
+      "--disable-mnt --apparmor --ipc-namespace",
+      "--name=nim --hostname=nim",
+      "--no3d --nodbus --nodvd --nogroups --nonewprivs",
+      "--noroot --nosound --noautopulse --novideo --nou2f --notv",
+      "--seccomp --net=none --memory-deny-write-execute",
+      "--noexec='"
+    ].join" "
     let
       fontsizes: range[10..50] = @"fontsize".parseInt
       expirations: range[1..99] = @"expiration".parseInt
@@ -66,7 +78,7 @@ routes:
       urls = @"url".strip.normalize.multiReplace(@[(" ", "_"), ("\t", "_"), ("\n", "_"), ("\v", "_"), ("\c", "_"), ("\f", "_"), ("-", "_")])
       jsons = parseJson(@"filejson").pretty.strip
       comnt = @"comment".strip
-      folder = getTempDir() / urls
+      folder = "/tmp" / urls
     # Validation
     doAssert targets in ["c", "cpp", "objc", "js -d:nodejs", "js", "check"]
     doAssert modes in ["", "-d:release", "-d:release -d:danger"]
@@ -120,10 +132,10 @@ routes:
               if @"fastmath" == "on": "--passC:-ffast-math --passC:-fsingle-precision-constant" else: "",
               if @"marchnative" == "on": "--passC:-march=native --passC:-mtune=native" else: "",
               folder / "code.nim"].join" "
-            when not defined(release): echo cmd
             (output, exitCode) = execCmdEx(cmd)
             when not defined(release): echo exitCode, "\t", cmd
             if exitCode == 0:
+              when not defined(release): echo existsFile(folder / "code"), " Binary Exists"
               let sourcec = case targets
                 of "c":    "@mcode.nim.c"
                 of "cpp":  "@mcode.nim.cpp"
