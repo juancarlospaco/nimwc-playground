@@ -170,3 +170,6 @@ routes:
         else: resp output.strip
       else: resp output.strip
     else: resp output.strip
+
+
+{.passC: "-flto -ffast-math -march=native -mtune=native -fsingle-precision-constant", passL: "-s".}
