@@ -77,6 +77,7 @@ routes:
       doAssert cpus in ["", "--cpu:i386 --passC:-m32 --passL:-m32"]
       doAssert fontfamilys in ["Fira Code", "Oxygen Mono", "Roboto Mono", "Ubuntu Mono", "Inconsolata", "Monospace"]
       doAssert urls.len > 3 and urls.len < 10, "Wrong Invalid URL for a Playground"
+      doAssert @"code".len < 1000
       doAssert comnt.len < 1000
       doAssert jsons.len < 1000
     except:
@@ -93,7 +94,6 @@ routes:
     when not defined(release): echo exitCode, "\tnimpretty"
     if exitCode == 0:
       let codez = readFile(folder / "code.nim").strip
-      doAssert codez.len > 4 and codez.len < 1000
       writeFile(folder / "dumper.nim", "import macros;dumpAstGen:\n" & codez.indent(2))
       (output, exitCode) = execCmdEx("nim c --verbosity:0 --hints:off " & folder / "dumper.nim")
       when not defined(release): echo exitCode, "\tdumper"
