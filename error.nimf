@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel=icon type="image/x-icon" href="https://nim-lang.org/assets/img/logo_bw.png" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Fira+Code|Oxygen+Mono|Roboto+Mono|Inconsolata|Ubuntu+Mono|Titillium+Web&display=swap" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet" crossorigin="anonymous">
 </head>
   <body lang="en" id="page" lang="EN">
     <div class="container is-fluid has-text-white" id="content">
@@ -52,8 +52,7 @@
       <h1 class="h1 has-text-centered"> Error </h1> <hr>
       $error
     </div>
-      <a class="button is-fullwidth" href="/" style="background-color:#ffe953"><b> ⬅️ ⬅️ ⬅️ </b></a>
-      <i class="is-clearfix"></i>
+      <a class="button is-fullwidth" href="/" style="background-color:#ffe953"><b> ⬅️ ⬅️ ⬅️ </b></a> <i class="is-clearfix"></i>
     </div>
   </body>
 </html>
