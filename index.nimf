@@ -137,9 +137,9 @@
     <li title="Human readable comments (ReSTructuredText)"><label for="tab3"><a class="has-text-warning"> Comments </a></label></li>
 # let tit = if target == "cpp": "C++" elif target == "js -d:nodejs" or target == "js": "JavaScript" elif target == "objc": "ObjectiveC" else: "C"
     <li title="Temporary Intermediate Representation (Read-only)"><label for="tab4"><a class="has-text-warning"> $tit </a></label></li>
-    <li title="Machine Code of your source code (Read-only)"><label for="tab5"><a class="has-text-warning"> Assembly </a></label></li>
-    <li title="Abstract Syntax Tree of your source code (Read-only)"><label for="tab6"><a class="has-text-warning"> AST </a></label></li>
-    <li title="DOT Graphic visualization of your code (SVG)"><label for="tab7"><a class="has-text-warning"> DOT </a></label></li>
+    <li title="Machine Code (Read-only)"><label for="tab5"><a class="has-text-warning"> Assembly </a></label></li>
+    <li title="Abstract Syntax Tree (Read-only)"><label for="tab6"><a class="has-text-warning"> AST </a></label></li>
+    <li title="DOT Graphic visualization (SVG)"><label for="tab7"><a class="has-text-warning"> DOT </a></label></li>
   </ul>
 </div>
 <div class="tab-content">
