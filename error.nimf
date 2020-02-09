@@ -52,7 +52,7 @@
       <h1 class="h1 has-text-centered"> Error </h1> <hr>
       $error
     </div>
-      <a class="button is-fullwidth" href="/" style="background-color:#ffe953"><b> ⬅️ ⬅️ ⬅️ </b></a> <i class="is-clearfix"></i>
+      <a class="button is-fullwidth" href="/" style="background-color:#ffe953"><b> &#8647; &#8647; &#8647; </b></a> <i class="is-clearfix"></i>
     </div>
   </body>
 </html>
