@@ -1,6 +1,6 @@
 import strutils, db_sqlite, json, strtabs, os, osproc, random, jester, net, packages/docutils/rstgen
 randomize()
-include "index.nimf"
+include "index.nimf", "error.nimf"
 
 let db = db_sqlite.open("database.db", "", "", "")
 exec(db, sql"""
@@ -55,30 +55,33 @@ routes:
   post "/compile":
     const x = "firejail --noprofile --timeout='00:05:00' --noroot --read-only='/home/' --seccomp --disable-mnt --rlimit-sigpending=9 --rlimit-nofile=99 --rlimit-fsize=9216000000 --shell=none --x11=none --ipc-namespace --name=nim --hostname=nim --no3d --nodvd --nogroups --nonewprivs --nosound --novideo --notv --net=none --memory-deny-write-execute --noexec='"
     let
-      fontsizes: range[10..50] = parseInt(@"fontsize")
-      expirations: range[1..99] = parseInt(@"expiration")
-      targets = @"target".normalize
-      modes = @"mode".normalize
       gcs = @"gc".strip
+      cpus = @"cpu".strip
+      comnt = @"comment".strip
+      modes = @"mode".normalize
+      targets = @"target".normalize
+      fontfamilys = @"fontfamily".strip
       stylechecks = @"stylecheck".strip
       exceptions = @"exceptions".normalize
-      cpus = @"cpu".strip
-      fontfamilys = @"fontfamily".strip
       urls = @"url".strip.normalize.multiReplace(@[(" ", "_"), ("\t", "_"), ("\n", "_"), ("\v", "_"), ("\c", "_"), ("\f", "_"), ("-", "_")])
-      jsons = parseJson(@"filejson").pretty.strip
-      comnt = @"comment".strip
       folder = "/tmp" / urls
-    # Validation
-    doAssert targets in ["c", "cpp", "objc", "js -d:nodejs", "js", "check"]
-    doAssert modes in ["", "-d:release", "-d:release -d:danger"]
-    doAssert gcs in ["", "--gc:refc", "--gc:boehm", "--gc:markAndSweep", "--gc:go", "--gc:none", "--gc:regions", "--gc:arc", "--gc:orc"]
-    doAssert stylechecks in ["", "--styleCheck:off", "--styleCheck:hint", "--styleCheck:error"]
-    doAssert exceptions in ["", "--exceptions:setjmp", "--exceptions:goto", "--exceptions:cpp", "--exceptions:quirky"]
-    doAssert cpus in ["", "--cpu:i386 --passC:-m32 --passL:-m32"]
-    doAssert fontfamilys in ["Fira Code", "Oxygen Mono", "Roboto Mono", "Ubuntu Mono", "Inconsolata", "Monospace"]
-    doAssert urls.len > 3 and urls.len < 10, "Wrong Invalid URL for a Playground"
-    doAssert comnt.len < 1000
-    doAssert jsons.len < 1000
+    try: # Validation
+      let
+        jsons = parseJson(@"filejson").pretty.strip
+        fontsizes: range[10..50] = parseInt(@"fontsize")
+        expirations: range[1..99] = parseInt(@"expiration")
+      doAssert targets in ["c", "cpp", "objc", "js -d:nodejs", "js", "check"]
+      doAssert modes in ["", "-d:release", "-d:release -d:danger"]
+      doAssert gcs in ["", "--gc:refc", "--gc:boehm", "--gc:markAndSweep", "--gc:go", "--gc:none", "--gc:regions", "--gc:arc", "--gc:orc"]
+      doAssert stylechecks in ["", "--styleCheck:off", "--styleCheck:hint", "--styleCheck:error"]
+      doAssert exceptions in ["", "--exceptions:setjmp", "--exceptions:goto", "--exceptions:cpp", "--exceptions:quirky"]
+      doAssert cpus in ["", "--cpu:i386 --passC:-m32 --passL:-m32"]
+      doAssert fontfamilys in ["Fira Code", "Oxygen Mono", "Roboto Mono", "Ubuntu Mono", "Inconsolata", "Monospace"]
+      doAssert urls.len > 3 and urls.len < 10, "Wrong Invalid URL for a Playground"
+      doAssert comnt.len < 1000
+      doAssert jsons.len < 1000
+    except:
+      resp genError(error = getCurrentExceptionMsg())
     let comments = if comnt.len > 1:
       try: rstToHtml(comnt, {}, newStringTable(modeStyleInsensitive)) except: comnt
       else: ""
@@ -163,13 +166,13 @@ routes:
                       fontfamily = fontfamilys, fontsize = fontsizes, expiration = expirations, fsize = fsize, cancompile = false,
                       astz = astz, dot = dot, ccode = ccode, asmcode = asmcode, outputs = outputs, recents = recents, hosting = $request.host,
                     )
-                  else: resp output.strip
-              else: resp output.strip
-            else: resp output.strip
-          else: resp output.strip
-        else: resp output.strip
-      else: resp output.strip
-    else: resp output.strip
+                  else: resp genError(error = output.strip)
+              else: resp genError(error = output.strip)
+            else: resp genError(error = output.strip)
+          else: resp genError(error = output.strip)
+        else: resp genError(error = output.strip)
+      else: resp genError(error = output.strip)
+    else: resp genError(error = output.strip)
 
 
 {.passC: "-flto -ffast-math -march=native -mtune=native -fsingle-precision-constant", passL: "-s".}
