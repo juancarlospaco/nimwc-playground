@@ -117,8 +117,8 @@ routes:
               if @"threads" == "on": "--threads:on" else: "",
               if @"strip" == "on": "--passL:-s" else: "",
               if @"flto" == "on": "--passC:-flto" else: "",
-              if @"fastmath" == "on": "--passC:-ffast-math --passC:-fsingle-precision-constant" else: "",
-              if @"marchnative" == "on": "--passC:-march=native --passC:-mtune=native" else: "",
+              if @"fastmath" == "on": "--passC:'-ffast-math -fsingle-precision-constant'" else: "",
+              if @"marchnative" == "on": "--passC:'-march=native -mtune=native'" else: "",
               folder / "code.nim"].join" "
             (output, exitCode) = execCmdEx(cmd)
             when not defined(release): echo exitCode, "\t", cmd
