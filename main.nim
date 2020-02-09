@@ -26,7 +26,7 @@ exec(db, sql"""
     marchnative    integer         not null    default 0,
     fontsize       integer         not null    default 15,
     fontfamily     varchar(9)      not null,
-    expiration     integer         not null    default 7
+    expiration     integer         not null    default 9
   );
 """)                 # Create Playground DB Table.
 
@@ -67,7 +67,7 @@ routes:
       folder = "/tmp" / urls
       jsons = parseJson(@"filejson").pretty.strip
       fontsizes: range[10..50] = parseInt(@"fontsize")
-      expirations: range[1..99] = parseInt(@"expiration")
+      expirations: range[9..99] = parseInt(@"expiration")
     try: # Validation
       doAssert targets in ["c", "cpp", "objc", "js -d:nodejs", "js", "check"]
       doAssert modes in ["", "-d:release", "-d:release -d:danger"]
