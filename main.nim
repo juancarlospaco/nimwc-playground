@@ -53,7 +53,7 @@ routes:
     else: resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 20"))
 
   post "/compile":
-    const x = "firejail --quiet --noprofile --timeout='00:05:00' --noroot --read-only='/home/' --seccomp --disable-mnt --rlimit-sigpending=9 --rlimit-nofile=99 --rlimit-fsize=9216000000 --shell=none --x11=none --ipc-namespace --name=nim --hostname=nim --no3d --nodvd --nogroups --nonewprivs --nosound --novideo --notv --net=none --memory-deny-write-execute --noexec='"
+    const x = "firejail --quiet --noprofile --timeout='00:05:00' --nice=20 --noroot --read-only='/home/' --seccomp --disable-mnt --rlimit-sigpending=9 --rlimit-nofile=99 --rlimit-fsize=9216000000 --shell=none --x11=none --ipc-namespace --name=nim --hostname=nim --no3d --nodvd --nogroups --nonewprivs --nosound --novideo --notv --net=none --memory-deny-write-execute --noexec='"
     let
       gcs = @"gc".strip
       cpus = @"cpu".strip
@@ -118,7 +118,7 @@ routes:
               if @"strip" == "on": "--passL:-s" else: "",
               if @"flto" == "on": "--passC:-flto" else: "",
               if @"fastmath" == "on": "--passC:'-ffast-math -fsingle-precision-constant'" else: "",
-              if @"marchnative" == "on": "--passC:'-march=native -mtune=native'" else: "",
+              if @"marchnative" == "on": "--passC:'-march=native -mtune=native'" else: "", # TODO Hardened !
               folder / "code.nim"].join" "
             (output, exitCode) = execCmdEx(cmd)
             when not defined(release): echo exitCode, "\t", cmd
