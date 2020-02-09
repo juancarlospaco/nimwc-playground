@@ -111,7 +111,7 @@
       </div>
     </nav>
     <div class="tab-content">
-      <h1> Error </h1> <hr>
+      <h1 class="h1"> Error </h1> <hr>
       $error
     </div>
       <i class="is-clearfix"></i>
