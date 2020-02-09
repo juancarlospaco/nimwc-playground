@@ -47,7 +47,7 @@ routes:
         urls = @"urls", filejson = row[2], code = row[1], htmlcomment = row[3], target = row[4],
         mode = row[5], gc = row[6], stylecheck = row[7], exceptions = row[8], cpu = row[9], hosting = $request.host,
         ssls = row[10], threads = row[11], strips = row[12], python = row[13], flto = row[14], fastmath = row[15], marchnative = row[16],
-        fontsize = parseInt(row[17]), fontfamily = row[18], expiration = parseInt(row[19]), cancompile = false,
+        fontsize = parseInt(row[17].normalize), fontfamily = row[18], expiration = parseInt(row[19].normalize), cancompile = false,
         recents = getAllRows(db, sql"select url from playground order by creation limit 20")
       )
     else: resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 20"))
@@ -66,8 +66,8 @@ routes:
       urls = @"url".strip.normalize.multiReplace(@[(" ", "_"), ("\t", "_"), ("\n", "_"), ("\v", "_"), ("\c", "_"), ("\f", "_"), ("-", "_")])
       folder = "/tmp" / urls
       jsons = parseJson(@"filejson").pretty.strip
-      fontsizes: range[10..50] = parseInt(@"fontsize")
-      expirations: range[9..99] = parseInt(@"expiration")
+      fontsizes: range[10..50] = parseInt(@"fontsize".normalize)
+      expirations: range[9..99] = parseInt(@"expiration".normalize)
     try: # Validation
       doAssert targets in ["c", "cpp", "objc", "js -d:nodejs", "js", "check"]
       doAssert modes in ["", "-d:release", "-d:release -d:danger"]
