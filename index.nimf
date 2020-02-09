@@ -131,15 +131,15 @@
 <input type="radio" id="tab7" name="nav-tab">
 <div class="tabs is-centered is-boxed is-small is-fullwidth is-paddingless is-marginless is-unselectable has-text-primary">
   <ul>
-    <li><label for="tab0"><a class="has-text-warning"> code.nim </a></label></li>
-    <li><label for="tab1"><a class="has-text-warning"> file.json </a></label></li>
-    <li><label for="tab2"><a class="has-text-warning"> Standard Output </a></label></li>
-    <li><label for="tab3"><a class="has-text-warning"> Comments </a></label></li>
+    <li title="Nim source code"><label for="tab0"><a class="has-text-warning"> code.nim </a></label></li>
+    <li title="JSON data to practice file I/O"><label for="tab1"><a class="has-text-warning"> file.json </a></label></li>
+    <li title="Standard Output messages (Read-only)"><label for="tab2"><a class="has-text-warning"> Standard Output </a></label></li>
+    <li title="Human readable comments (ReSTructuredText)"><label for="tab3"><a class="has-text-warning"> Comments </a></label></li>
 # let tit = if target == "cpp": "C++" elif target == "js -d:nodejs" or target == "js": "JavaScript" elif target == "objc": "ObjectiveC" else: "C"
-    <li><label for="tab4"><a class="has-text-warning"> $tit </a></label></li>
-    <li><label for="tab5"><a class="has-text-warning"> Assembly </a></label></li>
-    <li><label for="tab6"><a class="has-text-warning"> AST </a></label></li>
-    <li><label for="tab7"><a class="has-text-warning"> DOT </a></label></li>
+    <li title="Temporary Intermediate Representation (Read-only)"><label for="tab4"><a class="has-text-warning"> $tit </a></label></li>
+    <li title="Machine Code of your source code (Read-only)"><label for="tab5"><a class="has-text-warning"> Assembly </a></label></li>
+    <li title="Abstract Syntax Tree of your source code (Read-only)"><label for="tab6"><a class="has-text-warning"> AST </a></label></li>
+    <li title="DOT Graphic visualization of your code (SVG)"><label for="tab7"><a class="has-text-warning"> DOT </a></label></li>
   </ul>
 </div>
 <div class="tab-content">
