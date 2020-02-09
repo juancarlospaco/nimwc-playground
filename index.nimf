@@ -185,7 +185,7 @@ input#tab3:checked ~ .tab-content > .content-tab3,input#tab4:checked ~ .tab-cont
 input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-content > .content-tab7 { display: block; }
 </style>
 # if cancompile:
-  <button class="button is-fullwidth" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, Run" style="background-color:#ffe953"><b> R U N </b></button>
+  <button class="button is-fullwidth" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, get URL" style="background-color:#ffe953"><b> R U N </b></button>
 # else:
   <input type="url" class="input is-fullwidth is-warning is-large has-text-centered has-text-weight-bold" value="http://$hosting/$urls" title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus >
 # end if
