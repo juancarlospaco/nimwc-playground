@@ -65,11 +65,10 @@ routes:
       exceptions = @"exceptions".normalize
       urls = @"url".strip.normalize.multiReplace(@[(" ", "_"), ("\t", "_"), ("\n", "_"), ("\v", "_"), ("\c", "_"), ("\f", "_"), ("-", "_")])
       folder = "/tmp" / urls
+      jsons = parseJson(@"filejson").pretty.strip
+      fontsizes: range[10..50] = parseInt(@"fontsize")
+      expirations: range[1..99] = parseInt(@"expiration")
     try: # Validation
-      let
-        jsons = parseJson(@"filejson").pretty.strip
-        fontsizes: range[10..50] = parseInt(@"fontsize")
-        expirations: range[1..99] = parseInt(@"expiration")
       doAssert targets in ["c", "cpp", "objc", "js -d:nodejs", "js", "check"]
       doAssert modes in ["", "-d:release", "-d:release -d:danger"]
       doAssert gcs in ["", "--gc:refc", "--gc:boehm", "--gc:markAndSweep", "--gc:go", "--gc:none", "--gc:regions", "--gc:arc", "--gc:orc"]
