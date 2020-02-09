@@ -111,7 +111,7 @@ routes:
             ])
             let cmd = [
               x & folder & "/' ",
-              "nim --embedsrc:on --excessiveStackTrace:off --asm --nimcache:" & folder & "/ --outdir:" & folder & "/",
+              "nim --parallelBuild:1 --embedsrc:on --excessiveStackTrace:off --asm --nimcache:" & folder & "/ --outdir:" & folder & "/",
               targets, modes, gcs, stylechecks, exceptions, cpus,
               if @"ssl" == "on": "-d:ssl" else: "",
               if @"threads" == "on": "--threads:on" else: "",
