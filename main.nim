@@ -53,7 +53,7 @@ routes:
     else: resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 20"))
 
   post "/compile":
-    const x = "firejail --noprofile --timeout='00:05:00' --noroot --read-only='/home/' --seccomp --disable-mnt --rlimit-sigpending=9 --rlimit-nofile=99 --rlimit-fsize=9216000000 --shell=none --x11=none --ipc-namespace --name=nim --hostname=nim --no3d --nodvd --nogroups --nonewprivs --nosound --novideo --notv --net=none --memory-deny-write-execute --noexec='"
+    const x = "firejail --quiet --noprofile --timeout='00:05:00' --noroot --read-only='/home/' --seccomp --disable-mnt --rlimit-sigpending=9 --rlimit-nofile=99 --rlimit-fsize=9216000000 --shell=none --x11=none --ipc-namespace --name=nim --hostname=nim --no3d --nodvd --nogroups --nonewprivs --nosound --novideo --notv --net=none --memory-deny-write-execute --noexec='"
     let
       gcs = @"gc".strip
       cpus = @"cpu".strip
