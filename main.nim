@@ -114,7 +114,7 @@ routes:
               "nim --parallelBuild:1 --hint[Conf]:off --hint[Processing]:off --lineTrace:off --embedsrc:on --excessiveStackTrace:off --asm --nimcache:" & folder & "/ --outdir:" & folder & "/",
               targets, modes, gcs, stylechecks, exceptions, cpus,
               if @"ssl" == "on": "-d:ssl" else: "",
-              if @"threads" == "on": "--threads:on" else: "",
+              if @"threads" == "on": "--threads:on --experimental:parallel" else: "",
               if @"strip" == "on": "--passL:-s" else: "",
               if @"flto" == "on": "--passC:-flto" else: "",
               if @"fastmath" == "on": "--passC:'-ffast-math -fsingle-precision-constant'" else: "",
