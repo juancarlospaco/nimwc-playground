@@ -1,6 +1,7 @@
 cp -v database.db database.`date +%d%b%Y`.db
 rm -v README.md
 rm -v LICENSE
+rm -v code.deps
 chmod ugo-w examples.html
 chmod ugo-w index.nimf
 chmod ugo-w main.nim
