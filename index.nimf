@@ -1,9 +1,10 @@
 #? stdtmpl | standard
 #
 #func genPlayground*(
-#  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", target = "c", mode = "", gc = "", stylecheck = "", exceptions = "", cpu = "",
-#  ssls = "off", threads = "off", strips = "on", python = "off", flto = "off", fastmath = "off", marchnative = "off", fontfamily = "Fira Code", hosting = "",
-#  fontsize = 15, expiration = 9, fsize = 0, astz = "", dot = "", ccode = "", asmcode = "", outputs = "", cancompile = true, recents: seq[seq[string]]): string =
+#  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", stdouts = "", target = "c", mode = "", gc = "",
+#  stylecheck = "", exceptions = "", cpu = "", ssls = "off", threads = "off", python = "off", flto = "off", fastmath = "off", marchnative = "off", hardened = "off",
+#  fontfamily = "Fira Code", hosting = "", fontsize = 15, expiration = 9, fsize = 0, astcode = "", dot = "", ccode = "", asmcode = "", cancompile = true,
+#  recents: seq[seq[string]]): string =
 <html lang="EN" class="has-navbar-fixed-top" style="font-family:'Titillium Web';background-color:#232733">
 <head>
   <title>Nim Argentina</title>
@@ -144,14 +145,14 @@
 </div>
 <div class="tab-content">
   <div class="tab-pane content-tab0">
-    <textarea id="code" name="code" ${ if cancompile: "" else: "readonly" }  class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder=" Type or Paste your Nim source code" dir="auto" autofocus required spellcheck style="font-family:'Fira Code';width:99%" rows="9" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
+    <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder=" Type or Paste your Nim source code" dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="9" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
     <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes binary file size.</b></small>
   </div>
   <div class="tab-pane content-tab1">
-    <textarea id="filejson" name="filejson" ${ if cancompile: "" else: "disabled" } class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json'" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$filejson</textarea>
+    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json'" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
   </div>
   <div class="tab-pane content-tab2">
-    <textarea id="stdout" ${ if cancompile: "readonly" else: "disabled" } class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$outputs</textarea><br>
+    <textarea id="stdout" readonly class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$stdouts</textarea><br>
   </div>
   <div class="tab-pane content-tab3">
   # if htmlcomment.len > 1 or not cancompile:
@@ -162,15 +163,15 @@
   # end if
   </div>
   <div class="tab-pane content-tab4">
-    <textarea id="c" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$ccode</textarea>
+    <textarea id="c" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$ccode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Intermediate_representation" target="_blank" rel="noopener noreferrer">Temporary Intermediate Representation ?</a>
   </div>
   <div class="tab-pane content-tab5">
-    <textarea id="asm" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$asmcode</textarea>
+    <textarea id="asm" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$asmcode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank" rel="noopener noreferrer">Machine Code Assembly ?</a>
   </div>
   <div class="tab-pane content-tab6">
-    <textarea id="ast" class="textarea is-paddingless is-fullwidth" ${ if cancompile: "readonly" else: "disabled" } rows="9" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astz</textarea>
+    <textarea id="ast" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astcode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank" rel="noopener noreferrer">Abstract Syntax Tree ?</a>
   </div>
   <div class="tab-pane content-tab7">
@@ -185,7 +186,7 @@ input#tab3:checked ~ .tab-content > .content-tab3,input#tab4:checked ~ .tab-cont
 input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-content > .content-tab7 { display: block; }
 </style>
 # if cancompile:
-  <button class="button is-fullwidth" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, get URL" style="background-color:#ffe953"><b> R U N </b></button>
+  <button class="button is-fullwidth" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, Run" style="background-color:#ffe953"><b> C O M P I L E </b></button>
 # else:
   <input type="url" class="input is-fullwidth is-warning is-large has-text-centered has-text-weight-bold" value="http://$hosting/$urls" title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus >
 # end if
@@ -279,9 +280,9 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         </div>
 
         <div class="column is-hidden-touch">
-          CPU <br>
+          <a href="https://en.wikipedia.org/wiki/Cross_compiler" target="_blank" rel="noopener noreferrer" title="Exception Handling"> CPU </a><br>
           <div class="select is-small">
-            <select id="cpu" name="cpu" title="Code style" class="select is-small">
+            <select id="cpu" name="cpu" title="CPU Hardware (CrossCompilation)" class="select is-small">
               <option value=""                                     ${if cpu == "": "selected" else: ""}                                     > x86 64Bit </option>
               <option value="--cpu:i386 --passC:-m32 --passL:-m32" ${if cpu == "--cpu:i386 --passC:-m32 --passL:-m32": "selected" else: ""} > x86 32Bit </option>
               <option disabled > ARM </option>
@@ -299,9 +300,9 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
             <input type="checkbox" class="checkbox is-small" id="threads" name="threads" ${if threads == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
           </label> <a href="https://nim-lang.org/docs/manual.html#threads" target="_blank" rel="noopener noreferrer">?</a>
           <br>
-          <label id="label2" class="checkbox is-small is-unselectable" title="Strip binary --passL:-s">
-            <input type="checkbox" class="checkbox is-small" id="strip" name="strip" ${if strips == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label2').classList.add('has-text-success');document.querySelector('#label2').classList.remove('has-text-danger')}else{document.querySelector('#label2').classList.add('has-text-danger');document.querySelector('#label2').classList.remove('has-text-success')}" checked /> Strip
-          </label> <a href="https://en.wikipedia.org/wiki/Stripped_binary" target="_blank" rel="noopener noreferrer">?</a>
+          <label id="label2" class="checkbox is-small is-unselectable" title="Run binary --run">
+            <input type="checkbox" class="checkbox is-small" id="run" name="run" /> Run
+          </label>
           <br>
           <label id="label3" class="checkbox is-small is-unselectable" title="Python syntax & Python export (Nimpy + Pylib)">
             <input type="checkbox" class="checkbox is-small" id="python" name="python" ${if python == "on": "checked" else: ""} />Python syntax
@@ -320,6 +321,10 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           <label id="labelc" class="checkbox is-small is-unselectable" title="GCC -march=native" style="opacity:.75;cursor:not-allowed">
             <input type="checkbox" class="checkbox is-small" id="marchnative" name="marchnative" ${if marchnative == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />arch=native
           </label> <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html" target="_blank" rel="noopener noreferrer">?</a>
+          <br>
+          <label id="labeld" class="checkbox is-small is-unselectable" title="Hardened Binary" style="opacity:.75;cursor:not-allowed">
+            <input type="checkbox" class="checkbox is-small" id="hardened" name="hardened" ${if hardened == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labeld').classList.add('has-text-success');document.querySelector('#labeld').classList.remove('has-text-danger')}else{document.querySelector('#labeld').classList.add('has-text-danger');document.querySelector('#labeld').classList.remove('has-text-success')}" />Hardened
+          </label> <a href="https://en.wikipedia.org/wiki/Hardening_(computing)#Binary_hardening" target="_blank" rel="noopener noreferrer">?</a>
         </div>
       </div>
     </details>
@@ -330,7 +335,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         <div class="column">
           Size <br>
           <div class="is-small">
-            <input type="number" id="fontsize" name="fontsize" class="input is-small" list="defaultNumbers" value=$fontsize min=10 max=50 step=5 required maxlenght=2 onchange="document.querySelector('#code').style.fontSize=this.value" style="max-width:4em" />
+            <input type="number" id="fontsize" name="fontsize" class="input is-small" title="Font Size (Pixels)" list="defaultNumbers" value=$fontsize min=10 max=50 step=5 required maxlenght=2 onchange="document.querySelector('#code').style.fontSize=this.value" style="max-width:4em" />
             <datalist id="defaultNumbers">
               <option value=10 ></option>
               <option value=20 ></option>
@@ -344,7 +349,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         <div class="column is-hidden-touch">
           Family <br>
           <div class="select is-small">
-            <select id="fontfamily" name="fontfamily" title="Exception Handling" class="select is-small" onchange="document.querySelector('#code').style.fontFamily=this.options[this.selectedIndex].value">
+            <select id="fontfamily" name="fontfamily" title="Font Family (Monospace)" class="select is-small" onchange="document.querySelector('#code').style.fontFamily=this.options[this.selectedIndex].value">
               <option value="Fira Code"   ${if fontfamily == "Fira Code": "selected" else: ""}   >Fira Code</option>
               <option value="Oxygen Mono" ${if fontfamily == "Oxygen Mono": "selected" else: ""} >Oxygen</option>
               <option value="Roboto Mono" ${if fontfamily == "Roboto Mono": "selected" else: ""} >Roboto</option>
