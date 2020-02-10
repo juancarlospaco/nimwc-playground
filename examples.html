@@ -1,24 +1,9 @@
-<option value='echo "Hello World"'>Hello World</option>
+<option value='
+echo "Hello World"
+'>Hello World</option>
 
 
-<option value='echo "a"
-echo("b")
-echo"c"
-"d".echo
-"e".echo()
-'>UFCS Universal Function Call Syntax</option>
-
-
-<option value="proc sum2integers(a, b: int): int =
-  a + b
-
-echo sum2integers(1, 2)
-">Function</option>
-
-
-<option value='const variable_const = "foo"
-echo variable_const
-
+<option value='
 let variable_let = "let"
 echo variable_let
 
@@ -27,45 +12,86 @@ echo variable_var
 variable_var = "baz"
 echo variable_var
 '>Variables</option>
-<option value='import terminal, random
-randomize()
-setBackgroundColor(bgBlack)
-for i in 0..9:
-  setForegroundColor([fgRed, fgGreen, fgYellow, fgBlue, fgMagenta, fgCyan, fgWhite].rand)
-  echo i
-'>Random Print Color</option>
-<option value='import terminal
+
+
+<option value='
+const variable_const = "foo"
+echo variable_const
+'>Constants</option>
+
+
+<option value="
+proc sum2integers(a, b: int): int =
+  a + b
+
+echo sum2integers(1, 2)
+">Functions</option>
+
+
+<option value='
+echo "a"
+echo("b")
+echo"c"
+"d".echo
+"e".echo()
+'>UFCS Universal Function Call Syntax</option>
+
+
+<option value='
+import terminal
 styledEcho(bgRed, "Red")
-'>Basic Print Color</option>
-<option value='proc main(): auto =
+'>Print Color</option>
+
+
+<option value='
+proc main(): auto =
   echo "Do something here."
 
 if is_main_module:
   main()
 '>Basic App Skeleton</option>
-<option value='import jester
 
-routes:
-  get "/":
-    resp "Hello Web"
-'>Web App Jester</option>
-<option value='proc generico[T](x, y: T): auto =
+
+<option value='
+proc generic[T](x, y: T): auto =
   if x < y: x else: y
 
-echo generico(2, 3)         # int
-echo generico("foo", "bar") # string
+echo generic(2, 3)         # int
+echo generic("foo", "bar") # string
 '>Generics</option>
-<option value='var conditional = true
+
+
+<option value='
+var conditional = true
 
 if conditional:
   echo "true"
 else:
   echo "false"
-'>If...Else</option>
-<option value='var conditional = true
-echo if conditional: "true" else: "false"
+'>If-Else</option>
+
+
+<option value='
+var conditional = 0
+
+if conditional < 0:
+  echo "conditional < 0"
+elif conditional > 0:
+  echo "conditional > 0"
+else:
+  echo "conditional == 0"
+'>If-Elif-Else</option>
+
+
+<option value='
+var conditional = true
+echo if conditional: true else: false
 '>Ternary Operator</option>
-<option value='import strutils
+
+
+<option value='
+import strutils
+
 echo "abc".toUpperAscii
 echo "ABC".toLowerAscii
 echo "    a    ".strip
@@ -76,6 +102,12 @@ echo "1 line".countLines
 echo "1 line".splitLines
 echo "a,b,c".split(",")
 echo "abc".toHex
+'>String Utils</option>
+
+
+<option value='
+import strutils
+
 echo "42".parseInt
 echo "3.14".parseFloat
 echo "0x666".parseHexInt
@@ -92,8 +124,12 @@ echo ["a", "b", "c"].join
 echo "abcd".find("c")
 echo "a".center(9)
 echo "a x a y a z".count("a")
-'>String Utils</option>
-<option value='import strformat
+'>String Utils 2</option>
+
+
+<option value='
+import strformat
+
 let
   a ="can"
   b ="it"
@@ -101,17 +137,29 @@ let
 
 echo fmt"You {a} use {b} like {c}"
 '>Literal String Formatting</option>
-<option value='import random
+
+
+<option value='
+import random
 randomize()
+
 for i in 0..9:
   echo 1.rand.bool
 '>Random Bool</option>
-<option value='import random
+
+
+<option value='
+import random
 randomize()
+
 for i in 0..9:
   echo rand(-9..9)
 '>Random Range</option>
-<option value='var a = 10
+
+
+<option value='
+var a = 10
+
 echo a
 inc a
 echo a
@@ -122,7 +170,10 @@ echo a
 dec a
 echo a
 '>Increment Decrement</option>
-<option value='var
+
+
+<option value='
+var
   fooBool: bool
   fooInt: int
   fooFloat: float
@@ -136,18 +187,27 @@ echo fooFloat
 echo fooString
 echo fooSeqString
 echo fooChar
-'>Variable Autoinitialization</option>
-<option value='echo "a" is string
+'>Variable AutoInitialization</option>
+
+
+<option value='
+echo "a" is string
 echo true is bool
 echo 42 is int
 echo 3.14 is float
 '>Check Type</option>
-<option value='echo 1 + 2
+
+
+<option value='
+echo 1 + 2
 echo 2 - 1
 echo 2 * 2
 echo 4 / 2
 '>Basic Math Operations</option>
-<option value='# Backend Targets.
+
+
+<option value='
+# Backend Targets.
 when defined(js):
   echo "Target is JavaScript"
 when defined(cpp):
@@ -162,7 +222,10 @@ when defined(i386):
   echo "Architecture is x86 i386 32Bits"
 when defined(arm):
   echo "Architecture is ARM"
+'>Compile Options</option>
 
+
+<option value='
 # Backend Compilers.
 when defined(gcc):
   echo "Compiler is GNU GCC"
@@ -182,155 +245,140 @@ when defined(macosx):
   echo "OS is Mac OS X"
 when defined(android):
   echo "OS is Android"
-'>Compile Options</option>
-<option value='import htmlgen
+'>Compile Options 2</option>
+
+
+<option value='
+import htmlgen
 echo html(body(h1(a(href="http://nim-lang.org", b("Nim")))))
 '>HTML Generation</option>
-<option value='import json
-let jotason =  %*[{"json": "inline", "abcd": ":)"}]
+
+
+<option value='
+import json
+
+let jotason =  %*{"json": "inline", "abcd": ":)"}
 echo jotason
 echo jotason.pretty
 '>JSON</option>
-<option value='import xmltree
+
+
+<option value='
+import xmltree
 echo <>xml(href="http://nim-lang.org", title="Nim is Awesome", alt="Nim", newText("Nim"))
 '>XML</option>
-<option value='import httpclient
-echo get("http://httpbin.org/get").body
-echo post("http://httpbin.org/post").body
-'>HTTP GET/POST</option>
-<option value='import httpclient
-echo post("http://httpbin.org/post", body="foo bar baz").body
-'>HTTP POST Data</option>
-<option value='import httpclient
-downloadFile(url="http://httpbin.org/image/jpeg", outputFilename="temp.jpg", timeout=5000)
-'>HTTP GET Download File</option>
-<option value='import asyncdispatch, httpclient
-proc async_http_get {.async.} = echo await newAsyncHttpClient().getContent "http://httpbin.org/get"
-wait_for async_http_get()
-'>Async HTTP GET</option>
-<option value='import httpclient
-var multipart = newMultipartData()
-multipart["foo"] = "bar"
-echo newHttpClient().postContent("http://httpbin.org/post", multipart=multipart)
-'>HTTP POST MultiPart Data</option>
-<option value='import httpclient
-var client = newHttpClient()
-client.headers["foo"] = "bar"
-echo client.get("http://httpbin.org/get").body
-'>HTTP GET Header Data</option>
-<option value='import asyncdispatch, httpclient
 
-proc printProgress(total, progress, speed: BiggestInt) {.async.} =
-  echo total
-  echo progress
-  echo speed
 
-var client = newAsyncHttpClient()
-client.onProgressChanged = printProgress
-discard wait_for client.getContent("http://speedtest-ams2.digitalocean.com/10mb.test")
-'>Async HTTP GET Progress</option>
-<option value='import httpclient
+<option value='
+type Cat = object
+proc purr(this: Cat) = echo "Purr"
+Cat().purr()
+'>Minimal Objects</option>
 
-proc printProgress(total, progress, speed: BiggestInt) =
-  echo total
-  echo progress
-  echo speed
 
-var client = newHttpClient()
-client.onProgressChanged = printProgress
-discard client.getContent("http://speedtest-ams2.digitalocean.com/10mb.test")
-'>HTTP GET Progress</option>
-<option value='import asynchttpserver, asyncdispatch
+<option value='
+type
+  Cat* = object
+    name*, kind*: string
+    food: range[0..100]
+    mites: bool
 
-proc callback(request: Request) {.async.} =
-  await request.respond(Http200, "Hello")
-
-wait_for newAsyncHttpServer().serve(Port(8080), callback)
-'>Async HTTP Server</option>
-<option value='type
-  Gato* = object
-    nombre*, especie*: string
-    comida: range[0..100]
-    pulgas: bool
-
-proc purr*(this: var Gato) =
-  dec this.comida
+proc purr*(this: var Cat) =
+  dec this.food
   echo "Purr"
 
-proc alimentarlo*(this: var Gato) =
-  inc this.comida
-  echo "Nom nom"
+proc feed*(this: var Cat) =
+  inc this.food
+  echo "Nom Nom"
 
-proc lavarlo*(this: var Gato) =
-  this.pulgas = false
-  echo this.pulgas
+proc wash*(this: var Cat) =
+  this.mites = false
+  echo this.mites
 
-proc say*(this: Gato, what="Meow") =
+proc say*(this: Cat, what="Meow") =
   echo what
 
-proc meow*(this: Gato) = echo "Meow"
+proc meow*(this: Cat) = echo "Meow"
 
 
-var gatito = Gato(nombre: "Zoe", especie: "Agora", comida: 50, pulgas: false)
-assert gatito is Gato
-assert(not gatito.pulgas)
-if gatito.comida < 75:
-   for i in 0..9:
-     gatito.alimentarlo()
+var kitten = Cat(name: "Zoe", kind: "Agora", food: 50, mites: false)
+
+assert kitten is Cat
+assert(not kitten.mites)
+
+if kitten.food < 75:
+  for i in 0..9:
+    kitten.feed()
+
 for i in 0..9:
-  gatito.purr()
-gatito.pulgas = true
-gatito.lavarlo()
-gatito.meow()
-gatito.say("Meow Meow Meow!")
-'>Basic Objects</option>
-<option value='import os
+  kitten.purr()
+
+kitten.mites = true
+kitten.wash()
+kitten.meow()
+kitten.say("Meow Meow Meow!")
+'>Objects</option>
+
+
+<option value='
+import os
 echo get_env("HOME")
 '>Environment Variables</option>
-<option value='writeFile("/tmp/test.txt", "Hello")
-echo readFile("/tmp/test.txt")
-'>I/O Files</option>
-<option value='import tables
-echo {"ab": 1, "cd": 2, "fg": 42}.to_table
+
+
+<option value='
+import tables
+
+echo {"ab": 1, "cd": 2, "fg": 42}.toTable
 '>Tables</option>
-<option value='import httpclient, json
-echo get("http://httpbin.org/get").body.parse_json
-'>HTTP GET to JSON</option>
-<option value="proc is_vowel(c: char): bool =
-  case c
-  of 'a', 'e', 'i', 'o', 'u',
-     'A', 'E', 'I', 'O', 'U':
-    result = true
-  of 'b' .. 'd', 'f' .. 'h', 'j' .. 'n', 'p' .. 't', 'v' .. 'z',
-     'B' .. 'D', 'F' .. 'H', 'J' .. 'N', 'P' .. 'T', 'V' .. 'Z':
-    result = false
-  else:
-    echo '?'
+
+
+<option value="
+proc is_vowel(c: char): bool =
+  result = case c
+    of 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U':
+      true
+    of 'b' .. 'd', 'f' .. 'h', 'j' .. 'n', 'p' .. 't', 'v' .. 'z',
+       'B' .. 'D', 'F' .. 'H', 'J' .. 'N', 'P' .. 'T', 'V' .. 'Z':
+      false
+    else: '?'
 
 echo is_vowel('A')
 echo is_vowel('c')
 ">Chars</option>
-<option value='let variable = true
+
+
+<option value='
+let variable = true
 
 case variable
 of true:
   echo "OK"
 else:
   echo "NO"
-'>Case</option>
-<option value='func sum(x, y: int): int =
+'>Case Switch</option>
+
+
+<option value='
+func sum(x, y: int): int =
   x + y
 
 echo sum(1, 2)
 '>Functional noSideEffect</option>
-<option value='import strutils
+
+
+<option value='
+import strutils
 
 proc `💩`(a: string): string =
   a.replace(" ", "💩")
 
 echo 💩(" Political Promises ")
 '>Operators Overload</option>
-<option value='# Max capacity.
+
+
+<option value='
+# Max capacity.
 echo int8.high
 echo int16.high
 echo int32.high
@@ -343,34 +391,52 @@ echo sizeOf(int32)
 echo sizeOf(int64)
 echo sizeOf(int)
 '>Integers Sizes</option>
-<option value='# Size on RAM.
+
+
+<option value='
+# Size on RAM.
 echo sizeOf(char)
 echo sizeOf(string)
 echo sizeOf("a")
 '>Chars Sizes</option>
-<option value='proc x(s: string): string =
+
+
+<option value='
+proc x(s: string): string =
   s & " build your own String Literals on the fly!."
 
 echo x"foo bar baz"
 '>Function String Literals</option>
-<option value='assert 2 > 1
+
+
+<option value='
+assert 2 > 1
 assert 1 > 2, "Error Message here."
 '>Assert</option>
-<option value='import unittest
+
+
+<option value='
+import unittest
 
 suite "Just Testing":
   test "Nim Unittest":
     check 2 > 1
     assert 2 > 1
 '>Basic Unittest</option>
-<option value='import unittest
+
+
+<option value='
+import unittest
 
 suite "Just Testing":
   test "test expected to fail":
     expect AssertionError:
       assert true == false
 '>Unittest Expect Errors</option>
-<option value='when compiles(int):
+
+
+<option value='
+when compiles(int):
   echo "int type exists"
 when not compiles(Foo):
   echo "Foo type does not exist"
@@ -379,7 +445,10 @@ when compiles(3 + 4):
 when not compiles(3 @@@ 4):
   echo "@@@ Does Not Compiles"
 '>When Compiles</option>
-<option value='block:
+
+
+<option value='
+block:
   echo "This is a Block"
   let a = "foo"
   var b = "bar"
@@ -389,48 +458,545 @@ when not compiles(3 @@@ 4):
 # echo a  # Error: undeclared identifier: a.
 # echo b  # Error: undeclared identifier: b.
 '>Blocks</option>
-<option value='echo (func: auto = "Gatitos")()'>Basic Anonymous Function</option>
-<option value='echo sizeof(float32)
+
+
+<option value='
+echo (func: auto = "Nim")()
+'>Basic Anonymous Function</option>
+
+
+<option value='
+echo sizeof(float32)
 echo sizeof(float64)
 echo sizeof(float)
 '>Float Sizes</option>
-<option value='import os
-proc handler() {.noconv.} =
-  raise newException(Exception, "Error Message Here.")
 
-setControlCHook(handler)
-sleep 9999  # Press CTRL+C.
-'>CTRL+C Hooks</option>
-<option value='iterator iterator_generic[T](thing: T): auto =
+
+<option value='
+iterator iterator_generic[T](thing: T): auto =
   for i in countdown(thing.high, thing.low):
     yield thing[i]
 
-for cosa in "foo bar baz".iterator_generic:
-  echo cosa
+for item in "foo bar baz".iterator_generic:
+  echo item
 
-for cosa in [1, 2, 3, 4, 5].iterator_generic:
-  echo cosa
+for item in [1, 2, 3, 4, 5].iterator_generic:
+  echo item
 '>Generic Iterators</option>
-<option value='iterator iterame(thing: string): char =
+
+
+<option value='
+iterator iterame(thing: string): char =
   for i in countdown(thing.high, thing.low):
     yield thing[i]
 
-for letra in "foo bar baz".iterame:
-  echo letra
+for item in "foo bar baz".iterame:
+  echo item
 '>Iterators</option>
-<option value='import sequtils
+
+
+<option value='
+import sequtils
+
 echo [14, 35, -7, 46, 98].min
 echo [14, 35, -7, 46, 98].max
 '>Seq Min Max</option>
-<option value='proc fibonacci(n: int): int =
+
+
+<option value='
+proc fibonacci(n: int): int =
   if n <= 2: 1 else: fibonacci(n - 1) + fibonacci(n - 2)
 
-echo fibonacci(9)
+echo fibonacci(6)
 '>Fibonacci</option>
-<option value='import sequtils
+
+
+<option value='
+import sequtils
+
 echo filter_it([49, 58, 76, 82, 88, 90], it > 60)
 '>Filter List</option>
-<option value='import sequtils
+
+
+<option value='
+import sequtils
+
 echo [49, 58, 76, 82, 88, 90].map_it(it * 2)
 '>Map List</option>
-    </select>
+
+
+<option value='
+import base64
+
+echo encode("Hello World")
+echo encode([1, 2, 3])
+echo decode("SGVsbG8gV29ybGQ=")
+'>Base64</option>
+
+
+<option value='
+{. emit: """ void hi(char* name) { printf("Hello %s\n", name); } """ .}  # Inlined C.
+proc hi(name: cstring) {.importc.}  # Import C.
+hi("Mundo")
+'>Inlined C</option>
+
+
+<option value='
+for index, value in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
+  echo index, " ", value
+'>For Loop Enumerate</option>
+
+
+<option value='
+import math
+
+echo pow(2.0, -1.0)
+echo pow(2.0, 1.0)
+'>Math Pow</option>
+
+
+<option value='
+import logging
+
+addHandler(newConsoleLogger())
+info("Hello Logging.")
+'>Logging</option>
+
+
+<option value='
+import md5
+
+echo getMD5("Data here")
+'>MD5</option>
+
+
+<option value='
+echo 4 mod 3
+echo 8 mod 3
+'>Math Modulo</option>
+
+
+<option value='
+{.hint:    "Hint".}
+{.warning: "Warning".}
+{.error:   "Error".}
+{.deprecated: "Deprecated".}
+'>Pragmas</option>
+
+
+<option value='
+proc run_at_exit() {.noconv.} =
+  echo "This function will Run at Exit."
+
+addQuitProc(run_at_exit)
+'>Function At Exit</option>
+
+
+<option value='
+import db_sqlite
+
+var db = open(":memory:", "", "", "")
+echo db.getAllRows(sql"drop table if exists example")
+db.close()
+'>SQLite</option>
+
+
+<option value='
+template times(repetitions: int, body: untyped): untyped =
+  for i in 1..repetitions:
+    body
+
+10.times:
+  echo "Hello World, 10 times"
+'>Templates</option>
+
+
+<option value='
+let variable = allocCStringArray(["some string here"]) # alloc
+echo cstringArrayToSeq(variable)
+deallocCStringArray(variable)                          # dealloc
+'>C String Array</option>
+
+
+<option value='
+GC_enableMarkAndSweep()
+GC_disableMarkAndSweep()
+echo GC_getStatistics()
+'>Garbage Collector</option>
+
+
+<option value='
+import macros
+
+macro findSymbol(body: typed): untyped =
+  echo body.getType.lineInfo
+
+findSymbol:
+  echo
+'>Go to Definition</option>
+
+
+<option value='
+let number = create(int, sizeOf(int)) # Create
+number[] = 42                         # Assign
+echo number[]  # 42
+zeroMem(number, sizeOf(number.type))  # Delete
+echo number[]  # 0
+'>Manual Memory</option>
+
+
+<option value='
+# var mypointer = alloc(8)        # Pointer is nil
+var mypointer = alloc0(8)         # Pointer is 00000000
+mypointer = cast[pointer]("foo")  # Pointer is "foo"
+assert cast[string](mypointer) == "foo"
+mypointer = cast[pointer](nil)    # Pointer is nil
+assert cast[string](mypointer) == ""
+'>Manual Memory 2</option>
+
+
+<option value='
+var mypointer2 = alloc0(8)        # Pointer is 00000000
+mypointer2 = cast[pointer]("bar") # Pointer is "bar"
+assert cast[string](mypointer2) == "bar"
+zeroMem(mypointer2.addr, 8)       # Pointer is 00000000
+assert cast[string](mypointer2) == ""
+'>Manual Memory 3</option>
+
+
+<option value='
+var optimized_string = newStringOfCap(9)  # string of len 0 but capacity 9.
+optimized_string.add("0123456789")
+echo optimized_string
+'>String of Cap</option>
+
+
+<option value='
+proc print_stuff(things: varargs[string, `$`]) =
+  for item in things:                   # $ Stringify anything
+    echo item
+
+print_stuff("foo", 42, 3.14, [1, 2, 3], "bar") # Mixed Types
+'>VarArgs Stringify</option>
+
+
+<option value='
+import sugar
+
+let variable = collect(newSeq):
+  for item in @[-9, 1, 42, 0, -1, 9]: item
+
+echo variable
+'>List Comprehensions</option>
+
+
+<option value='
+import sugar
+
+let variable = collect(initTable(4)):
+  for key, value in @[-9, 1, 42, 0, -1, 9]: {key: value}
+
+echo variable
+'>Dict Comprehensions</option>
+
+
+<option value='
+import sugar
+
+let variable = collect(initHashSet):
+  for item in @[-9, 1, 42, 0, -1, 9]: {item}
+
+echo variable
+'>Set Comprehensions</option>
+
+
+<option value='
+template decorator(argument: untyped) =
+  echo "This mimics a Decorator"
+  argument
+
+func function_with_decorator(): int {.decorator.} =
+  return 42
+
+echo function_with_decorator()
+'>Template Decorators</option>
+
+
+<option value='
+for i in 0..10:
+  echo i  # Prints 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+for i in 5..10:
+  echo i  # Prints 5, 6, 7, 8, 9, 10
+'>Ranges</option>
+
+
+<option value='
+let variable = [1, 2, 3, 4]
+
+assert variable[0..0] == @[1]
+assert variable[0..1] == @[1, 2]
+assert variable[0..<2] == @[1, 2]
+assert variable[0..3] == @[1, 2, 3, 4]
+'>Slices</option>
+
+
+<option value='
+proc isPositive(arg: int): bool =
+  return arg > 0
+
+echo map([1, 2,-3, 5, -9], isPositive)
+echo filter([1, 2,-3, 5, -9], isPositive)
+'>Map & Filter</option>
+
+
+<option value='
+echo (key0: "foo", key1: 42)
+'>Named Tuples</option>
+
+
+<option value='
+echo (1, 2, 3)
+'>Anonymous Tuples</option>
+
+
+<option value='
+let camelCase = 42      # Declaring as camelCase
+assert camel_case == 42 # Using as snake_case
+
+let snake_case = 1      # Declaring as snake_case
+assert snakeCase == 1   # Using as camelCase
+'>Style Agnostic</option>
+
+
+<option value='
+import asyncdispatch
+
+proc main() {.async.} =
+  echo("Hello ...")
+  await sleep_async(1)
+  echo("... World!")
+
+wait_for main()
+'>Async</option>
+
+
+<option value='
+## Documentation of Module *ReSTructuredText* and **MarkDown**
+
+type Kitten = object ## Documentation of Type *ReSTructuredText* and **MarkDown**
+  age: int  ## Documentation of Attribute *ReSTructuredText* and **MarkDown**
+
+proc purr(self: Kitten) =
+  ## Documentation of Function *ReSTructuredText* and **MarkDown**
+  echo "Purr Purr"
+'>Documentation Comments</option>
+
+
+<option value='
+let a = try: 1 + 2 except: 42 finally: echo "Inline Try"
+
+let b = if true: 2 / 4 elif false: 4 * 2 else: 0
+
+for i in 0..9: echo i
+
+proc foo() = echo "Function"
+
+(proc   () = echo "Anonimous Function")()
+
+template bar() = echo "Template"
+
+macro baz() = echo "Macro"
+
+var i = 0
+while i < 9: i += 1
+
+when is_main_module: echo 42
+'>Optional Indentation</option>
+
+
+<option value='
+var global_variable = ""
+
+proc function0() =
+  global_variable = "cat"
+
+proc function1() =
+  global_variable = "dog"
+
+function0()
+assert global_variable == "cat"
+function1()
+assert global_variable == "dog"
+function0()
+assert global_variable == "cat"
+'>Share Variables</option>
+
+
+<option value='
+type IceCream = object
+  object_attribute: int
+
+proc functiona(food: var IceCream) =
+  food.object_attribute = 9
+
+proc functionb(food: var IceCream) =
+  food.object_attribute = 5
+
+var food = IceCream()
+functiona(food)
+assert food.object_attribute == 9
+functionb(food)
+assert food.object_attribute == 5
+functiona(food)
+assert food.object_attribute == 9
+'>Share Variables 2</option>
+
+
+<option value='
+import tables
+
+to_table({"key": "value", "other": "things"})
+'>Tables</option>
+
+
+<option value='
+import tables
+
+var dictionary = to_table({"hi": 1, "there": 2})
+
+assert dictionary["hi"] == 1
+dictionary["hi"] = 42
+assert dictionary["hi"] == 42
+
+assert len(dictionary) == 2
+assert dictionary.has_key("hi")
+
+for key, value in dictionary:
+  echo key, value
+'>Tables 2</option>
+
+
+<option value='
+import tables
+
+to_ordered_table({8: "hp", 4: "laser", 9: "engine"})
+'>Ordered Tables</option>
+
+
+<option value='
+import tables
+
+to_count_table("abcabb")
+'>Count Tables</option>
+
+
+<option value='
+echo @["foo", "bar", "baz"]
+'>Sequences</option>
+
+
+<option value='
+import editdistance
+
+echo editDistance("Kitten", "Bitten")
+'>Levenshtein distance</option>
+
+
+<option value='
+type Cat = object                # Cat object.
+  age: int
+  name: string                   # Attributes of Cat object.
+
+func newCat(age = 2): Cat =      # Cat.__init__(self, age=2)
+  result.age = age               # self.age = age
+  result.name = "adopt_me"       # self.name = "adopt_me"
+
+var kitten = newCat()            # Cat object instance.
+
+assert kitten.name == "adopt_me" # Assert on Cat object.
+assert kitten.age == 2
+'>Init Object</option>
+
+
+<option value='
+type Animal = ref object of RootObj ## Animal base object.
+  age: int
+  name: string                      ## Attributes of base object.
+
+type Cat = ref object of Animal     ## Cat inherited object.
+  playfulness: float                ## Attributes of inherited object.
+
+func increase_age(self: Cat) =
+  self.age.inc()                    # Cat object function, access and *modify* object.
+
+var kitten = Cat(name: "Tom")       # Cat object instance.
+kitten.increase_age()               # Cat object function used.
+
+assert kitten.name == "Tom"         # Assert on Cat object.
+assert kitten.age == 1
+'>Object Oriented</option>
+
+
+<option value='
+echo NimVersion
+'>Nim Version</option>
+
+
+<option value='
+import sequtils, math
+
+echo to_seq(0..999).sum()
+'>SeqUtils</option>
+
+
+<option value='
+import sequtils, strutils
+
+let words = ["nim", "nimlang", "nimble"]
+let tweet = "This is an example tweet talking about nim and nimble."
+
+echo words.map_it(tweet.contains(it)).any_it(it == true)
+'>SeqUtils 2</option>
+
+
+<option value='
+import macros
+
+macro generate_hello(): typed =
+  parseStmt """proc hello() = echo "hi" """
+
+generate_hello()  # Generate a proc via Macros.
+hello()
+'>Macros</option>
+
+
+<option value='
+import math
+
+echo classify(0.0)
+echo classify(Inf)
+echo classify(NaN)
+'>Float Infinity</option>
+
+
+<option value='
+type Dollars = distinct float
+
+var savings = 10.Dollars
+
+savings = 25.Dollars   # Ok
+savings = 50.Dollars   # Ok
+# savings = 25         # Error
+'>Distinct Types</option>
+
+
+<option value='
+import strutils
+
+type Fruit = enum Banana, Kiwi
+
+let food = parseEnum[Fruit]("banana")
+echo food
+echo food is Fruit
+'>Enums</option>

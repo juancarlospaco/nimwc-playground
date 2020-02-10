@@ -381,7 +381,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           Examples <br>
           <div class="select is-small">
             <select id="examples" title="Load 1 Example" onchange="document.querySelector('#code').value=this.options[this.selectedIndex].value">
-              <option selected disabled >Code Snippets</option>
+              <option selected disabled >99 Examples</option>
             # const exmpl = staticRead"examples.html".strip
               $exmpl
             </select>
