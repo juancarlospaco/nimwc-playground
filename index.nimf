@@ -302,13 +302,13 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
             <input type="checkbox" class="checkbox is-small" id="threads" name="threads" ${if threads == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
           </label> <a href="https://nim-lang.org/docs/manual.html#threads" target="_blank" rel="noopener noreferrer">?</a>
           <br>
-          <label id="label2" class="checkbox is-small is-unselectable" title="Run binary --run">
+          <label id="label2" class="checkbox is-small is-unselectable" title="Run --run">
             <input type="checkbox" class="checkbox is-small" id="run" name="run" /> Run
           </label>
           <br>
           <label id="label3" class="checkbox is-small is-unselectable" title="Python syntax & Python export (Nimpy + Pylib)">
             <input type="checkbox" class="checkbox is-small" id="python" name="python" ${if python == "on": "checked" else: ""} />Python syntax
-          </label>
+          </label> <a href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers#table-of-contents" target="_blank" rel="noopener noreferrer">?</a>
         </div>
 
         <div class="column is-hidden-touch has-text-left">
