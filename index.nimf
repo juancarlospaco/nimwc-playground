@@ -145,7 +145,9 @@
 </div>
 <div class="tab-content">
   <div class="tab-pane content-tab0">
-    <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder=" Type or Paste your Nim source code" dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="9" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
+    <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder="# Type or Paste your Nim source code...
+echo "Hello World"
+    " dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="9" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
     <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes binary file size.</b></small>
   </div>
   <div class="tab-pane content-tab1">
@@ -381,7 +383,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           Examples <br>
           <div class="select is-small">
             <select id="examples" title="Load 1 Example" onchange="document.querySelector('#code').value=this.options[this.selectedIndex].value">
-              <option selected disabled >99 Examples</option>
+              <option selected disabled >111 Examples</option>
             # const exmpl = staticRead"examples.html".strip
               $exmpl
             </select>

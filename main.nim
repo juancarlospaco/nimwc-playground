@@ -45,9 +45,7 @@ routes:
       when not defined(release): echo "URLS\t", @"urls"
       let row = getRow(db, sql"""
           select creation, code, filejson, comment, stdouts, ccode, asmcode, astcode, dot, fsize, target, mode, gc, stylecheck, exceptions, cpu, ssl, threads, python, flto, fastmath, marchnative, hardened, fontsize, fontfamily, expiration
-          from playground
-          where url = ?
-        """, @"urls")
+          from playground where url = ? """, @"urls")
       resp genPlayground(
         urls = @"urls", code = row[1], filejson = row[2], htmlcomment = row[3], stdouts = row[4], ccode = row[5], asmcode = row[6], astcode = row[7], dot = row[8], fsize = parseInt(row[9].strip.normalize),
         target = row[10], mode = row[11], gc = row[12], stylecheck = row[13], exceptions = row[14], cpu = row[15], ssls = row[16], threads = row[17],
@@ -89,10 +87,9 @@ routes:
       doAssert jsons.len < 1000
     except:
       resp genError(error = getCurrentExceptionMsg())
-    let comments = if comnt.len > 1:
+    let comments = if unlikely(comnt.len > 2):
       try: rstToHtml(comnt, {}, newStringTable(modeStyleInsensitive)) except: comnt
       else: ""
-    # Process
     discard existsOrCreateDir folder
     defer: removeDir folder
     if likely(targets notin ["js -d:nodejs", "js", "check"]): writeFile(folder / "file.json", jsons)
@@ -153,7 +150,7 @@ routes:
                   else: 0
                 let recents = getAllRows(db, sql"select url from playground order by creation limit 20")
                 when not defined(release): echo "OK\t", recents
-                if rand([true, false]):  # 50/50 chance to delete expired playgrounds on each post.
+                if sample([true, false]):  # 50/50 chance to delete expired playgrounds on each post.
                   discard tryExec(db, sql"delete from playground where creation > DATETIME('now', '-' || expiration || ' day')") # https://stackoverflow.com/a/45202107
                   when not defined(release): echo "OK\tDelete expired playgrounds"
                 if tryExec(db, sql"""
@@ -174,13 +171,7 @@ routes:
                     fontfamily = fontfamilys, fontsize = fontsizes, expiration = expirations, fsize = fsize, cancompile = false,
                     astcode = astcode, dot = dot, ccode = ccode, asmcode = asmcode, stdouts = stdouts, recents = recents, hosting = $request.host,
                   )
-                else: resp genError(error = output.strip)
-              else: resp genError(error = output.strip)
-            else: resp genError(error = output.strip)
-          else: resp genError(error = output.strip)
-        else: resp genError(error = output.strip)
-      else: resp genError(error = output.strip)
-    else: resp genError(error = output.strip)
+    if exitCode != 0: resp genError(error = output.strip)
 
 
 {.passC: "-flto -ffast-math -march=native -mtune=native -fsingle-precision-constant", passL: "-s".}

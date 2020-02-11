@@ -1,6 +1,14 @@
+<optgroup label="Basic">
+
+
 <option value='
 echo "Hello World"
 '>Hello World</option>
+
+
+<option value='
+echo NimVersion
+'>Nim Version</option>
 
 
 <option value='
@@ -29,39 +37,6 @@ echo sum2integers(1, 2)
 
 
 <option value='
-echo "a"
-echo("b")
-echo"c"
-"d".echo
-"e".echo()
-'>UFCS Universal Function Call Syntax</option>
-
-
-<option value='
-import terminal
-styledEcho(bgRed, "Red")
-'>Print Color</option>
-
-
-<option value='
-proc main(): auto =
-  echo "Do something here."
-
-if is_main_module:
-  main()
-'>Basic App Skeleton</option>
-
-
-<option value='
-proc generic[T](x, y: T): auto =
-  if x < y: x else: y
-
-echo generic(2, 3)         # int
-echo generic("foo", "bar") # string
-'>Generics</option>
-
-
-<option value='
 var conditional = true
 
 if conditional:
@@ -84,9 +59,259 @@ else:
 
 
 <option value='
+let variable = true
+
+case variable
+of true:
+  echo "OK"
+else:
+  echo "NO"
+'>Case Switch</option>
+
+
+<option value='
+assert 2 > 1
+assert 1 > 2, "Error Message here."
+'>Assert</option>
+
+
+<option value='
+echo @["foo", "bar", "baz"]
+'>Sequences</option>
+
+
+<option value='
+import terminal
+styledEcho(bgRed, "Red")
+'>Print Color</option>
+
+
+<option value='
+proc main(): auto =
+  echo "Do something here."
+
+if is_main_module:
+  main()
+'>Basic App Skeleton</option>
+
+
+<option value='
+import tables
+
+to_table({"key": "value", "other": "things"})
+'>Tables</option>
+
+
+<option value='
+import tables
+
+var dictionary = to_table({"hi": 1, "there": 2})
+
+assert dictionary["hi"] == 1
+dictionary["hi"] = 42
+assert dictionary["hi"] == 42
+
+assert len(dictionary) == 2
+assert dictionary.has_key("hi")
+
+for key, value in dictionary:
+  echo key, value
+'>Tables 2</option>
+
+
+<option value='
+var a = 10
+
+echo a
+inc a
+echo a
+inc a
+echo a
+dec a
+echo a
+dec a
+echo a
+'>Increment Decrement</option>
+
+
+<option value='
 var conditional = true
 echo if conditional: true else: false
 '>Ternary Operator</option>
+
+
+<option value='
+echo "a" is string
+echo true is bool
+echo 42 is int
+echo 3.14 is float
+'>Check Type</option>
+
+
+<option value='
+echo 1 + 2
+echo 2 - 1
+echo 2 * 2
+echo 4 / 2
+'>Basic Math Operations</option>
+
+
+<option value='
+import base64
+
+echo encode("Hello World")
+echo encode([1, 2, 3])
+echo decode("SGVsbG8gV29ybGQ=")
+'>Base64</option>
+
+
+<option value='
+echo (key0: "foo", key1: 42)
+'>Named Tuples</option>
+
+
+<option value='
+echo (1, 2, 3)
+'>Anonymous Tuples</option>
+
+
+<option value='
+let camelCase = 42      # Declaring as camelCase
+assert camel_case == 42 # Using as snake_case
+
+let snake_case = 1      # Declaring as snake_case
+assert snakeCase == 1   # Using as camelCase
+'>Style Agnostic</option>
+
+
+<option value='
+## Documentation of Module *ReSTructuredText* and **MarkDown**
+
+type Kitten = object ## Documentation of Type *ReSTructuredText* and **MarkDown**
+  age: int  ## Documentation of Attribute *ReSTructuredText* and **MarkDown**
+
+proc purr(self: Kitten) =
+  ## Documentation of Function *ReSTructuredText* and **MarkDown**
+  echo "Purr Purr"
+'>Documentation Comments</option>
+
+
+<option value='
+let a = try: 1 + 2 except: 42 finally: echo "Inline Try"
+
+let b = if true: 2 / 4 elif false: 4 * 2 else: 0
+
+for i in 0..9: echo i
+
+proc foo() = echo "Function"
+
+(proc   () = echo "Anonimous Function")()
+
+template bar() = echo "Template"
+
+macro baz() = echo "Macro"
+
+var i = 0
+while i < 9: i += 1
+
+when is_main_module: echo 42
+'>Optional Indentation</option>
+
+
+</optgroup>
+<optgroup label="Medium">
+
+
+<option value='
+type Cat = object
+proc purr(this: Cat) = echo "Purr"
+Cat().purr()
+'>Minimal Objects</option>
+
+
+<option value='
+import os
+echo get_env("HOME")
+'>Environment Variables</option>
+
+
+<option value='
+import random
+randomize()
+
+for i in 0..9:
+  echo 1.rand.bool
+'>Random Bool</option>
+
+
+<option value='
+import random
+randomize()
+
+for i in 0..9:
+  echo rand(-9..9)
+'>Random Range</option>
+
+
+<option value='
+var global_variable = ""
+
+proc function0() =
+  global_variable = "cat"
+
+proc function1() =
+  global_variable = "dog"
+
+function0()
+assert global_variable == "cat"
+function1()
+assert global_variable == "dog"
+function0()
+assert global_variable == "cat"
+'>Share Variables</option>
+
+
+<option value='
+import tables
+
+to_ordered_table({8: "hp", 4: "laser", 9: "engine"})
+'>Ordered Tables</option>
+
+
+<option value='
+import tables
+
+to_count_table("abcabb")
+'>Count Tables</option>
+
+
+<option value='
+type IceCream = object
+  object_attribute: int
+
+proc functiona(food: var IceCream) =
+  food.object_attribute = 9
+
+proc functionb(food: var IceCream) =
+  food.object_attribute = 5
+
+var food = IceCream()
+functiona(food)
+assert food.object_attribute == 9
+functionb(food)
+assert food.object_attribute == 5
+functiona(food)
+assert food.object_attribute == 9
+'>Share Variables 2</option>
+
+
+<option value='
+echo "a"
+echo("b")
+echo"c"
+"d".echo
+"e".echo()
+'>UFCS Universal Function Call Syntax</option>
 
 
 <option value='
@@ -101,7 +326,6 @@ echo "A__B__C".normalize
 echo "1 line".countLines
 echo "1 line".splitLines
 echo "a,b,c".split(",")
-echo "abc".toHex
 '>String Utils</option>
 
 
@@ -140,36 +364,169 @@ echo fmt"You {a} use {b} like {c}"
 
 
 <option value='
-import random
-randomize()
+import tables
 
-for i in 0..9:
-  echo 1.rand.bool
-'>Random Bool</option>
+echo {"ab": 1, "cd": 2, "fg": 42}.toTable
+'>Tables</option>
 
 
 <option value='
-import random
-randomize()
-
-for i in 0..9:
-  echo rand(-9..9)
-'>Random Range</option>
+# Max capacity.
+echo int8.high
+echo int16.high
+echo int32.high
+echo int64.high
+echo int.high
+# Size on RAM.
+echo sizeOf(int8)
+echo sizeOf(int16)
+echo sizeOf(int32)
+echo sizeOf(int64)
+echo sizeOf(int)
+'>Integers Sizes</option>
 
 
 <option value='
-var a = 10
+echo sizeof(float32)
+echo sizeof(float64)
+echo sizeof(float)
+'>Float Sizes</option>
 
-echo a
-inc a
-echo a
-inc a
-echo a
-dec a
-echo a
-dec a
-echo a
-'>Increment Decrement</option>
+
+<option value='
+# Size on RAM.
+echo sizeOf(char)
+echo sizeOf(string)
+echo sizeOf("a")
+'>Chars Sizes</option>
+
+
+<option value="
+proc is_vowel(c: char): bool =
+  result = case c
+    of 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U':
+      true
+    of 'b' .. 'd', 'f' .. 'h', 'j' .. 'n', 'p' .. 't', 'v' .. 'z',
+       'B' .. 'D', 'F' .. 'H', 'J' .. 'N', 'P' .. 'T', 'V' .. 'Z':
+      false
+    else: '?'
+
+echo is_vowel('A')
+echo is_vowel('c')
+">Chars</option>
+
+
+<option value='
+when compiles(int):
+  echo "int type exists"
+when not compiles(Foo):
+  echo "Foo type does not exist"
+when compiles(3 + 4):
+  echo "int +  int Compiles Ok"
+when not compiles(3 @@@ 4):
+  echo "@@@ Does Not Compiles"
+'>When Compiles</option>
+
+
+<option value='
+for i in 0..10:
+  echo i  # Prints 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+for i in 5..10:
+  echo i  # Prints 5, 6, 7, 8, 9, 10
+'>Ranges</option>
+
+
+<option value='
+let variable = [1, 2, 3, 4]
+
+assert variable[0..0] == @[1]
+assert variable[0..1] == @[1, 2]
+assert variable[0..<2] == @[1, 2]
+assert variable[0..3] == @[1, 2, 3, 4]
+'>Slices</option>
+
+
+<option value='
+block:
+  echo "This is a Block"
+  let a = "foo"
+  var b = "bar"
+  echo a
+  echo b
+
+# echo a  # Error: undeclared identifier: a.
+# echo b  # Error: undeclared identifier: b.
+'>Blocks</option>
+
+
+<option value='
+echo (func: auto = "Nim")()
+'>Basic Anonymous Function</option>
+
+
+<option value='
+import math
+
+echo pow(2.0, -1.0)
+echo pow(2.0, 1.0)
+'>Math Pow</option>
+
+
+<option value='
+import logging
+
+addHandler(newConsoleLogger())
+info("Hello Logging.")
+'>Logging</option>
+
+
+<option value='
+import md5
+
+echo getMD5("Data here")
+'>MD5</option>
+
+
+<option value='
+echo 4 mod 3
+echo 8 mod 3
+'>Math Modulo</option>
+
+
+<option value='
+{.hint:    "Hint".}
+{.warning: "Warning".}
+{.error:   "Error".}
+{.deprecated: "Deprecated".}
+'>Pragmas</option>
+
+
+<option value='
+for index, value in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
+  echo index, " ", value
+'>For Loop Enumerate</option>
+
+
+<option value='
+proc run_at_exit() {.noconv.} =
+  echo "This function will Run at Exit."
+
+addQuitProc(run_at_exit)
+'>Function At Exit</option>
+
+
+</optgroup>
+<optgroup label="Advanced">
+
+
+<option value='
+proc generic[T](x, y: T): auto =
+  if x < y: x else: y
+
+echo generic(2, 3)         # int
+echo generic("foo", "bar") # string
+'>Generics</option>
 
 
 <option value='
@@ -188,22 +545,6 @@ echo fooString
 echo fooSeqString
 echo fooChar
 '>Variable AutoInitialization</option>
-
-
-<option value='
-echo "a" is string
-echo true is bool
-echo 42 is int
-echo 3.14 is float
-'>Check Type</option>
-
-
-<option value='
-echo 1 + 2
-echo 2 - 1
-echo 2 * 2
-echo 4 / 2
-'>Basic Math Operations</option>
 
 
 <option value='
@@ -270,13 +611,6 @@ echo <>xml(href="http://nim-lang.org", title="Nim is Awesome", alt="Nim", newTex
 
 
 <option value='
-type Cat = object
-proc purr(this: Cat) = echo "Purr"
-Cat().purr()
-'>Minimal Objects</option>
-
-
-<option value='
 type
   Cat* = object
     name*, kind*: string
@@ -321,98 +655,11 @@ kitten.say("Meow Meow Meow!")
 
 
 <option value='
-import os
-echo get_env("HOME")
-'>Environment Variables</option>
-
-
-<option value='
-import tables
-
-echo {"ab": 1, "cd": 2, "fg": 42}.toTable
-'>Tables</option>
-
-
-<option value="
-proc is_vowel(c: char): bool =
-  result = case c
-    of 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U':
-      true
-    of 'b' .. 'd', 'f' .. 'h', 'j' .. 'n', 'p' .. 't', 'v' .. 'z',
-       'B' .. 'D', 'F' .. 'H', 'J' .. 'N', 'P' .. 'T', 'V' .. 'Z':
-      false
-    else: '?'
-
-echo is_vowel('A')
-echo is_vowel('c')
-">Chars</option>
-
-
-<option value='
-let variable = true
-
-case variable
-of true:
-  echo "OK"
-else:
-  echo "NO"
-'>Case Switch</option>
-
-
-<option value='
 func sum(x, y: int): int =
   x + y
 
 echo sum(1, 2)
 '>Functional noSideEffect</option>
-
-
-<option value='
-import strutils
-
-proc `💩`(a: string): string =
-  a.replace(" ", "💩")
-
-echo 💩(" Political Promises ")
-'>Operators Overload</option>
-
-
-<option value='
-# Max capacity.
-echo int8.high
-echo int16.high
-echo int32.high
-echo int64.high
-echo int.high
-# Size on RAM.
-echo sizeOf(int8)
-echo sizeOf(int16)
-echo sizeOf(int32)
-echo sizeOf(int64)
-echo sizeOf(int)
-'>Integers Sizes</option>
-
-
-<option value='
-# Size on RAM.
-echo sizeOf(char)
-echo sizeOf(string)
-echo sizeOf("a")
-'>Chars Sizes</option>
-
-
-<option value='
-proc x(s: string): string =
-  s & " build your own String Literals on the fly!."
-
-echo x"foo bar baz"
-'>Function String Literals</option>
-
-
-<option value='
-assert 2 > 1
-assert 1 > 2, "Error Message here."
-'>Assert</option>
 
 
 <option value='
@@ -433,43 +680,6 @@ suite "Just Testing":
     expect AssertionError:
       assert true == false
 '>Unittest Expect Errors</option>
-
-
-<option value='
-when compiles(int):
-  echo "int type exists"
-when not compiles(Foo):
-  echo "Foo type does not exist"
-when compiles(3 + 4):
-  echo "int +  int Compiles Ok"
-when not compiles(3 @@@ 4):
-  echo "@@@ Does Not Compiles"
-'>When Compiles</option>
-
-
-<option value='
-block:
-  echo "This is a Block"
-  let a = "foo"
-  var b = "bar"
-  echo a
-  echo b
-
-# echo a  # Error: undeclared identifier: a.
-# echo b  # Error: undeclared identifier: b.
-'>Blocks</option>
-
-
-<option value='
-echo (func: auto = "Nim")()
-'>Basic Anonymous Function</option>
-
-
-<option value='
-echo sizeof(float32)
-echo sizeof(float64)
-echo sizeof(float)
-'>Float Sizes</option>
 
 
 <option value='
@@ -526,70 +736,27 @@ echo [49, 58, 76, 82, 88, 90].map_it(it * 2)
 
 
 <option value='
-import base64
+import strutils
 
-echo encode("Hello World")
-echo encode([1, 2, 3])
-echo decode("SGVsbG8gV29ybGQ=")
-'>Base64</option>
+proc `💩`(a: string): string =
+  a.replace(" ", "💩")
 
+echo 💩(" Political Promises ")
+'>Operators Overload</option>
+
+
+<option value='
+proc x(s: string): string =
+  s & " build your own String Literals on the fly!."
+
+echo x"foo bar baz"
+'>Function String Literals</option>
 
 <option value='
 {. emit: """ void hi(char* name) { printf("Hello %s\n", name); } """ .}  # Inlined C.
 proc hi(name: cstring) {.importc.}  # Import C.
 hi("Mundo")
 '>Inlined C</option>
-
-
-<option value='
-for index, value in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
-  echo index, " ", value
-'>For Loop Enumerate</option>
-
-
-<option value='
-import math
-
-echo pow(2.0, -1.0)
-echo pow(2.0, 1.0)
-'>Math Pow</option>
-
-
-<option value='
-import logging
-
-addHandler(newConsoleLogger())
-info("Hello Logging.")
-'>Logging</option>
-
-
-<option value='
-import md5
-
-echo getMD5("Data here")
-'>MD5</option>
-
-
-<option value='
-echo 4 mod 3
-echo 8 mod 3
-'>Math Modulo</option>
-
-
-<option value='
-{.hint:    "Hint".}
-{.warning: "Warning".}
-{.error:   "Error".}
-{.deprecated: "Deprecated".}
-'>Pragmas</option>
-
-
-<option value='
-proc run_at_exit() {.noconv.} =
-  echo "This function will Run at Exit."
-
-addQuitProc(run_at_exit)
-'>Function At Exit</option>
 
 
 <option value='
@@ -723,50 +890,12 @@ echo function_with_decorator()
 
 
 <option value='
-for i in 0..10:
-  echo i  # Prints 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-
-for i in 5..10:
-  echo i  # Prints 5, 6, 7, 8, 9, 10
-'>Ranges</option>
-
-
-<option value='
-let variable = [1, 2, 3, 4]
-
-assert variable[0..0] == @[1]
-assert variable[0..1] == @[1, 2]
-assert variable[0..<2] == @[1, 2]
-assert variable[0..3] == @[1, 2, 3, 4]
-'>Slices</option>
-
-
-<option value='
 proc isPositive(arg: int): bool =
   return arg > 0
 
 echo map([1, 2,-3, 5, -9], isPositive)
 echo filter([1, 2,-3, 5, -9], isPositive)
 '>Map & Filter</option>
-
-
-<option value='
-echo (key0: "foo", key1: 42)
-'>Named Tuples</option>
-
-
-<option value='
-echo (1, 2, 3)
-'>Anonymous Tuples</option>
-
-
-<option value='
-let camelCase = 42      # Declaring as camelCase
-assert camel_case == 42 # Using as snake_case
-
-let snake_case = 1      # Declaring as snake_case
-assert snakeCase == 1   # Using as camelCase
-'>Style Agnostic</option>
 
 
 <option value='
@@ -779,121 +908,6 @@ proc main() {.async.} =
 
 wait_for main()
 '>Async</option>
-
-
-<option value='
-## Documentation of Module *ReSTructuredText* and **MarkDown**
-
-type Kitten = object ## Documentation of Type *ReSTructuredText* and **MarkDown**
-  age: int  ## Documentation of Attribute *ReSTructuredText* and **MarkDown**
-
-proc purr(self: Kitten) =
-  ## Documentation of Function *ReSTructuredText* and **MarkDown**
-  echo "Purr Purr"
-'>Documentation Comments</option>
-
-
-<option value='
-let a = try: 1 + 2 except: 42 finally: echo "Inline Try"
-
-let b = if true: 2 / 4 elif false: 4 * 2 else: 0
-
-for i in 0..9: echo i
-
-proc foo() = echo "Function"
-
-(proc   () = echo "Anonimous Function")()
-
-template bar() = echo "Template"
-
-macro baz() = echo "Macro"
-
-var i = 0
-while i < 9: i += 1
-
-when is_main_module: echo 42
-'>Optional Indentation</option>
-
-
-<option value='
-var global_variable = ""
-
-proc function0() =
-  global_variable = "cat"
-
-proc function1() =
-  global_variable = "dog"
-
-function0()
-assert global_variable == "cat"
-function1()
-assert global_variable == "dog"
-function0()
-assert global_variable == "cat"
-'>Share Variables</option>
-
-
-<option value='
-type IceCream = object
-  object_attribute: int
-
-proc functiona(food: var IceCream) =
-  food.object_attribute = 9
-
-proc functionb(food: var IceCream) =
-  food.object_attribute = 5
-
-var food = IceCream()
-functiona(food)
-assert food.object_attribute == 9
-functionb(food)
-assert food.object_attribute == 5
-functiona(food)
-assert food.object_attribute == 9
-'>Share Variables 2</option>
-
-
-<option value='
-import tables
-
-to_table({"key": "value", "other": "things"})
-'>Tables</option>
-
-
-<option value='
-import tables
-
-var dictionary = to_table({"hi": 1, "there": 2})
-
-assert dictionary["hi"] == 1
-dictionary["hi"] = 42
-assert dictionary["hi"] == 42
-
-assert len(dictionary) == 2
-assert dictionary.has_key("hi")
-
-for key, value in dictionary:
-  echo key, value
-'>Tables 2</option>
-
-
-<option value='
-import tables
-
-to_ordered_table({8: "hp", 4: "laser", 9: "engine"})
-'>Ordered Tables</option>
-
-
-<option value='
-import tables
-
-to_count_table("abcabb")
-'>Count Tables</option>
-
-
-<option value='
-echo @["foo", "bar", "baz"]
-'>Sequences</option>
 
 
 <option value='
@@ -936,11 +950,6 @@ kitten.increase_age()               # Cat object function used.
 assert kitten.name == "Tom"         # Assert on Cat object.
 assert kitten.age == 1
 '>Object Oriented</option>
-
-
-<option value='
-echo NimVersion
-'>Nim Version</option>
 
 
 <option value='
@@ -1000,3 +1009,109 @@ let food = parseEnum[Fruit]("banana")
 echo food
 echo food is Fruit
 '>Enums</option>
+
+
+</optgroup>
+<optgroup label="Python Syntax">
+
+
+<option value='
+print("Hello World")
+'>Hello World Python</option>
+
+
+<option value='
+print(str(42), int(2.0), float(5), True, False)
+'>str int float bool</option>
+
+
+<option value='
+print(f"""Hello { 1 + 2 } World { NimVersion }"""")
+'>F-Strings</option>
+
+
+<option value='
+let arg = "Hello"
+
+let anon = lambda: arg + " world"
+
+assert anon() == "hello world"
+'>Lambdas</option>
+
+
+<option value='
+if ( "a".`:=` 6 ) > 5:
+  assert a == 6
+
+if ( "b".`:=` 42.0 ) > 5.0:
+  assert b == 42.0
+
+if ( "c".`:=` "hello" ) == "hello":
+  assert c == "hello"
+'>Walrus Operator</option>
+
+
+<option value='
+print(json_loads(""" {"key": "value"} """)
+'>JSON Loads</option>
+
+
+<option value='
+print( all([True, True, False]) )
+print( any([True, True, False]) )
+'>Any & All</option>
+
+
+<option value='
+print(sys.platform)
+'>Sys Platform</option>
+
+
+<option value='
+assert 2 <> 9  # <> is Python1 !=
+'>Python1 comparison</option>
+
+<option value='
+pass
+pass str("This is a string.")  # string.
+pass int(42)                   # integer.
+pass float(1.0)                # float.
+'>Pass</option>
+
+
+
+<option value='
+timeit(99):  # Mimic timeit.timeit("code_to_benchmark", number=int)
+  print("timeit.timeit")  # Repeats 99 times.
+'>TimeIt</option>
+
+
+<option value='
+
+type Example = ref object
+  start: int
+  stop: int
+  step: int
+
+
+class Example(object):            #  Mimic Python Classes.
+    """Example class with Python-ish Nim syntax."""
+
+    def init(self, start, stop, step=1):
+        self.start = start
+        self.stop = stop
+        self.step = step
+
+    def stopit(self, argument):
+        """Example function with Python-ish Nim syntax."""
+        self.stop = argument
+        return self.stop
+'>Python OOP</option>
+
+
+<option value='
+print(42.0 / 2) # Math with mixed Float and Int
+'>Math Int Float Mixed</option>
+
+
+</optgroup>
