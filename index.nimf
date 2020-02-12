@@ -2,7 +2,7 @@
 #
 #func genPlayground*(
 #  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", stdouts = "", target = "c", mode = "", gc = "",
-#  stylecheck = "", exceptions = "", cpu = "", ssls = "off", threads = "off", python = "off", flto = "off", fastmath = "off", marchnative = "off", hardened = "off",
+#  stylecheck = "", exceptions = "", cpu = "", ssls = false, threads = false, python = false, flto = false, fastmath = false, marchnative = false, hardened = false, pastebin = false,
 #  fontfamily = "Fira Code", hosting = "", fontsize = 15, expiration = 9, fsize = 0, astcode = "", dot = "", ccode = "", asmcode = "", cancompile = true,
 #  recents: seq[seq[string]]): string =
 <html lang="EN" class="has-navbar-fixed-top" style="font-family:'Titillium Web';background-color:#232733">
@@ -130,19 +130,21 @@
 <input type="radio" id="tab5" name="nav-tab">
 <input type="radio" id="tab6" name="nav-tab">
 <input type="radio" id="tab7" name="nav-tab">
-<div class="tabs is-centered is-boxed is-small is-fullwidth is-paddingless is-marginless is-unselectable has-text-primary">
+# let tit = if target == "cpp": "C++" elif target == "js -d:nodejs" or target == "js": "JavaScript" elif target == "objc": "ObjectiveC" else: "C"
+# if not pastebin:
+<div class="tabs is-centered is-boxed is-small is-fullwidth is-paddingless is-marginless is-unselectable has-text-primary" id="tabbar">
   <ul>
     <li title="Nim source code"><label for="tab0"><a class="has-text-warning"> code.nim </a></label></li>
     <li title="JSON data to practice file I/O"><label for="tab1"><a class="has-text-warning"> file.json </a></label></li>
     <li title="Standard Output messages (Read-only)"><label for="tab2"><a class="has-text-warning"> Standard Output </a></label></li>
     <li title="Human readable comments (ReSTructuredText)"><label for="tab3"><a class="has-text-warning"> Comments </a></label></li>
-# let tit = if target == "cpp": "C++" elif target == "js -d:nodejs" or target == "js": "JavaScript" elif target == "objc": "ObjectiveC" else: "C"
     <li title="Temporary Intermediate Representation (Read-only)"><label for="tab4"><a class="has-text-warning"> $tit </a></label></li>
     <li title="Machine Code (Read-only)"><label for="tab5"><a class="has-text-warning"> Assembly </a></label></li>
     <li title="Abstract Syntax Tree (Read-only)"><label for="tab6"><a class="has-text-warning"> AST </a></label></li>
     <li title="DOT Graphic visualization (SVG)"><label for="tab7"><a class="has-text-warning"> DOT </a></label></li>
   </ul>
 </div>
+# end if
 <div class="tab-content">
   <div class="tab-pane content-tab0">
     <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder='# Type or paste your Nim source code  https://nim-lang.org
@@ -188,11 +190,12 @@ input#tab3:checked ~ .tab-content > .content-tab3,input#tab4:checked ~ .tab-cont
 input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-content > .content-tab7 { display: block; }
 </style>
 # if cancompile:
-  <button class="button is-fullwidth" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, Run" style="background-color:#ffe953"><b> C O M P I L E </b></button>
+  <button id="action" class="button is-fullwidth is-uppercase	has-text-weight-bold" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, Run" style="background-color:#ffe953"> C O M P I L E </button>
 # else:
   <input type="url" class="input is-fullwidth is-warning is-large has-text-centered has-text-weight-bold" value="http://$hosting/$urls" title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus >
 # end if
 <section class="section is-paddingless is-fullwidth">
+# if not pastebin:
   <details id="detailsnim" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
     <summary class="has-background-black has-text-white is-unselectable"> Nim </summary>
       <div class="columns">
@@ -295,11 +298,11 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
 
         <div class="column is-hidden-touch has-text-left">
           <label id="label0" class="checkbox is-small is-unselectable" title="Enable OpenSSL & HTTPS -d:ssl">
-            <input type="checkbox" class="checkbox is-small" id="ssl" name="ssl" ${if ssls == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
+            <input type="checkbox" class="checkbox is-small" id="ssl" name="ssl" ${if ssls: "checked" else: ""} onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
           </label> <a href="https://nim-lang.org/docs/openssl.html" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="label1" class="checkbox is-small is-unselectable" title="Enable Multi-Threading --threads:on">
-            <input type="checkbox" class="checkbox is-small" id="threads" name="threads" ${if threads == "on": "checked" else: ""} onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
+            <input type="checkbox" class="checkbox is-small" id="threads" name="threads" ${if threads: "checked" else: ""} onchange="if(this.checked){document.querySelector('#label1').classList.add('has-text-success');document.querySelector('#label1').classList.remove('has-text-danger')}else{document.querySelector('#label1').classList.add('has-text-danger');document.querySelector('#label1').classList.remove('has-text-success')}" /> Threads
           </label> <a href="https://nim-lang.org/docs/manual.html#threads" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="label2" class="checkbox is-small is-unselectable" title="Run --run">
@@ -307,30 +310,30 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           </label>
           <br>
           <label id="label3" class="checkbox is-small is-unselectable" title="Python syntax & Python export (Nimpy + Pylib)">
-            <input type="checkbox" class="checkbox is-small" id="python" name="python" ${if python == "on": "checked" else: ""} />Python syntax
+            <input type="checkbox" class="checkbox is-small" id="python" name="python" ${if python: "checked" else: ""} />Python syntax
           </label> <a href="https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers#table-of-contents" target="_blank" rel="noopener noreferrer">?</a>
         </div>
 
         <div class="column is-hidden-touch has-text-left">
           <label id="labela" class="checkbox is-small is-unselectable" title="GCC -flto" style="opacity:.75;cursor:not-allowed">
-            <input type="checkbox" class="checkbox is-small" id="flto" name="flto" ${if flto == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labela').classList.add('has-text-success');document.querySelector('#labela').classList.remove('has-text-danger')}else{document.querySelector('#labela').classList.add('has-text-danger');document.querySelector('#labela').classList.remove('has-text-success')}" />flto
+            <input type="checkbox" class="checkbox is-small" id="flto" name="flto" ${if flto: "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labela').classList.add('has-text-success');document.querySelector('#labela').classList.remove('has-text-danger')}else{document.querySelector('#labela').classList.add('has-text-danger');document.querySelector('#labela').classList.remove('has-text-success')}" />flto
           </label> <a href="https://gcc.gnu.org/wiki/LinkTimeOptimization#Background" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="labelb" class="checkbox is-small is-unselectable" title="GCC -ffast-math" style="opacity:.75;cursor:not-allowed">
-            <input type="checkbox" class="checkbox is-small" id="fastmath" name="fastmath" ${if fastmath == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelb').classList.add('has-text-success');document.querySelector('#labelb').classList.remove('has-text-danger')}else{document.querySelector('#labelb').classList.add('has-text-danger');document.querySelector('#labelb').classList.remove('has-text-success')}" />fast-math
+            <input type="checkbox" class="checkbox is-small" id="fastmath" name="fastmath" ${if fastmath: "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelb').classList.add('has-text-success');document.querySelector('#labelb').classList.remove('has-text-danger')}else{document.querySelector('#labelb').classList.add('has-text-danger');document.querySelector('#labelb').classList.remove('has-text-success')}" />fast-math
           </label> <a href="https://gcc.gnu.org/wiki/FloatingPointMath" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="labelc" class="checkbox is-small is-unselectable" title="GCC -march=native" style="opacity:.75;cursor:not-allowed">
-            <input type="checkbox" class="checkbox is-small" id="marchnative" name="marchnative" ${if marchnative == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />arch=native
+            <input type="checkbox" class="checkbox is-small" id="marchnative" name="marchnative" ${if marchnative: "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labelc').classList.add('has-text-success');document.querySelector('#labelc').classList.remove('has-text-danger')}else{document.querySelector('#labelc').classList.add('has-text-danger');document.querySelector('#labelc').classList.remove('has-text-success')}" />arch=native
           </label> <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html" target="_blank" rel="noopener noreferrer">?</a>
           <br>
           <label id="labeld" class="checkbox is-small is-unselectable" title="Hardened Binary" style="opacity:.75;cursor:not-allowed">
-            <input type="checkbox" class="checkbox is-small" id="hardened" name="hardened" ${if hardened == "on": "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labeld').classList.add('has-text-success');document.querySelector('#labeld').classList.remove('has-text-danger')}else{document.querySelector('#labeld').classList.add('has-text-danger');document.querySelector('#labeld').classList.remove('has-text-success')}" />Hardened
+            <input type="checkbox" class="checkbox is-small" id="hardened" name="hardened" ${if hardened: "checked" else: ""} onchange="if(!this.checked){document.querySelector('#labeld').classList.add('has-text-success');document.querySelector('#labeld').classList.remove('has-text-danger')}else{document.querySelector('#labeld').classList.add('has-text-danger');document.querySelector('#labeld').classList.remove('has-text-success')}" />Hardened
           </label> <a href="https://en.wikipedia.org/wiki/Hardening_(computing)#Binary_hardening" target="_blank" rel="noopener noreferrer">?</a>
         </div>
       </div>
     </details>
-
+# end if
 <details id="detailseditor" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
     <summary class="has-background-black has-text-white is-unselectable"> Editor </summary>
       <div class="columns">
@@ -377,6 +380,13 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
               <option value=30 ></option>
               <option value=60 ></option>
             </datalist>
+        </div>
+
+        <div class="column">
+          Mode <br>
+          <label id="labelx" class="checkbox is-small is-unselectable" title="Playground or Pastebin">
+            <input type="checkbox" class="checkbox is-small" id="pastebin" name="pastebin" ${if pastebin: "checked" else: ""} onchange="if(this.checked){document.querySelector('#detailsnim').style.display='none';document.querySelector('#tabbar').style.display='none';document.querySelector('#action').innerText='S A V E';this.style.display='none'}else{document.querySelector('#detailsnim').style.display='block';document.querySelector('#tabbar').style.display='block'}" /> Pastebin
+          </label>
         </div>
 
         <div class="column">
