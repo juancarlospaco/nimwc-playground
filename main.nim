@@ -88,7 +88,7 @@ routes:
     except:
       resp genError(error = getCurrentExceptionMsg())
     let comments = if unlikely(comnt.len > 2):
-      try: rstToHtml(comnt, {}, newStringTable(modeStyleInsensitive)) except: comnt
+      try: rstToHtml(comnt, {}, newStringTable(modeStyleInsensitive)) except: comnt & "\n\n Error parsing as RST/MD, fallback to plain text."
       else: ""
     discard existsOrCreateDir folder
     defer: removeDir folder
@@ -115,7 +115,7 @@ routes:
             ])
             let cmd = [
               x, if @"run" == "on": "" else: "--noexec='" & folder & "/' " ,
-              "nim --parallelBuild:1 --hint[Conf]:off --hint[Processing]:off --lineTrace:off --embedsrc:on --excessiveStackTrace:off --asm --passL:-s --nimcache:" & folder & "/ --outdir:" & folder & "/",
+              "nim --colors:off --parallelBuild:1 --hint[Conf]:off --hint[Processing]:off --lineTrace:off --embedsrc:on --excessiveStackTrace:off --asm --passL:-s --nimcache:" & folder & "/ --outdir:" & folder & "/",
               targets, modes, gcs, stylechecks, exceptions, cpus,
               if @"ssl" == "on": "-d:ssl" else: "",
               if @"threads" == "on": "--threads:on --experimental:parallel" else: "",
