@@ -1,4 +1,4 @@
-import strutils, db_sqlite, json, strtabs, os, osproc, random, jester, net, packages/docutils/rstgen
+import strutils, db_sqlite, json, strtabs, os, osproc, random, jester, net, times, packages/docutils/rstgen
 randomize()
 include "index.nimf", "error.nimf"
 
@@ -49,7 +49,7 @@ routes:
           from playground where url = ? """, @"urls")
       resp genPlayground(
         urls = @"urls", code = row[1], filejson = row[2], htmlcomment = row[3], stdouts = row[4], ccode = row[5], asmcode = row[6], astcode = row[7], dot = row[8], fsize = parseInt(row[9].strip.normalize),
-        target = row[10], mode = row[11], gc = row[12], stylecheck = row[13], exceptions = row[14], cpu = row[15], ssls = row[16] == "1", threads = row[17] == "1",
+        target = row[10], mode = row[11], gc = row[12], stylecheck = row[13], exceptions = row[14], cpu = row[15], ssls = row[16] == "1", threads = row[17] == "1", creation = parseInt(row[0]).int64.fromUnix.local,
         python = row[18] == "1", flto = row[19] == "1", fastmath = row[20] == "1", marchnative = row[21] == "1", hardened = row[22] == "1", pastebin = row[23] == "1",
         fontsize = parseInt(row[24].strip.normalize), fontfamily = row[25], expiration = parseInt(row[26].strip.normalize), cancompile = false, hosting = $request.host,
         recents = getAllRows(db, sql"select url from playground order by creation limit 20")

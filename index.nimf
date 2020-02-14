@@ -3,7 +3,7 @@
 #func genPlayground*(
 #  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", stdouts = "", target = "c", mode = "", gc = "",
 #  stylecheck = "", exceptions = "", cpu = "", ssls = false, threads = false, python = false, flto = false, fastmath = false, marchnative = false, hardened = false, pastebin = false,
-#  fontfamily = "Fira Code", hosting = "", fontsize = 15, expiration = 9, fsize = 0, astcode = "", dot = "", ccode = "", asmcode = "", cancompile = true,
+#  fontfamily = "Fira Code", hosting = "", fontsize = 15, expiration = 9, fsize = 0, astcode = "", dot = "", ccode = "", asmcode = "", cancompile = true, creation = now(),
 #  recents: seq[seq[string]]): string =
 <html lang="EN" class="has-navbar-fixed-top" style="font-family:'Titillium Web';background-color:#232733">
 <head>
@@ -150,10 +150,10 @@
     <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder='# Type or paste your Nim source code  https://nim-lang.org
 echo "Hello World"
     ' dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="9" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
-    <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes binary file size.</b></small>
+    <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes binary file size</b>, ${ getDateStr(creation) } </small>
   </div>
   <div class="tab-pane content-tab1">
-    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json'" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
+    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json' to practice file I/O" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
   </div>
   <div class="tab-pane content-tab2">
     <textarea id="stdout" readonly class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$stdouts</textarea><br>
@@ -384,7 +384,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
 
         <div class="column">
           Mode <br>
-          <label id="labelx" class="checkbox is-small is-unselectable" title="Playground or Pastebin">
+          <label id="labelx" class="checkbox is-small is-unselectable" title="Playground / Pastebin">
             <input type="checkbox" class="checkbox is-small" id="pastebin" name="pastebin" ${if pastebin: "checked" else: ""} onchange="if(this.checked){document.querySelector('#detailsnim').style.display='none';document.querySelector('#tabbar').style.display='none';document.querySelector('#action').innerText='S A V E';this.style.display='none'}else{document.querySelector('#detailsnim').style.display='block';document.querySelector('#tabbar').style.display='block'}" /> Pastebin
           </label>
         </div>
@@ -393,7 +393,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           Examples <br>
           <div class="select is-small">
             <select id="examples" title="Load 1 Example" onchange="document.querySelector('#code').value=this.options[this.selectedIndex].value">
-              <option selected disabled >111 Examples</option>
+              <option selected disabled >120 Examples</option>
             # const exmpl = staticRead"examples.html".strip
               $exmpl
             </select>

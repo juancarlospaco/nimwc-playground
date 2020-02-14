@@ -81,6 +81,11 @@ echo @["foo", "bar", "baz"]
 
 
 <option value='
+echo(if conditional: "result0" else: "result1")
+'>Ternary Operators</option>
+
+
+<option value='
 import terminal
 styledEcho(bgRed, "Red")
 '>Print Color</option>
@@ -98,7 +103,7 @@ if is_main_module:
 <option value='
 import tables
 
-to_table({"key": "value", "other": "things"})
+echo to_table({"key": "value", "other": "things"})
 '>Tables</option>
 
 
@@ -117,6 +122,21 @@ assert dictionary.has_key("hi")
 for key, value in dictionary:
   echo key, value
 '>Tables 2</option>
+
+
+<option value='
+import tables
+
+echo to_ordered_table({8: "hp", 4: "laser", 9: "engine"})
+'>Ordered Tables</option>
+
+
+<option value='
+import tables
+
+echo to_count_table("abcabb")
+'>Count Tables</option>
+
 
 
 <option value='
@@ -218,6 +238,12 @@ when is_main_module: echo 42
 '>Optional Indentation</option>
 
 
+<option value='
+when isMainModule:
+  echo "Call main() here."
+'>Self-Execution of Module</option>
+
+
 </optgroup>
 <optgroup label="Medium">
 
@@ -227,6 +253,41 @@ type Cat = object
 proc purr(this: Cat) = echo "Purr"
 Cat().purr()
 '>Minimal Objects</option>
+
+
+<option value='
+type Animal = ref object of RootObj ## Animal base object.
+  age: int
+  name: string                      ## Attributes of base object.
+
+type Cat = ref object of Animal     ## Cat inherited object.
+  playfulness: float                ## Attributes of inherited object.
+
+func increase_age(self: Cat) =
+  self.age.inc()                    # Cat object function, access and *modify* object.
+
+var kitten = Cat(name: "Tom")       # Cat object instance.
+kitten.increase_age()               # Cat object function used.
+
+assert kitten.name == "Tom"         # Assert on Cat object.
+assert kitten.age == 1
+'>OOP Inheritance</option>
+
+
+<option value='
+type Cat = object                # Cat object.
+  age: int
+  name: string                   # Attributes of Cat object.
+
+func newCat(age = 2): Cat =      # Cat.__init__(self, age=2)
+  result.age = age               # self.age = age
+  result.name = "adopt_me"       # self.name = "adopt_me"
+
+var kitten = newCat()            # Cat object instance.
+
+assert kitten.name == "adopt_me" # Assert on Cat object.
+assert kitten.age == 2
+'>Object Contructors</option>
 
 
 <option value='
@@ -605,6 +666,17 @@ echo jotason.pretty
 
 
 <option value='
+import json
+
+var variable = %*{
+  "key": "value",
+  "other": true
+}
+echo variable
+'>JSON 2</option>
+
+
+<option value='
 import xmltree
 echo <>xml(href="http://nim-lang.org", title="Nim is Awesome", alt="Nim", newText("Nim"))
 '>XML</option>
@@ -680,6 +752,18 @@ suite "Just Testing":
     expect AssertionError:
       assert true == false
 '>Unittest Expect Errors</option>
+
+
+<option value='
+template decorator(argument: untyped) =
+  echo "This mimics a Decorator"
+  argument
+
+func function_with_decorator(): int {.decorator.} =
+  return 42
+
+echo function_with_decorator()
+'>Template as Pragma</option>
 
 
 <option value='
@@ -1110,6 +1194,7 @@ class Example(object):            #  Mimic Python Classes.
 
 
 <option value='
+import lenientops
 print(42.0 / 2) # Math with mixed Float and Int
 '>Math Int Float Mixed</option>
 
