@@ -407,7 +407,8 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
       </div>
       <i class="is-clearfix"></i>
   </details>
-  <a class="h5" href="https://t.me/NimArgentina" style="color:#ffdd57" target="_blank" rel="noopener noreferrer"> Creado por la comunidad Nim Argentina </a>
+  # const banner = staticRead"banner.html".strip.unindent(9)
+  $banner
   </section>
 </form>
 </div>
