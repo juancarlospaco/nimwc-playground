@@ -332,6 +332,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           </label> <a href="https://en.wikipedia.org/wiki/Hardening_(computing)#Binary_hardening" target="_blank" rel="noopener noreferrer">?</a>
         </div>
       </div>
+      <i class="is-clearfix"></i>
     </details>
 # end if
 <details id="detailseditor" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
