@@ -208,12 +208,12 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
                   <option value="c"            ${if target == "c": "selected" else: ""} >           C         </option>
                   <option value="cpp"          ${if target == "cpp": "selected" else: ""}>          C++       </option>
                   <option value="objc"         ${if target == "objcc": "selected" else: ""}>        ObjectiveC</option>
-                  <option value="js -d:nodejs" ${if target == "js -d:nodejs": "selected" else: ""} disabled > NodeJS    </option>
+                  <option value="js -d:nodejs" ${if target == "js -d:nodejs": "selected" else: ""}> NodeJS    </option>
                   <option disabled>             NimScript </option>
                   <option disabled>             LLVM IR   </option>
                 </optgroup>
                 <optgroup label="Frontend">
-                  <option value="js" disabled  ${if target == "js": "selected" else: ""}>           JavaScript  </option>
+                  <option value="js" ${if target == "js": "selected" else: ""}> JavaScript  </option>
                   <option disabled >  WASM </option>
                 </optgroup>
                 <optgroup label="Diagnostics">
