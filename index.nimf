@@ -193,9 +193,6 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
   <button id="action" class="button is-fullwidth is-uppercase	has-text-weight-bold" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, Run" style="background-color:#ffe953"> C O M P I L E </button>
 # else:
   <input type="url" class="input is-fullwidth is-warning is-large has-text-centered has-text-weight-bold" value="http://$hosting/$urls" title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus >
-  <center>
-    ${ qrSvg("http://$hosting/$urls") }
-  </center><br>
 # end if
 <section class="section is-paddingless is-fullwidth">
 # if not pastebin:
