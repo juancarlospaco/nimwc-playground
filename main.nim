@@ -1,4 +1,4 @@
-import strutils, db_sqlite, json, strtabs, os, osproc, random, net, times, packages/docutils/rstgen, jester
+import strutils, db_sqlite, json, strtabs, os, osproc, random, net, times, packages/docutils/rstgen, jester, qr
 randomize()
 include "index.nimf", "error.nimf"
 
