@@ -39,7 +39,7 @@ exec(db, sql"""
 
 routes:
   get "/":
-    resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 20"))
+    resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 25"))
 
   get "/@urls":
     if likely(@"urls".len > 3 and @"urls".len < 10):
@@ -52,7 +52,7 @@ routes:
         target = row[10], mode = row[11], gc = row[12], stylecheck = row[13], exceptions = row[14], cpu = row[15], ssls = row[16] == "1", threads = row[17] == "1", creation = parseInt(row[0]).int64.fromUnix.local,
         python = row[18] == "1", flto = row[19] == "1", fastmath = row[20] == "1", marchnative = row[21] == "1", hardened = row[22] == "1", pastebin = row[23] == "1",
         fontsize = parseInt(row[24].strip.normalize), fontfamily = row[25], expiration = parseInt(row[26].strip.normalize), cancompile = false, hosting = $request.host,
-        recents = getAllRows(db, sql"select url from playground order by creation limit 20")
+        recents = getAllRows(db, sql"select url from playground order by creation limit 25")
       )
     else: resp genPlayground(recents = @[@[""]])
 
@@ -168,7 +168,7 @@ routes:
                   let fsize = if likely(targets in ["c", "cpp", "objc"]):
                     try: getFileSize(folder / "code").int div 1024 except: 0
                     else: 0
-                  let recents = getAllRows(db, sql"select url from playground order by creation limit 20")
+                  let recents = getAllRows(db, sql"select url from playground order by creation limit 25")
                   when not defined(release): echo "OK\t", recents
                   if sample([true, false]):  # 50/50 chance to delete expired playgrounds on each post.
                     discard tryExec(db, sql"delete from playground where creation > DATETIME('now', '-' || expiration || ' day')") # https://stackoverflow.com/a/45202107
