@@ -45,6 +45,7 @@
                 <a class="navbar-item navbar-item-dropdown" href="https://forum.nim-lang.org" target="_blank" rel="noopener noreferrer">Forum (International)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimArgentina" target="_blank" rel="noopener noreferrer">Spanish (Americas)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/NimParaguay" target="_blank" rel="noopener noreferrer">Spanish (Americas)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimbrasil" target="_blank" rel="noopener noreferrer">Portuguese (Americas)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimitalia" target="_blank" rel="noopener noreferrer">Italian (Europe)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://nim-cn.com" target="_blank" rel="noopener noreferrer">Chinese (Asia)</a>
                 <a class="navbar-item navbar-item-dropdown" href="irc://freenode.net/nim" target="_blank" rel="noopener noreferrer">IRC</a>
