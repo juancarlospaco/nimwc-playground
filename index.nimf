@@ -303,10 +303,6 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
                 <option value="--os:android --gcc.exe:arm-linux-gnueabi-gcc --gcc.linkerexe:arm-linux-gnueabi-gcc" ${if oss == "--os:android --gcc.exe:arm-linux-gnueabi-gcc --gcc.linkerexe:arm-linux-gnueabi-gcc": "selected" else: ""} > Android </option>
                 <option disabled >IOS</option>
               </optgroup>
-              <optgroup label="Console">
-                <option disabled >Switch</option>
-                <option disabled >Game Boy</option>
-              </optgroup>
               <optgroup label="Advanced">
                 <option value="--os:standalone" ${if oss == "--os:standalone": "selected" else: ""} class="has-text-danger">Standalone</option>
               </optgroup>
