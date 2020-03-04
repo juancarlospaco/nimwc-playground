@@ -60,7 +60,7 @@ routes:
     const
       x = "firejail --quiet --noprofile --timeout='00:05:00' --nice=20 --noroot --read-only='/home/' --seccomp --disable-mnt --rlimit-sigpending=9 --rlimit-nofile=99 --rlimit-fsize=9216000000 --shell=none --x11=none --ipc-namespace --name=nim --hostname=nim --no3d --nodvd --nogroups --nonewprivs --nosound --novideo --notv --net=none --memory-deny-write-execute"
       hf = "-fstack-protector-all -Wstack-protector --param ssp-buffer-size=4 -pie -fPIE -Wformat -Wformat-security -D_FORTIFY_SOURCE=2 -Wall -Wextra -Wconversion -Wsign-conversion -mindirect-branch=thunk -mfunction-return=thunk -Wl,-z,relro,-z,now -Wl,-z,noexecstack -fsanitize=signed-integer-overflow -fsanitize-undefined-trap-on-error -fno-common"
-      n = "nim --colors:off --parallelBuild:1 --listCmd --hint[Conf]:off --hint[Processing]:off --styleCheck:hint --lineTrace:off --embedsrc:on --excessiveStackTrace:off --asm --passL:-s "
+      n = "nim --colors:off --parallelBuild:1 --listCmd --hint[Conf]:off --hint[Processing]:off --styleCheck:hint --lineTrace:off --embedsrc:on --excessiveStackTrace:off --passL:-s "
       s = "strip --strip-all --remove-section=.comment --remove-section=.note.gnu.gold-version --remove-section=.note --remove-section=.note.gnu.build-id --remove-section=.note.ABI-tag "
       #css = "<style>" & staticRead"nimdoc.out.css".strip.unindent(99) & "</style>"
     let
@@ -96,7 +96,6 @@ routes:
         targets = @"target".normalize
         exceptions = @"exceptions".normalize
         jsons = parseJson(@"filejson").pretty.strip
-      echo "oss\t", oss
       try: # Validation
         doAssert comnt.len < 1000, "Comment is too long, 1000 chars max limit"
         doAssert jsons.len < 1000, "JSON is too long, 1000 chars max limit"
@@ -112,6 +111,7 @@ routes:
       except:
         resp genError(error = getCurrentExceptionMsg())
       let isWin = oss == "--os:windows --gcc.exe:x86_64-w64-mingw32-gcc --gcc.linkerexe:x86_64-w64-mingw32-gcc"
+      let isAndroid = oss == "--os:android --gcc.exe:arm-linux-gnueabi-gcc --gcc.linkerexe:arm-linux-gnueabi-gcc"
       let comments = if unlikely(comnt.len > 2):
         try: rstToHtml(comnt, {}, newStringTable(modeStyleInsensitive)) except: comnt & "\n\n Error parsing as RST/MD, fallback to plain text."
         else: ""
@@ -148,9 +148,10 @@ routes:
                 x, if @"run" == "on": "" else: "--noexec='" & folder & "/' " ,
                 n & "--nimcache:" & folder & "/ --outdir:" & folder & "/",
                 targets, modes, gcs, exceptions, cpus, oss,
+                if not isAndroid: "--asm" else: "",
                 if @"ssl" == "on": "-d:ssl" else: "",
                 if @"threads" == "on": "--threads:on --experimental:parallel" else: "",
-                if @"run" == "on": "--run" else: "",
+                if @"run" == "on" and not isWin: "--run" else: "",
                 if @"flto" == "on": "--passC:-flto" else: "",
                 if @"fastmath" == "on": "--passC:'-ffast-math -fsingle-precision-constant'" else: "",
                 if @"marchnative" == "on": "--passC:'-march=native -mtune=native'" else: "",
