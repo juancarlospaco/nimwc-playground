@@ -167,12 +167,12 @@ routes:
                   of "objc": "@mcode.nim.m"
                   of "js -d:nodejs", "js": "code.js"
                   else: ""
-                let ccode = if likely(sourcec.len > 0): readFile(folder / sourcec).strip.replace("\t", "  ") else: ""
+                let ccode = if likely(sourcec.len > 0 and not isAndroid): readFile(folder / sourcec).strip.replace("\t", "  ") else: ""
                 let sourceasm = case targets
                   of "c":   "@mcode.nim.c.asm"
                   of "cpp": "@mcode.nim.cpp.asm"
                   else: ""
-                let asmcode = if likely(sourceasm.len > 0): readFile(folder / sourceasm).strip.replace("\t", " ") else: ""
+                let asmcode = if likely(sourceasm.len > 0 and not isAndroid): readFile(folder / sourceasm).strip.replace("\t", " ") else: ""
                 let stdouts = output.strip
                 if likely(targets != "e"): (output, exitCode) = execCmdEx(s & folder / "code" & (if isWin: ".exe" else: ""))
                 when not defined(release): echo exitCode, "\tstrip"
