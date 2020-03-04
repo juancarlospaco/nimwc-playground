@@ -258,20 +258,6 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         </div>
 
         <div class="column is-hidden-touch">
-          <a href="https://nim-lang.org/docs/nep1.html#introduction" target="_blank" rel="noopener noreferrer" title="Code style"> CodeStyle </a><br>
-          <div class="select is-small">
-            <select id="stylecheck" name="stylecheck" title="Code style" class="select is-small">
-              <option value=""                     ${if stylecheck == "": "selected" else: ""} > Default </option>
-              <option value="--styleCheck:off"     ${if stylecheck == "--styleCheck:off": "selected" else: ""} >  Off   </option>
-              <option value="--styleCheck:hint"    ${if stylecheck == "--styleCheck:hint": "selected" else: ""} > Hints </option>
-              <optgroup label="Advanced">
-                <option value="--styleCheck:error" ${if stylecheck == "--styleCheck:error": "selected" else: ""} class="has-text-danger"> Errors </option>
-              </optgroup>
-            </select>
-          </div>
-        </div>
-
-        <div class="column is-hidden-touch">
           <a href="https://nim-lang.org/araq/gotobased_exceptions.html" target="_blank" rel="noopener noreferrer" title="Exception Handling"> Exceptions </a><br>
           <div class="select is-small">
             <select id="exceptions" name="exceptions" title="Exception Handling" class="select is-small">
@@ -298,7 +284,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           </div>
         </div>
 
-        <div class="column is-hidden-touch has-text-left">
+        <div class="column has-text-left">
           <label id="label0" class="checkbox is-small is-unselectable" title="Enable OpenSSL & HTTPS -d:ssl">
             <input type="checkbox" class="checkbox is-small" id="ssl" name="ssl" ${if ssls: "checked" else: ""} onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
           </label> <a href="https://nim-lang.org/docs/openssl.html" target="_blank" rel="noopener noreferrer">?</a>
@@ -389,7 +375,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           Mode <br>
           <label id="labelx" class="checkbox is-small is-unselectable" title="Playground / Pastebin">
             <input type="checkbox" class="checkbox is-small" id="pastebin" name="pastebin" ${if pastebin: "checked" else: ""} onchange="if(this.checked){document.querySelector('#detailsnim').style.display='none';document.querySelector('#tabbar').style.display='none';document.querySelector('#action').innerText='S A V E';this.style.display='none'}else{document.querySelector('#detailsnim').style.display='block';document.querySelector('#tabbar').style.display='block'}" /> Pastebin
-          </label>
+          </label> <a href="https://en.wikipedia.org/wiki/Pastebin" target="_blank" rel="noopener noreferrer">?</a>
         </div>
 
         <div class="column">
