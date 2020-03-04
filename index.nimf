@@ -1,7 +1,7 @@
 #? stdtmpl | standard
 #
 #func genPlayground*(
-#  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", stdouts = "", target = "c", mode = "", gc = "",
+#  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", stdouts = "", target = "c", mode = "", gc = "", oss = "",
 #  stylecheck = "", exceptions = "", cpu = "", ssls = false, threads = false, python = false, flto = false, fastmath = false, marchnative = false, hardened = false, pastebin = false,
 #  fontfamily = "Fira Code", hosting = "", fontsize = 15, expiration = 9, fsize = 0, astcode = "", dot = "", ccode = "", asmcode = "", cancompile = true, creation = now(),
 #  recents: seq[seq[string]]): string =
@@ -48,6 +48,7 @@
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimbrasil" target="_blank" rel="noopener noreferrer">Portuguese (Americas)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimitalia" target="_blank" rel="noopener noreferrer">Italian (Europe)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://nim-cn.com" target="_blank" rel="noopener noreferrer">Chinese (Asia)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimindonesia" target="_blank" rel="noopener noreferrer">Indonesia (Asia)</a>                
                 <a class="navbar-item navbar-item-dropdown" href="irc://freenode.net/nim" target="_blank" rel="noopener noreferrer">IRC</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://matrix.to/#/#freenode_#nim:matrix.org" target="_blank" rel="noopener noreferrer">Matrix</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://discord.gg/ezDFDw2" target="_blank" rel="noopener noreferrer">Discord</a>
@@ -150,37 +151,37 @@
   <div class="tab-pane content-tab0">
     <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder='# Type or paste your Nim source code  https://nim-lang.org
 echo "Hello World"
-    ' dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="9" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
+    ' dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="15" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
     <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes binary file size</b>, ${ getDateStr(creation) } </small>
   </div>
   <div class="tab-pane content-tab1">
-    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json' to practice file I/O" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
+    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json' to practice file I/O" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
   </div>
   <div class="tab-pane content-tab2">
-    <textarea id="stdout" readonly class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$stdouts</textarea><br>
+    <textarea id="stdout" readonly class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$stdouts</textarea><br>
   </div>
   <div class="tab-pane content-tab3">
   # if htmlcomment.len > 1 or not cancompile:
-    <article class="has-background-light" style="min-height:9em"> $htmlcomment </article>
+    <article class="has-background-light" style="min-height:20em"> $htmlcomment </article>
   # else:
-    <textarea id="comment" name="comment" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" MarkDown and ReSTructuredText Comments (Optional)" title="MarkDown and ReSTructuredText Comments" dir="auto" style="font-family:'Fira Code'" onblur="this.value=this.value.trim()"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+    <textarea id="comment" name="comment" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" MarkDown and ReSTructuredText Comments (Optional)" title="MarkDown and ReSTructuredText Comments" dir="auto" style="font-family:'Fira Code'" onblur="this.value=this.value.trim()"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
     <a class="is-hidden-touch" href="https://forum.nim-lang.org/about/rst" target="_blank" rel="noopener noreferrer">MarkDown and ReSTructuredText CheatSheet ?</a>
   # end if
   </div>
   <div class="tab-pane content-tab4">
-    <textarea id="c" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$ccode</textarea>
+    <textarea id="c" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$ccode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Intermediate_representation" target="_blank" rel="noopener noreferrer">Temporary Intermediate Representation ?</a>
   </div>
   <div class="tab-pane content-tab5">
-    <textarea id="asm" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$asmcode</textarea>
+    <textarea id="asm" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$asmcode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank" rel="noopener noreferrer">Machine Code Assembly ?</a>
   </div>
   <div class="tab-pane content-tab6">
-    <textarea id="ast" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astcode</textarea>
+    <textarea id="ast" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astcode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank" rel="noopener noreferrer">Abstract Syntax Tree ?</a>
   </div>
   <div class="tab-pane content-tab7">
-    <center class="is-paddingless is-fullwidth is-hidden-touch" style="min-height:15em;max-width:99%"> $dot </center>
+    <center class="is-paddingless is-fullwidth is-hidden-touch" style="min-height:20em;max-width:99%"> $dot </center>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)" target="_blank" rel="noopener noreferrer">DOT Graphs ?</a> (EXPERIMENTAL!)
   </div>
 </div>
@@ -207,12 +208,12 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
             <div class="select is-small">
               <select id="target" name="target" title="Compiler Target" class="select is-small">
                 <optgroup label="Backend">
-                  <option value="c"            ${if target == "c": "selected" else: ""} >           C         </option>
-                  <option value="cpp"          ${if target == "cpp": "selected" else: ""}>          C++       </option>
-                  <option value="objc"         ${if target == "objcc": "selected" else: ""}>        ObjectiveC</option>
-                  <option value="js -d:nodejs" ${if target == "js -d:nodejs": "selected" else: ""} disabled > NodeJS    </option>
-                  <option disabled>             NimScript </option>
-                  <option disabled>             LLVM IR   </option>
+                  <option value="c"    ${if target == "c": "selected" else: ""}     >C         </option>
+                  <option value="cpp"  ${if target == "cpp": "selected" else: ""}   >C++       </option>
+                  <option value="objc" ${if target == "objcc": "selected" else: ""} >ObjectiveC</option>
+                  <option value="e"    ${if target == "e": "selected" else: ""}     >NimScript </option>
+                  <option value="js -d:nodejs" disabled > NodeJS </option>
+                  <option disabled> LLVM IR </option>
                 </optgroup>
                 <optgroup label="Frontend">
                   <option value="js" disabled  ${if target == "js": "selected" else: ""}>           JavaScript  </option>
@@ -272,14 +273,43 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           </div>
         </div>
 
-        <div class="column is-hidden-touch">
+        <div class="column">
           <a href="https://en.wikipedia.org/wiki/Cross_compiler" target="_blank" rel="noopener noreferrer" title="Exception Handling"> CPU </a><br>
           <div class="select is-small">
             <select id="cpu" name="cpu" title="CPU Hardware (CrossCompilation)" class="select is-small">
               <option value=""                                     ${if cpu == "": "selected" else: ""}                                     > x86 64Bit </option>
               <option value="--cpu:i386 --passC:-m32 --passL:-m32" ${if cpu == "--cpu:i386 --passC:-m32 --passL:-m32": "selected" else: ""} > x86 32Bit </option>
-              <option disabled > ARM </option>
-              <option disabled > AVR </option>
+              <optgroup label="RaspberryPi">
+                <option disabled > ARM </option>
+              </optgroup>
+              <optgroup label="Arduino">
+                <option disabled > AVR </option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <div class="column">
+          <a href="https://en.wikipedia.org/wiki/Cross_compiler" target="_blank" rel="noopener noreferrer" title="Operating System"> OS </a><br>
+          <div class="select is-small">
+            <select id="oss" name="oss" title="Operating System (CrossCompilation)" class="select is-small">
+              <option value=""             ${if oss == "": "selected" else: ""}             > Default </option>
+              <optgroup label="PC">
+                <option value="--os:linux" ${if oss == "--os:linux": "selected" else: ""}   > Linux </option>
+                <option value="--os:windows --gcc.exe:x86_64-w64-mingw32-gcc --gcc.linkerexe:x86_64-w64-mingw32-gcc" ${if oss == "--os:windows --gcc.exe:x86_64-w64-mingw32-gcc --gcc.linkerexe:x86_64-w64-mingw32-gcc": "selected" else: ""} > Windows </option>
+                <option disabled >Mac OsX</option>
+              </optgroup>
+              <optgroup label="Mobile">
+                <option value="--os:android --gcc.exe:arm-linux-gnueabi-gcc --gcc.linkerexe:arm-linux-gnueabi-gcc" ${if oss == "--os:android --gcc.exe:arm-linux-gnueabi-gcc --gcc.linkerexe:arm-linux-gnueabi-gcc": "selected" else: ""} > Android </option>
+                <option disabled >IOS</option>
+              </optgroup>
+              <optgroup label="Console">
+                <option disabled >Switch</option>
+                <option disabled >Game Boy</option>
+              </optgroup>
+              <optgroup label="Advanced">
+                <option value="--os:standalone" ${if oss == "--os:standalone": "selected" else: ""} class="has-text-danger">Standalone</option>
+              </optgroup>
             </select>
           </div>
         </div>
