@@ -39,7 +39,7 @@ exec(db, sql"""
 
 routes:
   get "/":
-    resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 25"))
+    resp genPlayground(recents = getAllRows(db, sql"select url from playground order by creation limit 25"), simple = request.params.hasKey"simple")
 
   get "/@urls":
     if likely(@"urls".len > 3 and @"urls".len < 10):
@@ -52,9 +52,9 @@ routes:
         target = row[10], mode = row[11], gc = row[12], exceptions = row[13], cpu = row[14], ssls = row[15] == "1", threads = row[16] == "1", creation = parseInt(row[0]).int64.fromUnix.local,
         python = row[17] == "1", flto = row[18] == "1", fastmath = row[19] == "1", marchnative = row[20] == "1", hardened = row[21] == "1", pastebin = row[22] == "1",
         fontsize = parseInt(row[23].strip.normalize), fontfamily = row[24], expiration = parseInt(row[25].strip.normalize), oss = row[25], cancompile = false, hosting = $request.host,
-        recents = getAllRows(db, sql"select url from playground order by creation limit 25")
+        recents = getAllRows(db, sql"select url from playground order by creation limit 25"), simple = request.params.hasKey"simple"
       )
-    else: resp genPlayground(recents = @[@[""]])
+    else: resp genPlayground(recents = @[@[""]], simple = request.params.hasKey"simple")
 
   post "/compile":
     const
@@ -83,7 +83,7 @@ routes:
         when not defined(release): echo "OK\tSave new Pastebin ", urls
         resp genPlayground(
           urls = urls, code = @"code".strip, pastebin = true, fontfamily = fontfamilys, fontsize = fontsizes,
-          expiration = expirations, cancompile = false, recents = @[@[""]], hosting = $request.host,
+          expiration = expirations, cancompile = false, recents = @[@[""]], hosting = $request.host, simple = request.params.hasKey"simple"
         )
     else:
       let
@@ -199,7 +199,7 @@ routes:
                       when not defined(release): echo "OK\tSave new Playground ", urls
                       resp genPlayground(
                         urls = urls, filejson = jsons, code = nimcode, htmlcomment = comments, oss = oss,
-                        target = targets, mode = modes, gc = gcs, exceptions = exceptions, cpu = cpus,
+                        target = targets, mode = modes, gc = gcs, exceptions = exceptions, cpu = cpus, simple = request.params.hasKey"simple",
                         ssls = @"ssl" == "on", threads = @"threads" == "on", python = @"python" == "on", flto = @"flto" == "on", fastmath = @"fastmath" == "on", marchnative = @"marchnative" == "on", hardened = @"hardened" == "on",
                         fontfamily = fontfamilys, fontsize = fontsizes, expiration = expirations, fsize = fsize, cancompile = false,
                         astcode = astcode, dot = dot, ccode = ccode, asmcode = asmcode, stdouts = stdouts, recents = recents, hosting = $request.host,

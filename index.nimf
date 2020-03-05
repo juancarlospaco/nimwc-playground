@@ -4,7 +4,7 @@
 #  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", stdouts = "", target = "c", mode = "", gc = "", oss = "",
 #  stylecheck = "", exceptions = "", cpu = "", ssls = false, threads = false, python = false, flto = false, fastmath = false, marchnative = false, hardened = false, pastebin = false,
 #  fontfamily = "Fira Code", hosting = "", fontsize = 15, expiration = 9, fsize = 0, astcode = "", dot = "", ccode = "", asmcode = "", cancompile = true, creation = now(),
-#  recents: seq[seq[string]]): string =
+#  simple = false, recents: seq[seq[string]]): string =
 <html lang="EN" class="has-navbar-fixed-top" style="font-family:'Titillium Web';background-color:#232733">
 <head>
   <title>Nim Argentina</title>
@@ -26,12 +26,13 @@
             <img src="https://play.nim-lang.org/assets/logo.svg"/>
           </a>
         </div>
+# if not simple:
         <div class="navbar-menu">
           <div class="navbar-start">
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Recent</a>
               <div class="navbar-dropdown">
-            # if likely(recents.len > 0):
+            # if likely(recents.len > 1 and not simple):
             #   for item in recents:
                   <a class="navbar-item navbar-item-dropdown is-small is-marginless is-paddingless" href="/${ item[0] }" target="_blank" rel="noopener noreferrer"> ${ item[0] } </a>
             #   end for
@@ -120,6 +121,7 @@
             </div>
           </div>
         </div>
+# end if
       </div>
     </nav>
 
@@ -137,13 +139,15 @@
 <div class="tabs is-centered is-boxed is-small is-fullwidth is-paddingless is-marginless is-unselectable has-text-primary" id="tabbar">
   <ul>
     <li title="Nim source code"><label for="tab0"><a class="has-text-warning"> code.nim </a></label></li>
-    <li title="JSON data to practice file I/O"><label for="tab1"><a class="has-text-warning"> file.json </a></label></li>
     <li title="Standard Output messages (Read-only)"><label for="tab2"><a class="has-text-warning"> Standard Output </a></label></li>
+# if not simple:
+    <li title="JSON data to practice file I/O"><label for="tab1"><a class="has-text-warning"> file.json </a></label></li>
     <li title="Human readable comments (ReSTructuredText)"><label for="tab3"><a class="has-text-warning"> Comments </a></label></li>
     <li title="Temporary Intermediate Representation (Read-only)"><label for="tab4"><a class="has-text-warning"> $tit </a></label></li>
     <li title="Machine Code (Read-only)"><label for="tab5"><a class="has-text-warning"> Assembly </a></label></li>
     <li title="Abstract Syntax Tree (Read-only)"><label for="tab6"><a class="has-text-warning"> AST </a></label></li>
     <li title="DOT Graphic visualization (SVG)"><label for="tab7"><a class="has-text-warning"> DOT </a></label></li>
+# end if
   </ul>
 </div>
 # end if
@@ -151,33 +155,37 @@
   <div class="tab-pane content-tab0">
     <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder='# Type or paste your Nim source code  https://nim-lang.org
 echo "Hello World"
-    ' dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="15" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
-    <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes compiled file size</b>, ${ getDateStr(creation) } </small>
-  </div>
-  <div class="tab-pane content-tab1">
-    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json' to practice file I/O" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
+    ' dir="auto" autofocus required spellcheck style="background-color:#ccc;font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="15" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
+# if simple:
+    <br>
+# else:
+    <small id="stats" class="is-hidden-touch"></small><small id="compisize"><b>$fsize Kilobytes compiled file size</b>, ${ getDateStr(creation) } </small>
+# end if
   </div>
   <div class="tab-pane content-tab2">
-    <textarea id="stdout" readonly class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$stdouts</textarea><br>
+    <textarea id="stdout" readonly class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="background-color:#ccc;;font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$stdouts</textarea><br>
+  </div>
+  <div class="tab-pane content-tab1">
+    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json' to practice file I/O" dir="auto" style="background-color:#ccc;font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
   </div>
   <div class="tab-pane content-tab3">
   # if htmlcomment.len > 1 or not cancompile:
     <article class="has-background-light" style="min-height:20em"> $htmlcomment </article>
   # else:
-    <textarea id="comment" name="comment" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" MarkDown and ReSTructuredText Comments (Optional)" title="MarkDown and ReSTructuredText Comments" dir="auto" style="font-family:'Fira Code'" onblur="this.value=this.value.trim()"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+    <textarea id="comment" name="comment" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" MarkDown and ReSTructuredText Comments (Optional)" title="MarkDown and ReSTructuredText Comments" dir="auto" style="background-color:#ccc;;font-family:'Fira Code'" onblur="this.value=this.value.trim()"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
     <a class="is-hidden-touch" href="https://forum.nim-lang.org/about/rst" target="_blank" rel="noopener noreferrer">MarkDown and ReSTructuredText CheatSheet ?</a>
   # end if
   </div>
   <div class="tab-pane content-tab4">
-    <textarea id="c" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$ccode</textarea>
+    <textarea id="c" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="background-color:#ccc;font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$ccode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Intermediate_representation" target="_blank" rel="noopener noreferrer">Temporary Intermediate Representation ?</a>
   </div>
   <div class="tab-pane content-tab5">
-    <textarea id="asm" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$asmcode</textarea>
+    <textarea id="asm" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="background-color:#ccc;font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$asmcode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank" rel="noopener noreferrer">Machine Code Assembly ?</a>
   </div>
   <div class="tab-pane content-tab6">
-    <textarea id="ast" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astcode</textarea>
+    <textarea id="ast" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="background-color:#ccc;font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astcode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank" rel="noopener noreferrer">Abstract Syntax Tree ?</a>
   </div>
   <div class="tab-pane content-tab7">
@@ -194,10 +202,11 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
 # if cancompile:
   <button id="action" class="button is-fullwidth is-uppercase	has-text-weight-bold" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, Run" style="background-color:#ffe953"> C O M P I L E </button>
 # else:
-  <input type="url" class="input is-fullwidth is-warning is-large has-text-centered has-text-weight-bold" value="http://$hosting/$urls" title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus >
+  <input type="url" class="input is-warning is-large has-text-centered has-text-weight-bold" value='http://$hosting/$urls' title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus ><br><br>
+  <input type="url" class="input is-warning is-large has-text-centered has-text-weight-bold" value='http://$hosting/$urls?simple=1' title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus ><br><br>
   <center> ${ qrSvg( "http://" & hosting & "/" & urls )  } </center>
 # end if
-<section class="section is-paddingless is-fullwidth">
+<section class="section is-paddingless is-fullwidth" ${ if simple: "style='display:none'" else: ""} >
 # if not pastebin:
   <details id="detailsnim" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
     <summary class="has-background-black has-text-white is-unselectable"> Nim </summary>
