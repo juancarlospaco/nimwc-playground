@@ -157,7 +157,7 @@
 echo "Hello World"
     ' dir="auto" autofocus required spellcheck style="background-color:#ccc;font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="15" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
 # if simple:
-    <br>
+    <a href="https://t.me/NimArgentina" title="Powered by Nim Argentina Community" class="is-small" style="color:#ccc" target="_blank" rel="noopener noreferrer"><small><i>Nim Argentina</i></small></a>
 # else:
     <small id="stats" class="is-hidden-touch"></small><small id="compisize"><b>$fsize Kilobytes compiled file size</b>, ${ getDateStr(creation) } </small>
 # end if
