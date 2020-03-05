@@ -152,7 +152,7 @@
     <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder='# Type or paste your Nim source code  https://nim-lang.org
 echo "Hello World"
     ' dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="15" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
-    <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes binary file size</b>, ${ getDateStr(creation) } </small>
+    <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes compiled file size</b>, ${ getDateStr(creation) } </small>
   </div>
   <div class="tab-pane content-tab1">
     <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json' to practice file I/O" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
@@ -212,11 +212,11 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
                   <option value="cpp"  ${if target == "cpp": "selected" else: ""}   >C++       </option>
                   <option value="objc" ${if target == "objcc": "selected" else: ""} >ObjectiveC</option>
                   <option value="e"    ${if target == "e": "selected" else: ""}     >NimScript </option>
-                  <option value="js -d:nodejs" disabled > NodeJS </option>
+                  <option value="js -d:nodejs"> NodeJS </option>
                   <option disabled> LLVM IR </option>
                 </optgroup>
                 <optgroup label="Frontend">
-                  <option value="js" disabled  ${if target == "js": "selected" else: ""}>           JavaScript  </option>
+                  <option value="js" ${if target == "js": "selected" else: ""} >JavaScript</option>
                   <option disabled >  WASM </option>
                 </optgroup>
                 <optgroup label="Diagnostics">
