@@ -192,6 +192,3 @@ routes:
                       astcode = astcode, dot = dot, ccode = ccode, asmcode = asmcode, stdouts = stdouts, recents = recents, hosting = $request.host,
                     )
       if exitCode != 0: resp genError(error = output.strip)
-
-
-{.passC: "-flto -ffast-math -march=native -mtune=native -fsingle-precision-constant", passL: "-s".}
