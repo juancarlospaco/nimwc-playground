@@ -1,10 +1,10 @@
 #? stdtmpl | standard
 #
 #func genPlayground*(
-#  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", stdouts = "", target = "c", mode = "", gc = "",
+#  urls = $rand(100000..999999), filejson = "{}", code = "", htmlcomment = "", stdouts = "", target = "c", mode = "", gc = "", oss = "",
 #  stylecheck = "", exceptions = "", cpu = "", ssls = false, threads = false, python = false, flto = false, fastmath = false, marchnative = false, hardened = false, pastebin = false,
 #  fontfamily = "Fira Code", hosting = "", fontsize = 15, expiration = 9, fsize = 0, astcode = "", dot = "", ccode = "", asmcode = "", cancompile = true, creation = now(),
-#  recents: seq[seq[string]]): string =
+#  simple = false, recents: seq[seq[string]]): string =
 <html lang="EN" class="has-navbar-fixed-top" style="font-family:'Titillium Web';background-color:#232733">
 <head>
   <title>Nim Argentina</title>
@@ -26,12 +26,13 @@
             <img src="https://play.nim-lang.org/assets/logo.svg"/>
           </a>
         </div>
+# if not simple:
         <div class="navbar-menu">
           <div class="navbar-start">
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">Recent</a>
               <div class="navbar-dropdown">
-            # if likely(recents.len > 0):
+            # if likely(recents.len > 1 and not simple):
             #   for item in recents:
                   <a class="navbar-item navbar-item-dropdown is-small is-marginless is-paddingless" href="/${ item[0] }" target="_blank" rel="noopener noreferrer"> ${ item[0] } </a>
             #   end for
@@ -48,6 +49,7 @@
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimbrasil" target="_blank" rel="noopener noreferrer">Portuguese (Americas)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimitalia" target="_blank" rel="noopener noreferrer">Italian (Europe)</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://nim-cn.com" target="_blank" rel="noopener noreferrer">Chinese (Asia)</a>
+                <a class="navbar-item navbar-item-dropdown" href="https://t.me/nimindonesia" target="_blank" rel="noopener noreferrer">Indonesia (Asia)</a>                
                 <a class="navbar-item navbar-item-dropdown" href="irc://freenode.net/nim" target="_blank" rel="noopener noreferrer">IRC</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://matrix.to/#/#freenode_#nim:matrix.org" target="_blank" rel="noopener noreferrer">Matrix</a>
                 <a class="navbar-item navbar-item-dropdown" href="https://discord.gg/ezDFDw2" target="_blank" rel="noopener noreferrer">Discord</a>
@@ -119,6 +121,7 @@
             </div>
           </div>
         </div>
+# end if
       </div>
     </nav>
 
@@ -136,13 +139,15 @@
 <div class="tabs is-centered is-boxed is-small is-fullwidth is-paddingless is-marginless is-unselectable has-text-primary" id="tabbar">
   <ul>
     <li title="Nim source code"><label for="tab0"><a class="has-text-warning"> code.nim </a></label></li>
-    <li title="JSON data to practice file I/O"><label for="tab1"><a class="has-text-warning"> file.json </a></label></li>
     <li title="Standard Output messages (Read-only)"><label for="tab2"><a class="has-text-warning"> Standard Output </a></label></li>
+# if not simple:
+    <li title="JSON data to practice file I/O"><label for="tab1"><a class="has-text-warning"> file.json </a></label></li>
     <li title="Human readable comments (ReSTructuredText)"><label for="tab3"><a class="has-text-warning"> Comments </a></label></li>
     <li title="Temporary Intermediate Representation (Read-only)"><label for="tab4"><a class="has-text-warning"> $tit </a></label></li>
     <li title="Machine Code (Read-only)"><label for="tab5"><a class="has-text-warning"> Assembly </a></label></li>
     <li title="Abstract Syntax Tree (Read-only)"><label for="tab6"><a class="has-text-warning"> AST </a></label></li>
     <li title="DOT Graphic visualization (SVG)"><label for="tab7"><a class="has-text-warning"> DOT </a></label></li>
+# end if
   </ul>
 </div>
 # end if
@@ -150,37 +155,41 @@
   <div class="tab-pane content-tab0">
     <textarea id="code" name="code" class="textarea is-primary is-paddingless is-fullwidth" maxlength="999" placeholder='# Type or paste your Nim source code  https://nim-lang.org
 echo "Hello World"
-    ' dir="auto" autofocus required spellcheck style="font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="9" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
-    <small id="stats" class="is-hidden-touch"></small><small><b>$fsize Kilobytes binary file size</b>, ${ getDateStr(creation) } </small>
-  </div>
-  <div class="tab-pane content-tab1">
-    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json' to practice file I/O" dir="auto" style="font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
+    ' dir="auto" autofocus required spellcheck style="background-color:#ccc;font-family:'$fontfamily';font-size:$fontsize;width:99%" rows="15" oninput="document.querySelector('#detailseditor').setAttribute('open','open')" onblur="document.querySelector('#code').value=document.querySelector('#code').value.trim()" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">$code</textarea>
+# if simple:
+    <a href="https://t.me/NimArgentina" title="Powered by Nim Argentina Community" class="is-small" style="color:#ccc" target="_blank" rel="noopener noreferrer"><small><i>Nim Argentina</i></small></a>
+# else:
+    <small id="stats" class="is-hidden-touch"></small><small id="compisize"><b>$fsize Kilobytes compiled file size</b>, ${ getDateStr(creation) } </small>
+# end if
   </div>
   <div class="tab-pane content-tab2">
-    <textarea id="stdout" readonly class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$stdouts</textarea><br>
+    <textarea id="stdout" readonly class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Standard Output (Read-Only)" title="Standard Output (Read-Only)" dir="auto" style="background-color:#ccc;;font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$stdouts</textarea><br>
+  </div>
+  <div class="tab-pane content-tab1">
+    <textarea id="filejson" name="filejson" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" Type or Paste your JSON Data for 'file.json' (Optional, to use real I/O, the file can be read at compile time)" title="JSON Data for 'file.json' to practice file I/O" dir="auto" style="background-color:#ccc;font-family:'Fira Code'"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$filejson</textarea>
   </div>
   <div class="tab-pane content-tab3">
   # if htmlcomment.len > 1 or not cancompile:
-    <article class="has-background-light" style="min-height:9em"> $htmlcomment </article>
+    <article class="has-background-light" style="min-height:20em"> $htmlcomment </article>
   # else:
-    <textarea id="comment" name="comment" class="textarea is-paddingless is-fullwidth" rows="9" placeholder=" MarkDown and ReSTructuredText Comments (Optional)" title="MarkDown and ReSTructuredText Comments" dir="auto" style="font-family:'Fira Code'" onblur="this.value=this.value.trim()"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+    <textarea id="comment" name="comment" class="textarea is-paddingless is-fullwidth" rows="15" placeholder=" MarkDown and ReSTructuredText Comments (Optional)" title="MarkDown and ReSTructuredText Comments" dir="auto" style="background-color:#ccc;;font-family:'Fira Code'" onblur="this.value=this.value.trim()"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
     <a class="is-hidden-touch" href="https://forum.nim-lang.org/about/rst" target="_blank" rel="noopener noreferrer">MarkDown and ReSTructuredText CheatSheet ?</a>
   # end if
   </div>
   <div class="tab-pane content-tab4">
-    <textarea id="c" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$ccode</textarea>
+    <textarea id="c" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder="$tit code (Read-Only)" title="$tit Code (Read-Only)" dir="auto" style="background-color:#ccc;font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$ccode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Intermediate_representation" target="_blank" rel="noopener noreferrer">Temporary Intermediate Representation ?</a>
   </div>
   <div class="tab-pane content-tab5">
-    <textarea id="asm" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$asmcode</textarea>
+    <textarea id="asm" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder=" Machine Code Assembly ASM (Read-Only)" title="Assembly (Read-Only)" dir="auto" style="background-color:#ccc;font-family:'Fira Code';cursor:not-allowed" nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onmouseover="this.scrollTop=this.scrollHeight">$asmcode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank" rel="noopener noreferrer">Machine Code Assembly ?</a>
   </div>
   <div class="tab-pane content-tab6">
-    <textarea id="ast" class="textarea is-paddingless is-fullwidth" readonly rows="9" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astcode</textarea>
+    <textarea id="ast" class="textarea is-paddingless is-fullwidth" readonly rows="15" placeholder=" Abstract Syntax Tree Nim AST (Read-Only)" title="Abstract Syntax Tree (Read-Only)" dir="auto" style="background-color:#ccc;font-family:'Fira Code';cursor:not-allowed"  nowrap="nowrap" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" readonly >$astcode</textarea>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/Abstract_syntax_tree" target="_blank" rel="noopener noreferrer">Abstract Syntax Tree ?</a>
   </div>
   <div class="tab-pane content-tab7">
-    <center class="is-paddingless is-fullwidth is-hidden-touch" style="min-height:15em;max-width:99%"> $dot </center>
+    <center class="is-paddingless is-fullwidth is-hidden-touch" style="min-height:20em;max-width:99%"> $dot </center>
     <a class="is-hidden-touch" href="https://en.wikipedia.org/wiki/DOT_(graph_description_language)" target="_blank" rel="noopener noreferrer">DOT Graphs ?</a> (EXPERIMENTAL!)
   </div>
 </div>
@@ -193,10 +202,11 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
 # if cancompile:
   <button id="action" class="button is-fullwidth is-uppercase	has-text-weight-bold" onmouseover="document.querySelector('#detailsnim').setAttribute('open','open')" onclick="this.classList.add('is-loading');this.disabled=true;document.querySelector('#formnim').submit()" title="AutoFormat, Save, Compile, Run" style="background-color:#ffe953"> C O M P I L E </button>
 # else:
-  <input type="url" class="input is-fullwidth is-warning is-large has-text-centered has-text-weight-bold" value="http://$hosting/$urls" title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus >
+  <input type="url" class="input is-warning is-large has-text-centered has-text-weight-bold" value='http://$hosting/$urls' title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus ><br><br>
+  <input type="url" class="input is-warning is-large has-text-centered has-text-weight-bold" value='http://$hosting/$urls?simple=1' title="Playground URL" style="background-color:#ffe953" onclick="this.select();document.execCommand('copy');" readonly autofocus ><br><br>
   <center> ${ qrSvg( "http://" & hosting & "/" & urls )  } </center>
 # end if
-<section class="section is-paddingless is-fullwidth">
+<section class="section is-paddingless is-fullwidth" ${ if simple: "style='display:none'" else: ""} >
 # if not pastebin:
   <details id="detailsnim" class="is-fullwidth is-marginless is-paddingless has-text-centered has-text-white" style="cursor:pointer;background-color:#2b2e3b">
     <summary class="has-background-black has-text-white is-unselectable"> Nim </summary>
@@ -207,15 +217,15 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
             <div class="select is-small">
               <select id="target" name="target" title="Compiler Target" class="select is-small">
                 <optgroup label="Backend">
-                  <option value="c"            ${if target == "c": "selected" else: ""} >           C         </option>
-                  <option value="cpp"          ${if target == "cpp": "selected" else: ""}>          C++       </option>
-                  <option value="objc"         ${if target == "objcc": "selected" else: ""}>        ObjectiveC</option>
-                  <option value="js -d:nodejs" ${if target == "js -d:nodejs": "selected" else: ""} disabled > NodeJS    </option>
-                  <option disabled>             NimScript </option>
-                  <option disabled>             LLVM IR   </option>
+                  <option value="c"    ${if target == "c": "selected" else: ""}     >C         </option>
+                  <option value="cpp"  ${if target == "cpp": "selected" else: ""}   >C++       </option>
+                  <option value="objc" ${if target == "objcc": "selected" else: ""} >ObjectiveC</option>
+                  <option value="e"    ${if target == "e": "selected" else: ""}     >NimScript </option>
+                  <option value="js -d:nodejs"> NodeJS </option>
+                  <option disabled> LLVM IR </option>
                 </optgroup>
                 <optgroup label="Frontend">
-                  <option value="js" disabled  ${if target == "js": "selected" else: ""}>           JavaScript  </option>
+                  <option value="js" ${if target == "js": "selected" else: ""} >JavaScript</option>
                   <option disabled >  WASM </option>
                 </optgroup>
                 <optgroup label="Diagnostics">
@@ -258,20 +268,6 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
         </div>
 
         <div class="column is-hidden-touch">
-          <a href="https://nim-lang.org/docs/nep1.html#introduction" target="_blank" rel="noopener noreferrer" title="Code style"> CodeStyle </a><br>
-          <div class="select is-small">
-            <select id="stylecheck" name="stylecheck" title="Code style" class="select is-small">
-              <option value=""                     ${if stylecheck == "": "selected" else: ""} > Default </option>
-              <option value="--styleCheck:off"     ${if stylecheck == "--styleCheck:off": "selected" else: ""} >  Off   </option>
-              <option value="--styleCheck:hint"    ${if stylecheck == "--styleCheck:hint": "selected" else: ""} > Hints </option>
-              <optgroup label="Advanced">
-                <option value="--styleCheck:error" ${if stylecheck == "--styleCheck:error": "selected" else: ""} class="has-text-danger"> Errors </option>
-              </optgroup>
-            </select>
-          </div>
-        </div>
-
-        <div class="column is-hidden-touch">
           <a href="https://nim-lang.org/araq/gotobased_exceptions.html" target="_blank" rel="noopener noreferrer" title="Exception Handling"> Exceptions </a><br>
           <div class="select is-small">
             <select id="exceptions" name="exceptions" title="Exception Handling" class="select is-small">
@@ -286,19 +282,44 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           </div>
         </div>
 
-        <div class="column is-hidden-touch">
+        <div class="column">
           <a href="https://en.wikipedia.org/wiki/Cross_compiler" target="_blank" rel="noopener noreferrer" title="Exception Handling"> CPU </a><br>
           <div class="select is-small">
             <select id="cpu" name="cpu" title="CPU Hardware (CrossCompilation)" class="select is-small">
               <option value=""                                     ${if cpu == "": "selected" else: ""}                                     > x86 64Bit </option>
               <option value="--cpu:i386 --passC:-m32 --passL:-m32" ${if cpu == "--cpu:i386 --passC:-m32 --passL:-m32": "selected" else: ""} > x86 32Bit </option>
-              <option disabled > ARM </option>
-              <option disabled > AVR </option>
+              <optgroup label="RaspberryPi">
+                <option disabled > ARM </option>
+              </optgroup>
+              <optgroup label="Arduino">
+                <option disabled > AVR </option>
+              </optgroup>
             </select>
           </div>
         </div>
 
-        <div class="column is-hidden-touch has-text-left">
+        <div class="column">
+          <a href="https://en.wikipedia.org/wiki/Cross_compiler" target="_blank" rel="noopener noreferrer" title="Operating System"> OS </a><br>
+          <div class="select is-small">
+            <select id="oss" name="oss" title="Operating System (CrossCompilation)" class="select is-small">
+              <option value=""             ${if oss == "": "selected" else: ""}             > Default </option>
+              <optgroup label="PC">
+                <option value="--os:linux" ${if oss == "--os:linux": "selected" else: ""}   > Linux </option>
+                <option value="--os:windows --gcc.exe:x86_64-w64-mingw32-gcc --gcc.linkerexe:x86_64-w64-mingw32-gcc" ${if oss == "--os:windows --gcc.exe:x86_64-w64-mingw32-gcc --gcc.linkerexe:x86_64-w64-mingw32-gcc": "selected" else: ""} > Windows </option>
+                <option disabled >Mac OsX</option>
+              </optgroup>
+              <optgroup label="Mobile">
+                <option value="--os:android --gcc.exe:arm-linux-gnueabi-gcc --gcc.linkerexe:arm-linux-gnueabi-gcc" ${if oss == "--os:android --gcc.exe:arm-linux-gnueabi-gcc --gcc.linkerexe:arm-linux-gnueabi-gcc": "selected" else: ""} > Android </option>
+                <option disabled >IOS</option>
+              </optgroup>
+              <optgroup label="Advanced">
+                <option value="--os:standalone" ${if oss == "--os:standalone": "selected" else: ""} class="has-text-danger">Standalone</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <div class="column has-text-left">
           <label id="label0" class="checkbox is-small is-unselectable" title="Enable OpenSSL & HTTPS -d:ssl">
             <input type="checkbox" class="checkbox is-small" id="ssl" name="ssl" ${if ssls: "checked" else: ""} onchange="if(this.checked){document.querySelector('#label0').classList.add('has-text-success');document.querySelector('#label0').classList.remove('has-text-danger')}else{document.querySelector('#label0').classList.add('has-text-danger');document.querySelector('#label0').classList.remove('has-text-success')}" /> OpenSSL
           </label> <a href="https://nim-lang.org/docs/openssl.html" target="_blank" rel="noopener noreferrer">?</a>
@@ -389,7 +410,7 @@ input#tab6:checked ~ .tab-content > .content-tab6,input#tab7:checked ~ .tab-cont
           Mode <br>
           <label id="labelx" class="checkbox is-small is-unselectable" title="Playground / Pastebin">
             <input type="checkbox" class="checkbox is-small" id="pastebin" name="pastebin" ${if pastebin: "checked" else: ""} onchange="if(this.checked){document.querySelector('#detailsnim').style.display='none';document.querySelector('#tabbar').style.display='none';document.querySelector('#action').innerText='S A V E';this.style.display='none'}else{document.querySelector('#detailsnim').style.display='block';document.querySelector('#tabbar').style.display='block'}" /> Pastebin
-          </label>
+          </label> <a href="https://en.wikipedia.org/wiki/Pastebin" target="_blank" rel="noopener noreferrer">?</a>
         </div>
 
         <div class="column">
